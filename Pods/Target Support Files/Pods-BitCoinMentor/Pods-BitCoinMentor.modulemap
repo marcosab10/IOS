@@ -1,0 +1,6 @@
+framework module Pods_BitCoinMentor {
+  umbrella header "Pods-BitCoinMentor-umbrella.h"
+
+  export *
+  module * { export * }
+}

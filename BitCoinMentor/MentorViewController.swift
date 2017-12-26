@@ -136,9 +136,11 @@ class MentorViewController: UIViewController {
         
         if self.valorAtualBitCash > self.valorBaseBitCash * taxaLucro {
             self.acaoBitCoinCashLabel.text = "Vender"
+            //self.notificar(mensagem: "Vender BitCoinCash")
             
         } else if self.valorAtualBitCash * taxaLucro < self.valorBaseBitCash  {
             self.acaoBitCoinCashLabel.text = "Comprar"
+            //self.notificar(mensagem: "Comprar BitCoinCash")
         }
         else{
             self.acaoBitCoinCashLabel.text = ""
@@ -153,6 +155,24 @@ class MentorViewController: UIViewController {
         else{
             self.acaoLiteCoinLabel.text = ""
         }
+    }
+    
+    func notificar(mensagem: String) {
+        if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json",
+                                           "Authorization":"key=AAAAGQux7pQ:APA91bGH1SCT0Ey0gLl8CA0-m2eaCzEIz5jhNnJ9kxzuZeDSRWs1IAVamYOcLwYKLdI2rdqUBmDF5qjteRli7ibSaQ_8MhVMu25r9nSU4l5nJGA85qJiv3lDg32W8mrGZo36448q-oD3"]
+            request.httpMethod = "POST"
+            request.httpBody = "{\"to\":\"fG1meK7JuqQ:APA91bEIG6vgl3qx6PAD4U25lq8515IKWS2t2Hhv3RPcd2RBfVBfg8gmEU3h4J8nfM64QnXum6eIbcNRdK15R8t6DriSeVdlNHxoBEVQ6gSLAiEbIwkLhzwMxaFYnqnjv_TQymS60255\",\"notification\":{\"title\":\"\(mensagem)\"}}".data(using: .utf8)
+            
+            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                if error != nil  {
+                    print(error!)
+                }
+            }).resume()
+        }
+        
+        
     }
 
 }

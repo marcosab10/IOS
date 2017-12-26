@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E40B4A6A52C770E6D935DBE /* Pods_BitCoinMentor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1304FD57CEC6A996058CC545 /* Pods_BitCoinMentor.framework */; };
 		DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */; };
 		DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */; };
 		DC36EEA51FEEFC3E006DEC96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */; };
 		DC36EEA81FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC36EEA61FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld */; };
 		DC36EEAA1FEEFC3E006DEC96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */; };
 		DC36EEAD1FEEFC3E006DEC96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */; };
+		DC5C73DC1FF1DD8D00F6AD91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */; };
 		DCE3CE751FF0506800977907 /* ConfigurarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */; };
 		DCE3CE771FF05CCE00977907 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3CE761FF05CCE00977907 /* Util.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1304FD57CEC6A996058CC545 /* Pods_BitCoinMentor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitCoinMentor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1B4A2E8374574AD7F29A448 /* Pods-BitCoinMentor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinMentor.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitCoinMentor/Pods-BitCoinMentor.release.xcconfig"; sourceTree = "<group>"; };
 		DC36EE9C1FEEFC3E006DEC96 /* BitCoinMentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitCoinMentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorViewController.swift; sourceTree = "<group>"; };
@@ -26,8 +30,11 @@
 		DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC36EEAC1FEEFC3E006DEC96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC36EEAE1FEEFC3E006DEC96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurarViewController.swift; sourceTree = "<group>"; };
 		DCE3CE761FF05CCE00977907 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		DCFF55481FF1ECEC0054079F /* BitCoinMentor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BitCoinMentor.entitlements; sourceTree = "<group>"; };
+		F95300A33EE067BAE89FC668 /* Pods-BitCoinMentor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinMentor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitCoinMentor/Pods-BitCoinMentor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +42,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E40B4A6A52C770E6D935DBE /* Pods_BitCoinMentor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BC641AFAC66B756945BF423 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1304FD57CEC6A996058CC545 /* Pods_BitCoinMentor.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DC36EE931FEEFC3E006DEC96 = {
 			isa = PBXGroup;
 			children = (
 				DC36EE9E1FEEFC3E006DEC96 /* BitCoinMentor */,
 				DC36EE9D1FEEFC3E006DEC96 /* Products */,
+				E446411D700C1716BBC9AB8D /* Pods */,
+				0BC641AFAC66B756945BF423 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +78,8 @@
 		DC36EE9E1FEEFC3E006DEC96 /* BitCoinMentor */ = {
 			isa = PBXGroup;
 			children = (
+				DCFF55481FF1ECEC0054079F /* BitCoinMentor.entitlements */,
+				DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */,
 				DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */,
 				DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */,
 				DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */,
@@ -73,6 +93,15 @@
 			path = BitCoinMentor;
 			sourceTree = "<group>";
 		};
+		E446411D700C1716BBC9AB8D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F95300A33EE067BAE89FC668 /* Pods-BitCoinMentor.debug.xcconfig */,
+				B1B4A2E8374574AD7F29A448 /* Pods-BitCoinMentor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC36EEB11FEEFC3E006DEC96 /* Build configuration list for PBXNativeTarget "BitCoinMentor" */;
 			buildPhases = (
+				9BBD4285F70A5CCFE7C2F769 /* [CP] Check Pods Manifest.lock */,
 				DC36EE981FEEFC3E006DEC96 /* Sources */,
 				DC36EE991FEEFC3E006DEC96 /* Frameworks */,
 				DC36EE9A1FEEFC3E006DEC96 /* Resources */,
+				B62CA328C78632C4687C3CE7 /* [CP] Embed Pods Frameworks */,
+				1D8AEB755855A627DC61033F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -106,6 +138,11 @@
 					DC36EE9B1FEEFC3E006DEC96 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -133,12 +170,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC36EEAD1FEEFC3E006DEC96 /* LaunchScreen.storyboard in Resources */,
+				DC5C73DC1FF1DD8D00F6AD91 /* GoogleService-Info.plist in Resources */,
 				DC36EEAA1FEEFC3E006DEC96 /* Assets.xcassets in Resources */,
 				DC36EEA51FEEFC3E006DEC96 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D8AEB755855A627DC61033F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitCoinMentor/Pods-BitCoinMentor-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BBD4285F70A5CCFE7C2F769 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B62CA328C78632C4687C3CE7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BitCoinMentor/Pods-BitCoinMentor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DC36EE981FEEFC3E006DEC96 /* Sources */ = {
@@ -284,8 +370,10 @@
 		};
 		DC36EEB21FEEFC3E006DEC96 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F95300A33EE067BAE89FC668 /* Pods-BitCoinMentor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BitCoinMentor/BitCoinMentor.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WVZ27ZN38V;
@@ -302,8 +390,10 @@
 		};
 		DC36EEB31FEEFC3E006DEC96 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1B4A2E8374574AD7F29A448 /* Pods-BitCoinMentor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BitCoinMentor/BitCoinMentor.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WVZ27ZN38V;
