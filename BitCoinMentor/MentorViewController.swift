@@ -53,21 +53,23 @@ class MentorViewController: UIViewController {
         }
     }
     
+    func carregarDados() {
+        self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BTC/ticker/", precoLabel: self.precoBitCoinLabel, valorAtual:"valorAtualBitCoin")
+        self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BCH/ticker/", precoLabel: self.precoBitCashLabel, valorAtual: "valorAtualBitCash")
+        self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/LTC/ticker/", precoLabel: self.precoLiteCoinLabel, valorAtual: "valorAtualLiteCoin")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         let intervaloRefresh:Double = 5.0
         let intervaloCalculo:Double = 10
         var contador:Double = 0.0
         
-        self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BTC/ticker/", precoLabel: self.precoBitCoinLabel, valorAtual:"valorAtualBitCoin")
-        self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BCH/ticker/", precoLabel: self.precoBitCashLabel, valorAtual: "valorAtualBitCash")
-        self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/LTC/ticker/", precoLabel: self.precoLiteCoinLabel, valorAtual: "valorAtualLiteCoin")
+        carregarDados()
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             contador = contador + intervaloRefresh
             
-            self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BTC/ticker/", precoLabel: self.precoBitCoinLabel, valorAtual: "valorAtualBitCoin")
-            self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BCH/ticker/", precoLabel: self.precoBitCashLabel, valorAtual: "valorAtualBitCash")
-            self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/LTC/ticker/", precoLabel: self.precoLiteCoinLabel, valorAtual: "valorAtualLiteCoin")
+             self.carregarDados()
             
             if (contador == intervaloCalculo){
                 contador = 0.0
@@ -126,9 +128,11 @@ class MentorViewController: UIViewController {
         
         if self.valorAtualBitCoin > self.valorBaseBitCoin * taxaLucro {
             self.acaoBitCoinLabel.text = "Vender"
+            //util.notificar(title: "BitCoin", body: "Vender BitCoin")
             
         } else if self.valorAtualBitCoin * taxaLucro < self.valorBaseBitCoin  {
             self.acaoBitCoinLabel.text = "Comprar"
+            //util.notificar(title: "BitCoin", body: "Comprar BitCoin")
         }
         else{
             self.acaoBitCoinLabel.text = ""
@@ -136,11 +140,11 @@ class MentorViewController: UIViewController {
         
         if self.valorAtualBitCash > self.valorBaseBitCash * taxaLucro {
             self.acaoBitCoinCashLabel.text = "Vender"
-            //self.notificar(mensagem: "Vender BitCoinCash")
+            //util.notificar(title: "BitCoinCash", body: "Vender BitCoinCash")
             
         } else if self.valorAtualBitCash * taxaLucro < self.valorBaseBitCash  {
             self.acaoBitCoinCashLabel.text = "Comprar"
-            //self.notificar(mensagem: "Comprar BitCoinCash")
+           //util.notificar(title: "BitCoinCash", body: "Comprar BitCoinCash")
         }
         else{
             self.acaoBitCoinCashLabel.text = ""
@@ -148,32 +152,18 @@ class MentorViewController: UIViewController {
         
         if self.valorAtualLiteCoin > self.valorBaseLiteCoin * taxaLucro {
             self.acaoLiteCoinLabel.text = "Vender"
+            //util.notificar(title: "LiteCoin", body: "Vender LiteCoin")
             
         } else if self.valorAtualLiteCoin * taxaLucro < self.valorBaseLiteCoin  {
             self.acaoLiteCoinLabel.text = "Comprar"
+            //util.notificar(title: "LiteCoin", body: "Comprar LiteCoin")
         }
         else{
             self.acaoLiteCoinLabel.text = ""
         }
     }
     
-    func notificar(mensagem: String) {
-        if let url = URL(string: "https://fcm.googleapis.com/fcm/send") {
-            var request = URLRequest(url: url)
-            request.allHTTPHeaderFields = ["Content-Type":"application/json",
-                                           "Authorization":"key=AAAAGQux7pQ:APA91bGH1SCT0Ey0gLl8CA0-m2eaCzEIz5jhNnJ9kxzuZeDSRWs1IAVamYOcLwYKLdI2rdqUBmDF5qjteRli7ibSaQ_8MhVMu25r9nSU4l5nJGA85qJiv3lDg32W8mrGZo36448q-oD3"]
-            request.httpMethod = "POST"
-            request.httpBody = "{\"to\":\"fG1meK7JuqQ:APA91bEIG6vgl3qx6PAD4U25lq8515IKWS2t2Hhv3RPcd2RBfVBfg8gmEU3h4J8nfM64QnXum6eIbcNRdK15R8t6DriSeVdlNHxoBEVQ6gSLAiEbIwkLhzwMxaFYnqnjv_TQymS60255\",\"notification\":{\"title\":\"\(mensagem)\"}}".data(using: .utf8)
-            
-            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
-                if error != nil  {
-                    print(error!)
-                }
-            }).resume()
-        }
-        
-        
-    }
+    
 
 }
 

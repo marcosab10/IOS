@@ -7,7 +7,7 @@
 		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Pods-BitCoinMentor.xcscheme</key>
 		<dict>
@@ -17,7 +17,7 @@
 		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
+			<integer>4</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>

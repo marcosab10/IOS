@@ -22,6 +22,32 @@ class ConfigurarViewController: UIViewController {
     @IBOutlet weak var liteCoinBaseText: UITextField!
     @IBOutlet weak var margemText: UITextField!
     
+    @IBAction func definirValoresAtuais(_ sender: Any) {
+        if  let object = UserDefaults.standard.object(forKey: "bitCoinObject")  {
+            let bitCoinObject = object as! [String: Any]
+            let bitCoinBase = util.definirValorAtual(objetoJson: bitCoinObject, moeda: "bitCoinBase")
+            if bitCoinBase != "" {
+                bitCoinBaseLabel.text = bitCoinBase
+            }
+        }
+        
+        if  let object = UserDefaults.standard.object(forKey: "bitCoinCashObject")  {
+            let bitCoinCashObject = object as! [String: Any]
+            let bitCoinCashBase = util.definirValorAtual(objetoJson: bitCoinCashObject, moeda: "bitCoinCashBase")
+            if bitCoinCashBase != "" {
+                bitCoinCashBaseLabel.text = bitCoinCashBase
+            }
+        }
+        
+        if  let object = UserDefaults.standard.object(forKey: "liteCoinObject")  {
+            let liteCoinObject = object as! [String: Any]
+            let liteCoinBase = util.definirValorAtual(objetoJson: liteCoinObject, moeda: "liteCoinBase")
+            if liteCoinBase != "" {
+                liteCoinBaseLabel.text = liteCoinBase
+            }
+        }
+        
+    }
     
     @IBAction func definirValoresAuto(_ sender: Any) {
         
