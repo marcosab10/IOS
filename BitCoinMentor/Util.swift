@@ -75,5 +75,20 @@ class Util {
         }
     }
     
+    func salvarConfiguracoes(title: String, body: String) {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentorService/BitCoinMentorService") {
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            request.httpBody = "{\"to\":\"fG1meK7JuqQ:APA91bEIG6vgl3qx6PAD4U25lq8515IKWS2t2Hhv3RPcd2RBfVBfg8gmEU3h4J8nfM64QnXum6eIbcNRdK15R8t6DriSeVdlNHxoBEVQ6gSLAiEbIwkLhzwMxaFYnqnjv_TQymS60255\",\"notification\":{\"title\":\"\(title)\", \"body\":\"\(body)\", \"sound\":\"default\"}}".data(using: .utf8)
+            
+            URLSession.shared.dataTask(with: request, completionHandler: { (data, urlresponse, error) in
+                if error != nil  {
+                    print(error!)
+                }
+            }).resume()
+        }
+    }
+    
     
 }

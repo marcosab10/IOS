@@ -473,6 +473,9 @@
                                         <state key="normal" title="Salvar">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="salvar:" destination="Kbb-E9-wdh" eventType="touchUpInside" id="5aX-NS-CBY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -496,6 +499,12 @@
                         <outlet property="liteCoinBaseText" destination="Vve-Lu-myF" id="lO1-rn-qXa"/>
                         <outlet property="margemLabel" destination="3jw-q6-BrF" id="zgN-cI-H6k"/>
                         <outlet property="margemText" destination="gCt-HI-HE2" id="m5m-cI-8Fx"/>
+                        <outlet property="notifBitcoinCashCompraSwitch" destination="tF5-XA-WpE" id="FtC-IB-o6g"/>
+                        <outlet property="notifBitcoinCashVendaSwitch" destination="coA-k1-8Tu" id="qCG-em-Hrc"/>
+                        <outlet property="notifBitcoinCompraSwitch" destination="RjR-x7-hNT" id="tRq-rZ-bmd"/>
+                        <outlet property="notifBitcoinVendaSwitch" destination="0E2-vp-bHi" id="fOc-pA-qOf"/>
+                        <outlet property="notifLitecoinCompraSwitch" destination="chg-EU-8hY" id="wGa-qc-6ym"/>
+                        <outlet property="notifLitecoinVendaSwitch" destination="OUV-MX-5FK" id="wBe-yA-hFR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJu-IH-UvE" userLabel="First Responder" sceneMemberID="firstResponder"/>

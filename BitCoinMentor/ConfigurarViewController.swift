@@ -22,6 +22,24 @@ class ConfigurarViewController: UIViewController {
     @IBOutlet weak var liteCoinBaseText: UITextField!
     @IBOutlet weak var margemText: UITextField!
     
+    @IBOutlet weak var notifBitcoinVendaSwitch: UISwitch!
+    @IBOutlet weak var notifBitcoinCompraSwitch: UISwitch!
+    @IBOutlet weak var notifBitcoinCashVendaSwitch: UISwitch!
+    @IBOutlet weak var notifBitcoinCashCompraSwitch: UISwitch!
+    @IBOutlet weak var notifLitecoinVendaSwitch: UISwitch!
+    @IBOutlet weak var notifLitecoinCompraSwitch: UISwitch!
+
+    
+    
+    @IBAction func salvar(_ sender: Any) {
+        UserDefaults.standard.set(notifBitcoinVendaSwitch.isOn, forKey: "notifBitcoinVendaSwitch")
+        UserDefaults.standard.set(notifBitcoinCompraSwitch.isOn, forKey: "notifBitcoinCompraSwitch")
+        UserDefaults.standard.set(notifBitcoinCashVendaSwitch.isOn, forKey: "notifBitcoinCashVendaSwitch")
+        UserDefaults.standard.set(notifBitcoinCashCompraSwitch.isOn, forKey: "notifBitcoinCashCompraSwitch")
+        UserDefaults.standard.set(notifLitecoinVendaSwitch.isOn, forKey: "notifLitecoinVendaSwitch")
+        UserDefaults.standard.set(notifLitecoinCompraSwitch.isOn, forKey: "notifLitecoinCompraSwitch")
+    }
+    
     @IBAction func definirValoresAtuais(_ sender: Any) {
         if  let object = UserDefaults.standard.object(forKey: "bitCoinObject")  {
             let bitCoinObject = object as! [String: Any]
@@ -132,6 +150,27 @@ class ConfigurarViewController: UIViewController {
         
         if let margem = UserDefaults.standard.object(forKey: "margem") {
             margemLabel.text = String(describing: margem) + "%"
+        }
+        
+        if let notifBitcoinVendaSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinVendaSwitch") {
+            notifBitcoinVendaSwitch.isOn = notifBitcoinVendaSwitchValue as! Bool
+        }
+        if let notifBitcoinCompraSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinCompraSwitch") {
+            notifBitcoinCompraSwitch.isOn = notifBitcoinCompraSwitchValue as! Bool
+        }
+        
+        if let notifBitcoinCashVendaSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinCashVendaSwitch") {
+            notifBitcoinCashVendaSwitch.isOn = notifBitcoinCashVendaSwitchValue as! Bool
+        }
+        if let notifBitcoinCashCompraSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinCashCompraSwitch") {
+            notifBitcoinCashCompraSwitch.isOn = notifBitcoinCashCompraSwitchValue as! Bool
+        }
+        
+        if let notifLitecoinVendaSwitchValue = UserDefaults.standard.object(forKey: "notifLitecoinVendaSwitch") {
+            notifLitecoinVendaSwitch.isOn = notifLitecoinVendaSwitchValue as! Bool
+        }
+        if let notifLitecoinCompraSwitchValue = UserDefaults.standard.object(forKey: "notifLitecoinCompraSwitch") {
+            notifLitecoinCompraSwitch.isOn = notifLitecoinCompraSwitchValue as! Bool
         }
     }
     
