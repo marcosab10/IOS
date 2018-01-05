@@ -38,6 +38,58 @@ class ConfigurarViewController: UIViewController {
         UserDefaults.standard.set(notifBitcoinCashCompraSwitch.isOn, forKey: "notifBitcoinCashCompraSwitch")
         UserDefaults.standard.set(notifLitecoinVendaSwitch.isOn, forKey: "notifLitecoinVendaSwitch")
         UserDefaults.standard.set(notifLitecoinCompraSwitch.isOn, forKey: "notifLitecoinCompraSwitch")
+        
+        let configurationTO = ConfigurationTO()
+        configurationTO.id = "1"
+        configurationTO.idUser = "1"
+        configurationTO.name = "Mercado BitCoin"
+        
+        if let bitCoinBase  = UserDefaults.standard.object(forKey: "bitCoinBase") {
+            let bitCoinBaseDouble = bitCoinBase as! Double
+            configurationTO.valorBaseBitCoin = String(bitCoinBaseDouble)
+        }
+        if  let bitCoinCashBase = UserDefaults.standard.object(forKey: "bitCoinCashBase") {
+            let bitCoinCashBaseDouble = bitCoinCashBase as! Double
+            configurationTO.valorBaseBitcoinCash = String(bitCoinCashBaseDouble)
+        }
+        if let liteCoinBase = UserDefaults.standard.object(forKey: "liteCoinBase") {
+            let liteCoinBaseDouble = liteCoinBase as! Double
+           configurationTO.valorBaseLiteCoin = String(liteCoinBaseDouble)
+        }
+        if let margem = UserDefaults.standard.object(forKey: "margem") {
+            let margemDouble = margem as! Int
+            configurationTO.margem = String(margemDouble)
+        }
+        
+        configurationTO.intervalo = "10"
+        
+        if let notifBitcoinVendaSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinVendaSwitch") {
+            let notifBitcoinVendaBool = notifBitcoinVendaSwitchValue as! Bool
+            configurationTO.notificarBitcoinVenda = String(notifBitcoinVendaBool)
+        }
+        if let notifBitcoinCompraSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinCompraSwitch") {
+            let notifBitcoinCompraBool = notifBitcoinCompraSwitchValue as! Bool
+             configurationTO.notificarBitcoinCompra = String(notifBitcoinCompraBool)
+        }
+        if let notifBitcoinCashVendaSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinCashVendaSwitch") {
+            let notifBitcoinCashVendaBool = notifBitcoinCashVendaSwitchValue as! Bool
+            configurationTO.notificarBitcoinCashVenda = String(notifBitcoinCashVendaBool)
+        }
+        if let notifBitcoinCashCompraSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinCashCompraSwitch") {
+            let notifBitcoinCashCompraBool = notifBitcoinCashCompraSwitchValue as! Bool
+            configurationTO.notificarBitcoinCashCompra = String(notifBitcoinCashCompraBool)
+        }
+        if let notifLitecoinVendaSwitchValue = UserDefaults.standard.object(forKey: "notifLitecoinVendaSwitch") {
+            let notifLitecoinVendaBool = notifLitecoinVendaSwitchValue as! Bool
+            configurationTO.notificarLiteCoinVenda = String(notifLitecoinVendaBool)
+        }
+        if let notifLitecoinCompraSwitchValue = UserDefaults.standard.object(forKey: "notifLitecoinCompraSwitch") {
+            let notifLitecoinCompraBool = notifLitecoinCompraSwitchValue as! Bool
+            configurationTO.notificarLiteCoinCompra = String(notifLitecoinCompraBool)
+        }
+        
+        util.salvarConfiguracoes(configurationTO: configurationTO)
+        
     }
     
     @IBAction func definirValoresAtuais(_ sender: Any) {

@@ -15,6 +15,8 @@
 		DC36EEAA1FEEFC3E006DEC96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */; };
 		DC36EEAD1FEEFC3E006DEC96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */; };
 		DC5C73DC1FF1DD8D00F6AD91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */; };
+		DCE3913A1FFF17C700E0116A /* ConfigurationTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE391391FFF17C700E0116A /* ConfigurationTO.swift */; };
+		DCE3913C1FFF2A9400E0116A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE3913B1FFF2A9400E0116A /* ExternalAccessory.framework */; };
 		DCE3CE751FF0506800977907 /* ConfigurarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */; };
 		DCE3CE771FF05CCE00977907 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3CE761FF05CCE00977907 /* Util.swift */; };
 /* End PBXBuildFile section */
@@ -31,6 +33,8 @@
 		DC36EEAC1FEEFC3E006DEC96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC36EEAE1FEEFC3E006DEC96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DCE391391FFF17C700E0116A /* ConfigurationTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTO.swift; sourceTree = "<group>"; };
+		DCE3913B1FFF2A9400E0116A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurarViewController.swift; sourceTree = "<group>"; };
 		DCE3CE761FF05CCE00977907 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		DCFF55481FF1ECEC0054079F /* BitCoinMentor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BitCoinMentor.entitlements; sourceTree = "<group>"; };
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCE3913C1FFF2A9400E0116A /* ExternalAccessory.framework in Frameworks */,
 				6E40B4A6A52C770E6D935DBE /* Pods_BitCoinMentor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +57,7 @@
 		0BC641AFAC66B756945BF423 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DCE3913B1FFF2A9400E0116A /* ExternalAccessory.framework */,
 				1304FD57CEC6A996058CC545 /* Pods_BitCoinMentor.framework */,
 			);
 			name = Frameworks;
@@ -78,6 +84,7 @@
 		DC36EE9E1FEEFC3E006DEC96 /* BitCoinMentor */ = {
 			isa = PBXGroup;
 			children = (
+				DCE391381FFF17A100E0116A /* model */,
 				DCFF55481FF1ECEC0054079F /* BitCoinMentor.entitlements */,
 				DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */,
 				DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */,
@@ -91,6 +98,14 @@
 				DC36EEA61FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld */,
 			);
 			path = BitCoinMentor;
+			sourceTree = "<group>";
+		};
+		DCE391381FFF17A100E0116A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DCE391391FFF17C700E0116A /* ConfigurationTO.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		E446411D700C1716BBC9AB8D /* Pods */ = {
@@ -142,7 +157,16 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.DataProtection = {
+								enabled = 0;
+							};
+							com.apple.HotspotConfiguration = {
+								enabled = 0;
+							};
 							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.WAC = {
 								enabled = 1;
 							};
 						};
@@ -239,6 +263,7 @@
 				DCE3CE771FF05CCE00977907 /* Util.swift in Sources */,
 				DC36EEA81FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld in Sources */,
 				DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */,
+				DCE3913A1FFF17C700E0116A /* ConfigurationTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
