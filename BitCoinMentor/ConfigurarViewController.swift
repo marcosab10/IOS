@@ -31,7 +31,7 @@ class ConfigurarViewController: UIViewController {
     @IBOutlet weak var notifBitcoinCashCompraSwitch: UISwitch!
     @IBOutlet weak var notifLitecoinVendaSwitch: UISwitch!
     @IBOutlet weak var notifLitecoinCompraSwitch: UISwitch!
-    @IBOutlet weak var notificacoesHabilitadas: UISwitch!
+    @IBOutlet weak var notificacoesHabilitadasSwitch: UISwitch!
     
     
     @IBAction func salvar(_ sender: Any) {
@@ -41,7 +41,7 @@ class ConfigurarViewController: UIViewController {
         UserDefaults.standard.set(notifBitcoinCashCompraSwitch.isOn, forKey: "notifBitcoinCashCompraSwitch")
         UserDefaults.standard.set(notifLitecoinVendaSwitch.isOn, forKey: "notifLitecoinVendaSwitch")
         UserDefaults.standard.set(notifLitecoinCompraSwitch.isOn, forKey: "notifLitecoinCompraSwitch")
-        UserDefaults.standard.set(notificacoesHabilitadas.isOn, forKey: "notificacoesHabilitadas")
+        UserDefaults.standard.set(notificacoesHabilitadasSwitch.isOn, forKey: "notificacoesHabilitadasSwitch")
         
         
         
@@ -70,7 +70,7 @@ class ConfigurarViewController: UIViewController {
             let intervaloDouble = intervalo as! Int
             configurationTO.intervalo = String(intervaloDouble)
         }
-        if let notificacoesHabilitadasSwitchValue = UserDefaults.standard.object(forKey: "notificacoesHabilitadas") {
+        if let notificacoesHabilitadasSwitchValue = UserDefaults.standard.object(forKey: "notificacoesHabilitadasSwitch") {
             let notificacoesHabilitadasBool = notificacoesHabilitadasSwitchValue as! Bool
             configurationTO.notificacoesHabilitadas = String(notificacoesHabilitadasBool)
         }
@@ -99,7 +99,7 @@ class ConfigurarViewController: UIViewController {
             configurationTO.notificarLiteCoinCompra = String(notifLitecoinCompraBool)
         }
         
-        util.salvarConfiguracoes(configurationTO: configurationTO)
+         util.salvarConfiguracoes(configurationTO: configurationTO)
     }
     
     @IBAction func definirValoresAtuais(_ sender: Any) {
@@ -248,7 +248,12 @@ class ConfigurarViewController: UIViewController {
         if let notifLitecoinCompraSwitchValue = UserDefaults.standard.object(forKey: "notifLitecoinCompraSwitch") {
             notifLitecoinCompraSwitch.isOn = notifLitecoinCompraSwitchValue as! Bool
         }
+        if let notificacoesHabilitadasSwitchValue = UserDefaults.standard.object(forKey: "notificacoesHabilitadasSwitch") {
+            notificacoesHabilitadasSwitch.isOn = notificacoesHabilitadasSwitchValue as! Bool
+        }
     }
+    
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -6,9 +6,32 @@
 //  Copyright © 2017 Marcos Faria. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Util {
+    
+    func alert(title: String, mensagem: String) -> UIAlertController{
+        
+        let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .alert)
+        
+        let confirmar = UIAlertAction(title: "OK", style: .default) { (acao) in
+            //print("Botão confirmar pressionado!")
+        }
+        
+        alerta.addAction(confirmar)
+        
+        //present(alerta, animated: true, completion: nil)
+        return alerta
+    }
+    
+    func uiColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
     
     func formatarPreco(preco: NSNumber) -> String{
         let nf = NumberFormatter()
@@ -75,8 +98,7 @@ class Util {
         }
     }
     
-    func salvarConfiguracoes(configurationTO: ConfigurationTO) {
-        
+    func salvarConfiguracoes(configurationTO: ConfigurationTO){
         let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/saveConfiguration")
         if let usableUrl = url {
             var request = URLRequest(url: usableUrl)

@@ -15,9 +15,13 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    var util = Util()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        let color  = util.uiColorFromRGB(rgbValue: 0x1B2135)
+        UINavigationBar.appearance().barTintColor = color
         
         FirebaseApp.configure()
 
