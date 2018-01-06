@@ -16,11 +16,14 @@ class ConfigurarViewController: UIViewController {
     @IBOutlet weak var bitCoinCashBaseLabel: UILabel!
     @IBOutlet weak var liteCoinBaseLabel: UILabel!
     @IBOutlet weak var margemLabel: UILabel!
+    @IBOutlet weak var intervaloLabel: UILabel!
+    
     
     @IBOutlet weak var bitCoinBaseText: UITextField!
     @IBOutlet weak var bitCoinCashBaseText: UITextField!
     @IBOutlet weak var liteCoinBaseText: UITextField!
     @IBOutlet weak var margemText: UITextField!
+    @IBOutlet weak var intervaloText: UITextField!
     
     @IBOutlet weak var notifBitcoinVendaSwitch: UISwitch!
     @IBOutlet weak var notifBitcoinCompraSwitch: UISwitch!
@@ -28,7 +31,7 @@ class ConfigurarViewController: UIViewController {
     @IBOutlet weak var notifBitcoinCashCompraSwitch: UISwitch!
     @IBOutlet weak var notifLitecoinVendaSwitch: UISwitch!
     @IBOutlet weak var notifLitecoinCompraSwitch: UISwitch!
-
+    @IBOutlet weak var notificacoesHabilitadas: UISwitch!
     
     
     @IBAction func salvar(_ sender: Any) {
@@ -38,11 +41,14 @@ class ConfigurarViewController: UIViewController {
         UserDefaults.standard.set(notifBitcoinCashCompraSwitch.isOn, forKey: "notifBitcoinCashCompraSwitch")
         UserDefaults.standard.set(notifLitecoinVendaSwitch.isOn, forKey: "notifLitecoinVendaSwitch")
         UserDefaults.standard.set(notifLitecoinCompraSwitch.isOn, forKey: "notifLitecoinCompraSwitch")
+        UserDefaults.standard.set(notificacoesHabilitadas.isOn, forKey: "notificacoesHabilitadas")
+        
+        
         
         let configurationTO = ConfigurationTO()
         configurationTO.id = "1"
         configurationTO.idUser = "1"
-        configurationTO.name = "Mercado BitCoin"
+        configurationTO.name = "MercadoBitCoin"
         
         if let bitCoinBase  = UserDefaults.standard.object(forKey: "bitCoinBase") {
             let bitCoinBaseDouble = bitCoinBase as! Double
@@ -60,9 +66,14 @@ class ConfigurarViewController: UIViewController {
             let margemDouble = margem as! Int
             configurationTO.margem = String(margemDouble)
         }
-        
-        configurationTO.intervalo = "10"
-        
+        if let intervalo = UserDefaults.standard.object(forKey: "intervalo") {
+            let intervaloDouble = intervalo as! Int
+            configurationTO.intervalo = String(intervaloDouble)
+        }
+        if let notificacoesHabilitadasSwitchValue = UserDefaults.standard.object(forKey: "notificacoesHabilitadas") {
+            let notificacoesHabilitadasBool = notificacoesHabilitadasSwitchValue as! Bool
+            configurationTO.notificacoesHabilitadas = String(notificacoesHabilitadasBool)
+        }
         if let notifBitcoinVendaSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinVendaSwitch") {
             let notifBitcoinVendaBool = notifBitcoinVendaSwitchValue as! Bool
             configurationTO.notificarBitcoinVenda = String(notifBitcoinVendaBool)
@@ -89,7 +100,6 @@ class ConfigurarViewController: UIViewController {
         }
         
         util.salvarConfiguracoes(configurationTO: configurationTO)
-        
     }
     
     @IBAction func definirValoresAtuais(_ sender: Any) {
@@ -147,6 +157,16 @@ class ConfigurarViewController: UIViewController {
         
     }
     
+    @IBAction func definirIntervalo(_ sender: Any) {
+        if intervaloText.text != nil && intervaloText.text != "" {
+            let valor:String = intervaloText.text!
+            let valorInt = Int(valor)
+            UserDefaults.standard.set(valorInt, forKey: "intervalo")
+            intervaloLabel.text = valor
+        }
+        intervaloText.text = ""
+    }
+    
     @IBAction func definirMargem(_ sender: Any) {
         if margemText.text != nil && margemText.text != "" {
             let valor:String = margemText.text!
@@ -202,6 +222,10 @@ class ConfigurarViewController: UIViewController {
         
         if let margem = UserDefaults.standard.object(forKey: "margem") {
             margemLabel.text = String(describing: margem) + "%"
+        }
+        
+        if let intervalo = UserDefaults.standard.object(forKey: "intervalo") {
+            intervaloLabel.text = String(describing: intervalo)
         }
         
         if let notifBitcoinVendaSwitchValue = UserDefaults.standard.object(forKey: "notifBitcoinVendaSwitch") {

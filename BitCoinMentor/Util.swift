@@ -96,7 +96,8 @@ class Util {
                 " \"notificarLiteCoinCompra\": \"\(configurationTO.notificarLiteCoinCompra!)\", " +
                 " \"notificarBitcoinVenda\": \"\(configurationTO.notificarBitcoinVenda!)\", " +
                 " \"notificarBitcoinCashVenda\": \"\(configurationTO.notificarBitcoinCashVenda!)\", " +
-                " \"notificarLiteCoinVenda\": \"\(configurationTO.notificarLiteCoinVenda!)\" " +
+                " \"notificarLiteCoinVenda\": \"\(configurationTO.notificarLiteCoinVenda!)\", " +
+                " \"notificacoesLigadas\": \"\(configurationTO.notificacoesHabilitadas!)\" " +
             "}"
              request.httpBody = body.data(using: .utf8)
             
