@@ -20,6 +20,14 @@ class MentorViewController: UIViewController {
     @IBOutlet weak var acaoBitCoinLabel: UILabel!
     @IBOutlet weak var acaoBitCoinCashLabel: UILabel!
     @IBOutlet weak var acaoLiteCoinLabel: UILabel!
+    @IBOutlet weak var notificacoesAtivasLabel: UILabel!
+    
+    
+    @IBOutlet weak var bitCoinImage: UIImageView!
+    @IBOutlet weak var bitCoinCashImage: UIImageView!
+    @IBOutlet weak var liteCoinImage: UIImageView!
+    @IBOutlet weak var mainImage: UIImageView!
+    
     
     var valorAtualBitCoin: Double = 0.0
     var valorAtualBitCash: Double = 0.0
@@ -35,6 +43,12 @@ class MentorViewController: UIViewController {
         acaoBitCoinLabel.text = ""
         acaoBitCoinCashLabel.text = ""
         acaoLiteCoinLabel.text = ""
+        
+        util.bordasImagem(image: bitCoinImage)
+        util.bordasImagem(image: bitCoinCashImage)
+        util.bordasImagem(image: liteCoinImage)
+        util.bordasImagem(image: mainImage)
+        
     }
     
     func carregarValoresReferencia() {
@@ -57,12 +71,18 @@ class MentorViewController: UIViewController {
         self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BTC/ticker/", precoLabel: self.precoBitCoinLabel, valorAtual:"valorAtualBitCoin")
         self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/BCH/ticker/", precoLabel: self.precoBitCashLabel, valorAtual: "valorAtualBitCash")
         self.buscarPreco(urlName: "https://www.mercadobitcoin.net/api/LTC/ticker/", precoLabel: self.precoLiteCoinLabel, valorAtual: "valorAtualLiteCoin")
+        
+        verificarNoficacoesAtivas()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let intervaloRefresh:Double = 5.0
-        let intervaloCalculo:Double = 10
+        var intervaloCalculo:Double = 10
         var contador:Double = 0.0
+        
+        if let intervalo = UserDefaults.standard.object(forKey: "intervalo") {
+            intervaloCalculo = Double(String(describing: intervalo))!
+        }
         
         carregarDados()
         
@@ -117,6 +137,33 @@ class MentorViewController: UIViewController {
                 }
                 else{
                     print("Erro ao fazer a consulta do preço.")
+                }
+            }
+            tarefa.resume()
+        }
+    }
+    
+    fileprivate func verificarNoficacoesAtivas(){
+        //Testa se a URL existe
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/verifyLiveNotifies?idUser=1") {
+            let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
+                if erro == nil {
+                    if let dadosRetorno = dados {
+                     
+                        let retorno = String(data: dadosRetorno, encoding: .utf8)
+                       
+                         DispatchQueue.main.async {
+                            if retorno == "Success"{
+                                self.notificacoesAtivasLabel.text = "Notificações Ativas"
+                            }
+                            else{
+                                self.notificacoesAtivasLabel.text = ""
+                            }
+                        }
+                    }
+                }
+                else{
+                    print("Erro ao verificar se as notificações estão ativas.")
                 }
             }
             tarefa.resume()

@@ -19,12 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        //keep screen on
+        UIApplication.shared.isIdleTimerDisabled = true
         
-        let color  = util.uiColorFromRGB(rgbValue: 0x1B2135)
+        //Color ViewControllerBar
+        let color  = util.uiColorFromRGB(rgbValue: 0x515E79)
         UINavigationBar.appearance().barTintColor = color
         
+        //FireBase notificacoes
         FirebaseApp.configure()
-
         UNUserNotificationCenter.current().delegate = self
         
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]

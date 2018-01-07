@@ -10,14 +10,17 @@ import UIKit
 
 class Util {
     
+    func bordasImagem(image: UIImageView) {
+        image.layer.cornerRadius = image.frame.size.width / 2
+        image.clipsToBounds = true
+        
+    }
+    
     func alert(title: String, mensagem: String) -> UIAlertController{
-        
         let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .alert)
-        
         let confirmar = UIAlertAction(title: "OK", style: .default) { (acao) in
             //print("Botão confirmar pressionado!")
         }
-        
         alerta.addAction(confirmar)
         
         //present(alerta, animated: true, completion: nil)
