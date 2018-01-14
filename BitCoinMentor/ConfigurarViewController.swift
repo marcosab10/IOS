@@ -47,7 +47,7 @@ class ConfigurarViewController: UIViewController {
         
         let configurationTO = ConfigurationTO()
         configurationTO.id = "1"
-        configurationTO.idUser = "1"
+        configurationTO.idExchange = "1"
         configurationTO.name = "MercadoBitCoin"
         
         if let bitCoinBase  = UserDefaults.standard.object(forKey: "bitCoinBase") {

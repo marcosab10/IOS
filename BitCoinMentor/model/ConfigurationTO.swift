@@ -11,7 +11,7 @@ import Foundation
 class ConfigurationTO {
     
   var id: String?
-  var idUser: String?
+  var idExchange: String?
   var name: String?
   var valorBaseBitCoin: String?
   var valorBaseBitcoinCash: String?

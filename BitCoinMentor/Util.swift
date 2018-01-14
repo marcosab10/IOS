@@ -109,7 +109,7 @@ class Util {
             request.httpMethod = "POST"
             let body: String = "{ " +
                 " \"id\": \"\(configurationTO.id!)\"," +
-                " \"idUser\": \"\(configurationTO.idUser!)\", " +
+                " \"idExchange\": \"\(configurationTO.idExchange!)\", " +
                 " \"name\": \"\(configurationTO.name!)\", " +
                 " \"valorBaseBitCoin\": \"\(configurationTO.valorBaseBitCoin!)\", " +
                 " \"valorBaseBitcoinCash\": \"\(configurationTO.valorBaseBitcoinCash!)\", " +
