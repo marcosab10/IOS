@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class AnalyzeTableViewController: UITableViewController {
+    var util = Util()
     var analyzes: [NSManagedObject] = []
     var service: BitCoinMentorService = BitCoinMentorService()
 
@@ -39,18 +40,38 @@ class AnalyzeTableViewController: UITableViewController {
         let timeMinutes = analyze.value(forKey: "timeMinutes")
         let percentage = analyze.value(forKey: "percentage")
         
+        let timeMinutesText = timeMinutes as! String
+        let percentageText = percentage as! String
         
-        celula.textLabel?.text = timeMinutes as? String
-        celula.detailTextLabel?.text = percentage as? String
-
+        celula.textLabel?.text =  timeMinutesText + " Minutos"
+        celula.detailTextLabel?.text =  percentageText + " %"
+        
+         let percentageNumber = Double(percentageText)
+        
+        if(percentageNumber! < 0.0){
+            celula.detailTextLabel?.textColor = UIColor.red
+        }
+        else{
+             celula.detailTextLabel?.textColor = UIColor.green
+        }
+        
         return celula
     }
  
 
     
     override func viewDidAppear(_ animated: Bool) {
-            analyzes = service.listarAnalyzes()
+        let intervaloRefresh:Double = 5.0
+
+        service.loadAnalyzes()
+        analyzes = service.listarAnalyzes()
+        self.tableView.reloadData()
+        
+        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+            self.service.loadAnalyzes()
+            self.analyzes = self.service.listarAnalyzes()
             self.tableView.reloadData()
+        }
     }
 
     
