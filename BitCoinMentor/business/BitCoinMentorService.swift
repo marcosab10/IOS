@@ -11,9 +11,8 @@ import CoreData
 
 class BitCoinMentorService {
    
-    
-    func loadAnalyzes() {
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzes?idAnalyzeExchange=1") {
+    func loadAnalyzes(_ idAnalyzeExchange: NSNumber) {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzes?idAnalyzeExchange=" + String(describing: idAnalyzeExchange)) {
             let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
                 if erro == nil {
                     if let dadosRetorno = dados {
@@ -50,32 +49,38 @@ class BitCoinMentorService {
     fileprivate func gerenciarAnalyzes(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
         let id = jsonDictionary["id"] as! NSNumber
         let idAnalyzeExchange = jsonDictionary["idAnalyzeExchange"] as! NSNumber
-        let timeMinutes = jsonDictionary["timeMinutes"] as! String
+        let timeMinutes = jsonDictionary["timeMinutes"] as! NSNumber
         let percentage = jsonDictionary["percentage"] as! String
         let typeCoin = jsonDictionary["typeCoin"] as! String
         let createDate = jsonDictionary["createDate"] as! NSNumber
         let updateDate = jsonDictionary["updateDate"] as! NSNumber
+        let firstPrice = jsonDictionary["firstPrice"] as! String
+        let lastPrice = jsonDictionary["lastPrice"] as! String
         
-        if let analyzeRetorno = getAnalyze(context, timeMinutes) {
-            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate)
+        
+        if let analyzeRetorno = getAnalyze(context, timeMinutes, idAnalyzeExchange) {
+            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice)
         }
         else{
-            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate)
+            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice)
         }
     }
     
     
-    fileprivate func getAnalyze(_ context: NSManagedObjectContext, _ timeMinutes: String) -> NSManagedObject? {
+    fileprivate func getAnalyze(_ context: NSManagedObjectContext, _ timeMinutes: NSNumber, _ idAnalyzeExchange: NSNumber) -> NSManagedObject? {
         var analyzeRetorno: NSManagedObject!
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
         
-        //filtro
-        let predicate = NSPredicate(format: "timeMinutes == %@", timeMinutes)
+        
+        let filtroDescricao = NSPredicate(format: "timeMinutes == %@", timeMinutes)
+        let filtroExchange = NSPredicate(format: "idAnalyzeExchange == %@", idAnalyzeExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
         
         // aplicar filtros criados à requisicao
-        requisicao.predicate = predicate
+        requisicao.predicate = combinacaoFiltro
         
         do {
             let analyzes = try context.fetch(requisicao)
@@ -97,7 +102,9 @@ class BitCoinMentorService {
     }
     
     
-    fileprivate func insertAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber, _ timeMinutes: String, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber, _ updateDate: NSNumber) {
+    fileprivate func insertAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
+                                   _ timeMinutes: NSNumber, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber,
+                                   _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String) {
         
         //Cria entidade
         let analyze = NSEntityDescription.insertNewObject(forEntityName: "Analyze", into: context)
@@ -109,18 +116,24 @@ class BitCoinMentorService {
         analyze.setValue(typeCoin, forKey: "typeCoin")
         analyze.setValue(createDate, forKey: "createDate")
         analyze.setValue(updateDate, forKey: "updateDate")
+        analyze.setValue(firstPrice, forKey: "firstPrice")
+        analyze.setValue(lastPrice, forKey: "lastPrice")
     }
     
-    fileprivate func updateAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber, _ timeMinutes: String, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber, _ updateDate: NSNumber) {
+    fileprivate func updateAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
+                                   _ timeMinutes: NSNumber, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber,
+                                   _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String) {
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
         
-        //Aplicar filtros  pesquisar por  "Predicate Format"
-        let predicate = NSPredicate(format: "timeMinutes == %@", timeMinutes)
+        let filtroDescricao = NSPredicate(format: "timeMinutes == %@", timeMinutes)
+        let filtroExchange = NSPredicate(format: "idAnalyzeExchange == %@", idAnalyzeExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
         
         // aplicar filtros criados à requisicao
-        requisicao.predicate = predicate
+        requisicao.predicate = combinacaoFiltro
         
         do {
             let analyzes = try context.fetch(requisicao)
@@ -138,6 +151,8 @@ class BitCoinMentorService {
                         analyze.setValue(typeCoin, forKey: "typeCoin")
                         analyze.setValue(createDate, forKey: "createDate")
                         analyze.setValue(updateDate, forKey: "updateDate")
+                        analyze.setValue(firstPrice, forKey: "firstPrice")
+                        analyze.setValue(lastPrice, forKey: "lastPrice")
 
                     }
                 }
@@ -150,7 +165,7 @@ class BitCoinMentorService {
         }
     }
     
-    func listarAnalyzes() -> [NSManagedObject] {
+    func listarAnalyzes(_ idAnalyzeExchange: NSNumber) -> [NSManagedObject] {
         var analyzes: [NSManagedObject] = []
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -159,10 +174,15 @@ class BitCoinMentorService {
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
         
         //Ordenar de A-Z a-z ou Z-A
-        let ordenacaoAZ = NSSortDescriptor(key: "id", ascending: true)
+        let ordenacaoAZ = NSSortDescriptor(key: "timeMinutes", ascending: true)
         
         // aplicar filtros criados à requisicao
         requisicao.sortDescriptors = [ordenacaoAZ]
+        
+        let filtroExchange = NSPredicate(format: "idAnalyzeExchange == %@", idAnalyzeExchange)
+        
+         requisicao.predicate = filtroExchange
+        
         
         do {
             analyzes = try context.fetch(requisicao) as! [NSManagedObject]

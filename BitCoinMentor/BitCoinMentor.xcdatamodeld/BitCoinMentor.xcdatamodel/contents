@@ -2,14 +2,16 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Analyze" representedClassName="Analyze" syncable="YES" codeGenerationType="class">
         <attribute name="createDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="firstPrice" optional="YES" attributeType="String" defaultValueString="0.00" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="idAnalyzeExchange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastPrice" optional="YES" attributeType="String" defaultValueString="0.00" syncable="YES"/>
         <attribute name="percentage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timeMinutes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="typeCoin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Analyze" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="Analyze" positionX="-63" positionY="-18" width="128" height="180"/>
     </elements>
 </model>
