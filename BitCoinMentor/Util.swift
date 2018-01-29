@@ -101,44 +101,7 @@ class Util {
         }
     }
     
-    func salvarConfiguracoes(configurationTO: ConfigurationTO){
-        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/saveConfiguration")
-        if let usableUrl = url {
-            var request = URLRequest(url: usableUrl)
-            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
-            request.httpMethod = "POST"
-            let body: String = "{ " +
-                " \"id\": \"\(configurationTO.id!)\"," +
-                " \"idExchange\": \"\(configurationTO.idExchange!)\", " +
-                " \"name\": \"\(configurationTO.name!)\", " +
-                " \"valorBaseBitCoin\": \"\(configurationTO.valorBaseBitCoin!)\", " +
-                " \"valorBaseBitcoinCash\": \"\(configurationTO.valorBaseBitcoinCash!)\", " +
-                " \"valorBaseLiteCoin\": \"\(configurationTO.valorBaseLiteCoin!)\", " +
-                " \"margem\": \"\(configurationTO.margem!)\", " +
-                " \"intervalo\": \"\(configurationTO.intervalo!)\", " +
-                " \"notificarBitcoinCompra\": \"\(configurationTO.notificarBitcoinCompra!)\", " +
-                " \"notificarBitcoinCashCompra\": \"\(configurationTO.notificarBitcoinCashCompra!)\", " +
-                " \"notificarLiteCoinCompra\": \"\(configurationTO.notificarLiteCoinCompra!)\", " +
-                " \"notificarBitcoinVenda\": \"\(configurationTO.notificarBitcoinVenda!)\", " +
-                " \"notificarBitcoinCashVenda\": \"\(configurationTO.notificarBitcoinCashVenda!)\", " +
-                " \"notificarLiteCoinVenda\": \"\(configurationTO.notificarLiteCoinVenda!)\", " +
-                " \"notificacoesLigadas\": \"\(configurationTO.notificacoesHabilitadas!)\" " +
-            "}"
-             request.httpBody = body.data(using: .utf8)
-            
-            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                if error != nil  {
-                    print(error!)
-                }
-                if let data = data {
-                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
-                        print(stringData) //JSONSerialization
-                    }
-                }
-            })
-            task.resume()
-        }
-    }
+   
     
     
 }

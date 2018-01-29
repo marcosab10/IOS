@@ -9,7 +9,7 @@
 import UIKit
 
 class ConfigurarViewController: UIViewController {
-    
+    let service: BitCoinMentorService = BitCoinMentorService()
     let util = Util()
 
     @IBOutlet weak var bitCoinBaseLabel: UILabel!
@@ -99,7 +99,7 @@ class ConfigurarViewController: UIViewController {
             configurationTO.notificarLiteCoinCompra = String(notifLitecoinCompraBool)
         }
         
-         util.salvarConfiguracoes(configurationTO: configurationTO)
+         service.salvarConfiguracoes(configurationTO: configurationTO)
     }
     
     @IBAction func definirValoresAtuais(_ sender: Any) {

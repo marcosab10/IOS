@@ -12,7 +12,9 @@ import CoreData
 class AnalyzeTableViewController: UITableViewController {
     var util = Util()
     var analyzes: [NSManagedObject] = []
-    var service: BitCoinMentorService = BitCoinMentorService()
+    let service: BitCoinMentorService = BitCoinMentorService()
+    let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    
     
     var idAnalyzeExchange:NSNumber = 1
     
@@ -24,7 +26,7 @@ class AnalyzeTableViewController: UITableViewController {
 
         service.loadAnalyzes(idAnalyzeExchange)
         
-        analyzes = service.listarAnalyzes(idAnalyzeExchange)
+        analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
     }
 
     // MARK: - Table view data source
@@ -75,12 +77,12 @@ class AnalyzeTableViewController: UITableViewController {
         let intervaloRefresh:Double = 5.0
 
         service.loadAnalyzes(idAnalyzeExchange)
-        analyzes = service.listarAnalyzes(idAnalyzeExchange)
+        analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
         self.tableView.reloadData()
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             self.service.loadAnalyzes(self.idAnalyzeExchange)
-            self.analyzes = self.service.listarAnalyzes(self.idAnalyzeExchange)
+            self.analyzes = self.bitCoinCoreData.listarAnalyzes(self.idAnalyzeExchange)
             self.tableView.reloadData()
         }
     }
