@@ -14,6 +14,7 @@ class AnalyzeExchangeTO {
     var name: String?
     var activeAnalyzes: String?
     var activeNotification:String?
+    var token:String?
     
 }
 

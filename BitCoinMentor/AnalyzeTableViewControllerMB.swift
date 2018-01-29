@@ -24,6 +24,7 @@ class AnalyzeTableViewControllerMB: UITableViewController {
         super.viewDidLoad()
         
         service.loadAnalyzes(idAnalyzeExchange)
+        service.loadAnalyzeExchange("MercadoBitcoin")
         
         analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
     }

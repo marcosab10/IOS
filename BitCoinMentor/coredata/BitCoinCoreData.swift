@@ -158,7 +158,142 @@ class BitCoinCoreData {
         return analyzes
     }
     
+    func gerenciarAnalyzeExchange(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
+        let id = jsonDictionary["id"] as! NSNumber
+        let activeAnalyzes = jsonDictionary["activeAnalyzes"] as! String
+        let activeNotification = jsonDictionary["activeNotification"] as! String
+        let name = jsonDictionary["name"] as! String
+        let token = jsonDictionary["token"] as! String
+        let createDate = jsonDictionary["createDate"] as! NSNumber
+        let updateDate = jsonDictionary["updateDate"] as! NSNumber
+        
+        
+        if let analyzeExchangeRetorno = getAnalyzeExchange(context, id) {
+            updateAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate)
+        }
+        else{
+            insertAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate)
+        }
+    }
     
+    fileprivate func insertAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber, _ activeAnalyzes: String,
+                                   _ activeNotification: String, _ name: String, _ token: String, _ createDate: NSNumber,
+                                   _ updateDate: NSNumber) {
+        
+        //Cria entidade
+        let analyzeExchange = NSEntityDescription.insertNewObject(forEntityName: "AnalyzeExchange", into: context)
+        
+        analyzeExchange.setValue(id, forKey: "id")
+        analyzeExchange.setValue(activeAnalyzes, forKey: "activeAnalyzes")
+        analyzeExchange.setValue(activeNotification, forKey: "activeNotification")
+        analyzeExchange.setValue(name, forKey: "name")
+        analyzeExchange.setValue(token, forKey: "token")
+        analyzeExchange.setValue(createDate, forKey: "createDate")
+        analyzeExchange.setValue(updateDate, forKey: "updateDate")
+    }
+    
+    fileprivate func updateAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber, _ activeAnalyzes: String,
+                                           _ activeNotification: String, _ name: String, _ token: String, _ createDate: NSNumber,
+                                           _ updateDate: NSNumber) {
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AnalyzeExchange")
+        
+        let filtroExchange = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtroExchange
+        
+        do {
+            let analyzes = try context.fetch(requisicao)
+            
+            if analyzes.count > 0 {
+                for analyzeExchange in analyzes as! [NSManagedObject] {
+                    
+                    if let id = analyzeExchange.value(forKey: "id") {
+                        
+                        //atualizar
+                        analyzeExchange.setValue(id, forKey: "id")
+                        analyzeExchange.setValue(activeAnalyzes, forKey: "activeAnalyzes")
+                        analyzeExchange.setValue(activeNotification, forKey: "activeNotification")
+                        analyzeExchange.setValue(name, forKey: "name")
+                        analyzeExchange.setValue(token, forKey: "token")
+                        analyzeExchange.setValue(createDate, forKey: "createDate")
+                        analyzeExchange.setValue(updateDate, forKey: "updateDate")
+                        
+                    }
+                }
+            }
+            else {
+                print("Nenhuma analyzeExchange encontrada!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
+    
+    fileprivate func getAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber) -> NSManagedObject? {
+        var analyzeExchangeRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AnalyzeExchange")
+        
+        let filtroExchange = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtroExchange
+        
+        do {
+            let analyzeExchanges = try context.fetch(requisicao)
+            
+            if analyzeExchanges.count > 0 {
+                for analyzeExchange in analyzeExchanges as! [NSManagedObject] {
+                    
+                    analyzeExchangeRetorno = analyzeExchange
+                }
+            }
+            else {
+                print("Nenhuma analizeExchange encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        return analyzeExchangeRetorno
+    }
+    
+    func getAnalyzeExchange(_ name: String) -> NSManagedObject? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        var analyzeExchangeRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AnalyzeExchange")
+        
+        let filtroExchange = NSPredicate(format: "name == %@", name)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtroExchange
+        
+        do {
+            let analyzeExchanges = try context.fetch(requisicao)
+            
+            if analyzeExchanges.count > 0 {
+                for analyzeExchange in analyzeExchanges as! [NSManagedObject] {
+                    
+                    analyzeExchangeRetorno = analyzeExchange
+                }
+            }
+            else {
+                print("Nenhuma analizeExchange encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        return analyzeExchangeRetorno
+    }
     
     
 }

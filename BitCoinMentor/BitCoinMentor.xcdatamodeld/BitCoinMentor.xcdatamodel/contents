@@ -11,7 +11,17 @@
         <attribute name="typeCoin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="AnalyzeExchange" representedClassName="AnalyzeExchange" syncable="YES" codeGenerationType="class">
+        <attribute name="activeAnalyzes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="activeNotification" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Analyze" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="150"/>
     </elements>
 </model>

@@ -25,6 +25,7 @@ class AnalyzeTableViewController: UITableViewController {
         super.viewDidLoad()
 
         service.loadAnalyzes(idAnalyzeExchange)
+        service.loadAnalyzeExchange("Binance")
         
         analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
     }
@@ -77,6 +78,8 @@ class AnalyzeTableViewController: UITableViewController {
         let intervaloRefresh:Double = 5.0
 
         service.loadAnalyzes(idAnalyzeExchange)
+        service.loadAnalyzeExchange("Binance")
+        
         analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
         self.tableView.reloadData()
         

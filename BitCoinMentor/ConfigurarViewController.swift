@@ -98,6 +98,10 @@ class ConfigurarViewController: UIViewController {
             let notifLitecoinCompraBool = notifLitecoinCompraSwitchValue as! Bool
             configurationTO.notificarLiteCoinCompra = String(notifLitecoinCompraBool)
         }
+        if let tokenValue = UserDefaults.standard.object(forKey: "token") {
+            let token = tokenValue as! String
+            configurationTO.token = token
+        }
         
          service.salvarConfiguracoes(configurationTO: configurationTO)
     }

@@ -25,6 +25,7 @@ class ConfigurationTO {
   var notificarBitcoinCashVenda: String?
   var notificarLiteCoinVenda: String?
   var notificacoesHabilitadas: String?
+  var token: String?
     
 }
 

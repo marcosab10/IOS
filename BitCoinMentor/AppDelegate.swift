@@ -38,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerForRemoteNotifications()
         
         if let token = InstanceID.instanceID().token() {
+            UserDefaults.standard.set(token, forKey: "token")
+            
             print("Token: \(token)")
         }
         
