@@ -104,13 +104,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="BitCoinCash" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hBb-zt-8p1">
-                                                        <rect key="frame" x="71" y="0.0" width="189" height="66"/>
+                                                        <rect key="frame" x="71" y="0.0" width="115" height="66"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="23"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="R$ 0,00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="610-N2-pHz">
-                                                        <rect key="frame" x="265" y="0.0" width="70" height="66"/>
+                                                        <rect key="frame" x="191" y="0.0" width="144" height="66"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="CnD-86-9V1">
-                                <rect key="frame" x="76" y="74" width="223.5" height="155.5"/>
+                                <rect key="frame" x="76" y="256" width="223.5" height="155.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7Yx-7A-0A9">
                                         <rect key="frame" x="0.5" y="0.0" width="223" height="31"/>
@@ -311,11 +311,11 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVE-Om-s0j">
-                                        <rect key="frame" x="63.5" y="92" width="97" height="28"/>
+                                        <rect key="frame" x="45.5" y="92" width="133" height="28"/>
                                         <color key="backgroundColor" red="0.73778259749999997" green="0.35828512909999999" blue="0.26656252149999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="        Salvar        "/>
+                                        <state key="normal" title="             Salvar             "/>
                                         <connections>
                                             <action selector="salvar:" destination="eu5-CI-usy" eventType="touchUpInside" id="j3d-as-Lqd"/>
                                         </connections>
@@ -328,22 +328,32 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alerta Mercado Bitcoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrP-nP-eep">
+                                <rect key="frame" x="78" y="74" width="219.5" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1076365188" green="0.12382743509999999" blue="0.19609245659999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="CnD-86-9V1" firstAttribute="centerX" secondItem="u8C-5e-Dmb" secondAttribute="centerX" id="9cX-tR-fYl"/>
-                            <constraint firstItem="CnD-86-9V1" firstAttribute="top" secondItem="JvI-KB-HzI" secondAttribute="top" constant="10" id="LUa-3o-S17"/>
+                            <constraint firstItem="jrP-nP-eep" firstAttribute="centerX" secondItem="u8C-5e-Dmb" secondAttribute="centerX" id="JUY-Nv-kf6"/>
+                            <constraint firstItem="jrP-nP-eep" firstAttribute="top" secondItem="JvI-KB-HzI" secondAttribute="top" constant="10" id="UPM-a2-kOk"/>
+                            <constraint firstItem="CnD-86-9V1" firstAttribute="centerY" secondItem="u8C-5e-Dmb" secondAttribute="centerY" id="iIt-Rq-UiA"/>
+                            <constraint firstItem="CnD-86-9V1" firstAttribute="centerX" secondItem="u8C-5e-Dmb" secondAttribute="centerX" id="xTq-R9-mBK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JvI-KB-HzI"/>
                     </view>
                     <connections>
                         <outlet property="ativarAnaliseSwitch" destination="gLg-3x-fUe" id="ehG-Nu-edf"/>
                         <outlet property="ativarNotificacoesSwitch" destination="hwp-O2-mYo" id="cjF-mY-La9"/>
+                        <outlet property="notificacoesAtivasLabel" destination="mmq-2p-ODt" id="pD5-sT-k2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63j-xY-In2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2892" y="493"/>
+            <point key="canvasLocation" x="2892" y="492.50374812593708"/>
         </scene>
         <!--Binance-->
         <scene sceneID="0TN-uH-xdf">
@@ -422,48 +432,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="w4M-Bn-tCP">
-                                <rect key="frame" x="76.5" y="74" width="223.5" height="155.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alerta Binance " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhP-7Z-cmW">
+                                <rect key="frame" x="114.5" y="74" width="145.5" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="w4M-Bn-tCP">
+                                <rect key="frame" x="76" y="241" width="223.5" height="155.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7q5-sK-XWc">
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="7q5-sK-XWc">
                                         <rect key="frame" x="0.5" y="0.0" width="223" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ativar Analise         " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuW-kr-vAK">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ativar Analise         " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuW-kr-vAK">
                                                 <rect key="frame" x="0.0" y="0.0" width="154" height="31"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4j-5L-x5X">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x4j-5L-x5X">
                                                 <rect key="frame" x="174" y="0.0" width="51" height="31"/>
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rBF-Jh-qzg">
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rBF-Jh-qzg">
                                         <rect key="frame" x="0.0" y="46" width="223.5" height="31"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ativar Notificações" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dI-6j-cjk">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Ativar Notificações" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dI-6j-cjk">
                                                 <rect key="frame" x="0.0" y="0.0" width="154.5" height="31"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2a-1L-KRg">
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D2a-1L-KRg">
                                                 <rect key="frame" x="174.5" y="0.0" width="51" height="31"/>
                                             </switch>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jwa-XB-pgg">
-                                        <rect key="frame" x="63.5" y="92" width="97" height="28"/>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jwa-XB-pgg">
+                                        <rect key="frame" x="45.5" y="92" width="133" height="28"/>
                                         <color key="backgroundColor" red="0.73778259749999997" green="0.35828512909999999" blue="0.26656252149999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="        Salvar        "/>
+                                        <state key="normal" title="             Salvar             "/>
                                         <connections>
                                             <action selector="salvar:" destination="YaL-Nb-X32" eventType="touchUpInside" id="Kze-eV-G9M"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificações ativas!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T22-jf-DDB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Notificações ativas!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T22-jf-DDB">
                                         <rect key="frame" x="32" y="135" width="160" height="20.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -473,15 +490,17 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.1076365188" green="0.12382743509999999" blue="0.19609245659999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="w4M-Bn-tCP" firstAttribute="top" secondItem="70L-D3-IeG" secondAttribute="top" constant="10" id="503-Wy-qjI"/>
-                            <constraint firstItem="w4M-Bn-tCP" firstAttribute="centerX" secondItem="Yw9-Bs-Rns" secondAttribute="centerX" id="wFy-nI-nRQ"/>
+                            <constraint firstItem="GhP-7Z-cmW" firstAttribute="centerX" secondItem="Yw9-Bs-Rns" secondAttribute="centerX" id="NNO-MI-IeX"/>
+                            <constraint firstItem="GhP-7Z-cmW" firstAttribute="top" secondItem="70L-D3-IeG" secondAttribute="top" constant="10" id="dSn-7a-zDO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="70L-D3-IeG"/>
                     </view>
                     <connections>
                         <outlet property="ativarAnaliseSwitch" destination="x4j-5L-x5X" id="iSr-VQ-u0c"/>
                         <outlet property="ativarNotificacoesSwitch" destination="D2a-1L-KRg" id="RAD-Cf-f5d"/>
+                        <outlet property="notificacoesAtivasLabel" destination="T22-jf-DDB" id="Ij1-QY-Z71"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRI-wM-J0b" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -797,13 +816,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Intervalo em segundos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHg-Cr-H9L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="208" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-LC-GsB">
-                                                        <rect key="frame" x="218" y="0.0" width="117" height="26.5"/>
+                                                        <rect key="frame" x="323.5" y="0.0" width="11.5" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -1003,6 +1022,6 @@
         <image name="litecoin" width="106" height="107"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mMs-YU-te6"/>
+        <segue reference="jcq-I0-B2I"/>
     </inferredMetricsTieBreakers>
 </document>

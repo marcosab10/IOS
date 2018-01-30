@@ -12,8 +12,8 @@ class BitCoinMentorService {
     
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
    
-    func loadAnalyzes(_ idAnalyzeExchange: NSNumber) {
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzes?idAnalyzeExchange=" + String(describing: idAnalyzeExchange)) {
+    func loadAnalyzes(_ name: String) {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzes?name=" + name) {
             let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
                 if erro == nil {
                     if let dadosRetorno = dados {

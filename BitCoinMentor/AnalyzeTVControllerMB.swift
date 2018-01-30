@@ -14,18 +14,25 @@ class AnalyzeTableViewControllerMB: UITableViewController {
     var analyzes: [NSManagedObject] = []
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
-    
-    var idAnalyzeExchange:NSNumber = 3
+    let nameAnalyzeExchange:String = "MercadoBitcoin"
+    var analyzeExchangeTO:AnalyzeExchangeTO?
     
     @IBOutlet weak var ultimoPrecoLabel: UILabel!
     
+    fileprivate func carregarAnalises() {
+        self.analyzeExchangeTO = self.bitCoinCoreData.getAnalyzeExchangeTO(self.nameAnalyzeExchange)!
+        
+        if self.analyzeExchangeTO != nil {
+            self.analyzes = self.bitCoinCoreData.listarAnalyzes((self.analyzeExchangeTO?.id!)!)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.loadAnalyzeExchange("MercadoBitcoin")
-        service.loadAnalyzes(idAnalyzeExchange)
-        analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
+        service.loadAnalyzeExchange(nameAnalyzeExchange)
+        service.loadAnalyzes(nameAnalyzeExchange)
+        carregarAnalises()
     }
     
     // MARK: - Table view data source
@@ -75,13 +82,13 @@ class AnalyzeTableViewControllerMB: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         let intervaloRefresh:Double = 5.0
         
-        service.loadAnalyzes(idAnalyzeExchange)
-        analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
+        service.loadAnalyzes(nameAnalyzeExchange)
+        carregarAnalises()
         self.tableView.reloadData()
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
-            self.service.loadAnalyzes(self.idAnalyzeExchange)
-            self.analyzes = self.bitCoinCoreData.listarAnalyzes(self.idAnalyzeExchange)
+            self.service.loadAnalyzes(self.nameAnalyzeExchange)
+            self.carregarAnalises()
             self.tableView.reloadData()
         }
     }

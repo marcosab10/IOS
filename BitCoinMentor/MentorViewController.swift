@@ -145,7 +145,7 @@ class MentorViewController: UIViewController {
     
     fileprivate func verificarNoficacoesAtivas(){
         //Testa se a URL existe
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/verifyLiveNotifies?idUser=1") {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/verifyLiveNotifies?idConfiguration=1") {
             let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
                 if erro == nil {
                     if let dadosRetorno = dados {
