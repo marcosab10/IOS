@@ -23,9 +23,8 @@ class AnalyzeTableViewControllerMB: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        service.loadAnalyzes(idAnalyzeExchange)
         service.loadAnalyzeExchange("MercadoBitcoin")
-        
+        service.loadAnalyzes(idAnalyzeExchange)
         analyzes = bitCoinCoreData.listarAnalyzes(idAnalyzeExchange)
     }
     

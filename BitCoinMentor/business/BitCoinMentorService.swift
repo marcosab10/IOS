@@ -131,6 +131,7 @@ class BitCoinMentorService {
             let body: String = "{ " +
                 " \"id\": \"\(analyzeExchangeTO.id!)\"," +
                 " \"name\": \"\(analyzeExchangeTO.name!)\", " +
+                " \"token\": \"\(analyzeExchangeTO.token!)\", " +
                 " \"activeAnalyzes\": \"\(analyzeExchangeTO.activeAnalyzes!)\", " +
                 " \"activeNotification\": \"\(analyzeExchangeTO.activeNotification!)\" " +
             "}"

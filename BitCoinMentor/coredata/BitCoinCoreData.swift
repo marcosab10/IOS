@@ -262,10 +262,10 @@ class BitCoinCoreData {
         return analyzeExchangeRetorno
     }
     
-    func getAnalyzeExchange(_ name: String) -> NSManagedObject? {
+    func getAnalyzeExchangeTO(_ name: String) -> AnalyzeExchangeTO? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        
+        var analyzeExchangeTO: AnalyzeExchangeTO!
         var analyzeExchangeRetorno: NSManagedObject!
         
         //Criar uma requisição
@@ -292,7 +292,27 @@ class BitCoinCoreData {
             print("Erro ao recuperar os dados!")
         }
         
-        return analyzeExchangeRetorno
+        if(analyzeExchangeRetorno != nil){
+            if let id = analyzeExchangeRetorno.value(forKey: "id"){
+                if let name = analyzeExchangeRetorno.value(forKey: "name") {
+                    if let activeAnalyzes = analyzeExchangeRetorno.value(forKey: "activeAnalyzes") {
+                        if let activeNotification = analyzeExchangeRetorno.value(forKey: "activeNotification") {
+                            if let token = analyzeExchangeRetorno.value(forKey: "token") {
+                                analyzeExchangeTO = AnalyzeExchangeTO()
+                                
+                                analyzeExchangeTO.id = id as? NSNumber
+                                analyzeExchangeTO.name = name as? String
+                                analyzeExchangeTO.activeAnalyzes = activeAnalyzes as? String
+                                analyzeExchangeTO.activeNotification = activeNotification as? String
+                                analyzeExchangeTO.token = token as? String
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return analyzeExchangeTO
     }
     
     
