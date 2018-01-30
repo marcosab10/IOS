@@ -69,7 +69,7 @@ class ConfViewControllerBN: UIViewController {
                         
                         DispatchQueue.main.async {
                             if retorno == "Success"{
-                               self.notificacoesAtivasLabel.text = "Notificações Ativas"
+                               self.notificacoesAtivasLabel.text = "Análise Ativa!"
                             }
                             else{
                                self.notificacoesAtivasLabel.text = ""
@@ -78,7 +78,7 @@ class ConfViewControllerBN: UIViewController {
                     }
                 }
                 else{
-                    print("Erro ao verificar se as notificações estão ativas.")
+                    print("Erro ao verificar se a análise está ativa.")
                 }
             }
             tarefa.resume()
