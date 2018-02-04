@@ -16,6 +16,12 @@ class Util {
         
     }
     
+    func bordasBotao(botao: UIButton) {
+        botao.layer.cornerRadius = botao.frame.size.width / 2
+        botao.clipsToBounds = true
+        
+    }
+    
     func alert(title: String, mensagem: String) -> UIAlertController{
         let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .alert)
         let confirmar = UIAlertAction(title: "OK", style: .default) { (acao) in

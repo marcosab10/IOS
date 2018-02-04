@@ -9,42 +9,52 @@
 import UIKit
 import CoreData
 
-class ConfViewControllerBN: UIViewController {
+class ConfViewController: UIViewController {
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
-    let nameAnalyzeExchange:String = "Binance"
+    var nameAnalyzeExchange:String?
     
     @IBOutlet weak var ativarAnaliseSwitch: UISwitch!
     @IBOutlet weak var ativarNotificacoesSwitch: UISwitch!
     @IBOutlet weak var notificacoesAtivasLabel: UILabel!
     
+    @IBOutlet weak var alertaLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        service.loadAnalyzeExchange(nameAnalyzeExchange)
+        service.loadAnalyzeExchange(nameAnalyzeExchange!)
         
-        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange) {
+        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!) {
             
             ativarAnaliseSwitch.isOn =  Bool(analyzeExchangeTO.activeAnalyzes!)!
             ativarNotificacoesSwitch.isOn =  Bool(analyzeExchangeTO.activeNotification!)!
-            
         }
+        
+        if nameAnalyzeExchange == "Binance" {
+            alertaLabel.text = "Alerta Binance"
+        }
+        else if nameAnalyzeExchange == "MercadoBitcoin" {
+            alertaLabel.text = "Alerta Mercado Bitcoin"
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         let intervaloRefresh:Double = 5.0
-        verificarAnaliseNoficacoesAtivas(nameAnalyzeExchange)
+        verificarAnaliseNoficacoesAtivas(nameAnalyzeExchange!)
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             
-            self.verificarAnaliseNoficacoesAtivas(self.nameAnalyzeExchange)
+            self.verificarAnaliseNoficacoesAtivas(self.nameAnalyzeExchange!)
             
         }
     }
     
     
     @IBAction func salvar(_ sender: Any) {
-        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange) {
+        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!) {
             
             analyzeExchangeTO.activeAnalyzes = String(ativarAnaliseSwitch.isOn)
             analyzeExchangeTO.activeNotification  = String(ativarNotificacoesSwitch.isOn)

@@ -23,9 +23,10 @@ class MentorViewController: UIViewController {
     @IBOutlet weak var notificacoesAtivasLabel: UILabel!
     
     
-    @IBOutlet weak var bitCoinImage: UIImageView!
-    @IBOutlet weak var bitCoinCashImage: UIImageView!
-    @IBOutlet weak var liteCoinImage: UIImageView!
+    @IBOutlet weak var bitCoinButton: UIButton!
+    @IBOutlet weak var bitCoinCashButton: UIButton!
+    @IBOutlet weak var liteCoinButton: UIButton!
+ 
     @IBOutlet weak var mainImage: UIImageView!
     
     
@@ -44,11 +45,34 @@ class MentorViewController: UIViewController {
         acaoBitCoinCashLabel.text = ""
         acaoLiteCoinLabel.text = ""
         
-        util.bordasImagem(image: bitCoinImage)
-        util.bordasImagem(image: bitCoinCashImage)
-        util.bordasImagem(image: liteCoinImage)
+        util.bordasBotao(botao: bitCoinButton)
+        util.bordasBotao(botao: bitCoinCashButton)
+        util.bordasBotao(botao: liteCoinButton)
         util.bordasImagem(image: mainImage)
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let mbTableViewController = segue.destination as? MBTableViewController {
+            if segue.identifier == "NegociacaoLTC" {
+                mbTableViewController.coin = "LTC"
+                
+            } else if segue.identifier == "NegociacaoBTC"{
+                mbTableViewController.coin = "BTC"
+            }
+            else if segue.identifier == "NegociacaoBCH"{
+                mbTableViewController.coin = "BCH"
+            }
+        }
+        else if let analyzeTableViewController = segue.destination as? AnalyzeTableViewController {
+                if segue.identifier == "Binance" {
+                    analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                
+                } else if segue.identifier == "MercadoBitcoin" {
+                    analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"
+                }
+        }
+       
     }
     
     func carregarValoresReferencia() {

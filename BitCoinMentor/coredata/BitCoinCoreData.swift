@@ -265,7 +265,7 @@ class BitCoinCoreData {
     func getAnalyzeExchangeTO(_ name: String) -> AnalyzeExchangeTO? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        var analyzeExchangeTO: AnalyzeExchangeTO!
+        var analyzeExchangeTO: AnalyzeExchangeTO?
         var analyzeExchangeRetorno: NSManagedObject!
         
         //Criar uma requisição
@@ -300,11 +300,11 @@ class BitCoinCoreData {
                             if let token = analyzeExchangeRetorno.value(forKey: "token") {
                                 analyzeExchangeTO = AnalyzeExchangeTO()
                                 
-                                analyzeExchangeTO.id = id as? NSNumber
-                                analyzeExchangeTO.name = name as? String
-                                analyzeExchangeTO.activeAnalyzes = activeAnalyzes as? String
-                                analyzeExchangeTO.activeNotification = activeNotification as? String
-                                analyzeExchangeTO.token = token as? String
+                                analyzeExchangeTO?.id = id as? NSNumber
+                                analyzeExchangeTO?.name = name as? String
+                                analyzeExchangeTO?.activeAnalyzes = activeAnalyzes as? String
+                                analyzeExchangeTO?.activeNotification = activeNotification as? String
+                                analyzeExchangeTO?.token = token as? String
                             }
                         }
                     }

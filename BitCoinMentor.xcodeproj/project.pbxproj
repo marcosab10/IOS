@@ -15,13 +15,14 @@
 		DC36EEAA1FEEFC3E006DEC96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */; };
 		DC36EEAD1FEEFC3E006DEC96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */; };
 		DC5C73DC1FF1DD8D00F6AD91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */; };
-		DCB6562D201EA40F003A2DFF /* AnalyzeTVControllerMB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6562C201EA40F003A2DFF /* AnalyzeTVControllerMB.swift */; };
+		DCAC62302020E841007701FA /* MercadoBitcoinApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC622F2020E841007701FA /* MercadoBitcoinApi.swift */; };
+		DCAC623220211477007701FA /* MBTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC623120211477007701FA /* MBTableViewController.swift */; };
 		DCB6562F201F3670003A2DFF /* AnalyzeExchangeTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6562E201F3670003A2DFF /* AnalyzeExchangeTO.swift */; };
 		DCB65632201F394E003A2DFF /* BitCoinCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB65631201F394E003A2DFF /* BitCoinCoreData.swift */; };
-		DCB65634201FF46C003A2DFF /* ConfViewControllerBN.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB65633201FF46C003A2DFF /* ConfViewControllerBN.swift */; };
-		DCB65636201FF4B3003A2DFF /* ConfViewControllerMB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB65635201FF4B3003A2DFF /* ConfViewControllerMB.swift */; };
-		DCCD908C2018CD370083CD36 /* AnalyzeTVControllerBN.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD908B2018CD370083CD36 /* AnalyzeTVControllerBN.swift */; };
+		DCB65634201FF46C003A2DFF /* ConfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB65633201FF46C003A2DFF /* ConfViewController.swift */; };
+		DCCD908C2018CD370083CD36 /* AnalyzeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD908B2018CD370083CD36 /* AnalyzeTableViewController.swift */; };
 		DCCD908F2018D2350083CD36 /* BitCoinMentorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCD908E2018D2350083CD36 /* BitCoinMentorService.swift */; };
+		DCCF98CF2022A2AE00001DFB /* MBTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCF98CE2022A2AE00001DFB /* MBTableViewCell.swift */; };
 		DCE3913A1FFF17C700E0116A /* ConfigurationTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE391391FFF17C700E0116A /* ConfigurationTO.swift */; };
 		DCE3913C1FFF2A9400E0116A /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCE3913B1FFF2A9400E0116A /* ExternalAccessory.framework */; };
 		DCE3CE751FF0506800977907 /* ConfigurarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */; };
@@ -40,13 +41,14 @@
 		DC36EEAC1FEEFC3E006DEC96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC36EEAE1FEEFC3E006DEC96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DCB6562C201EA40F003A2DFF /* AnalyzeTVControllerMB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeTVControllerMB.swift; sourceTree = "<group>"; };
+		DCAC622F2020E841007701FA /* MercadoBitcoinApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercadoBitcoinApi.swift; sourceTree = "<group>"; };
+		DCAC623120211477007701FA /* MBTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTableViewController.swift; sourceTree = "<group>"; };
 		DCB6562E201F3670003A2DFF /* AnalyzeExchangeTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeExchangeTO.swift; sourceTree = "<group>"; };
 		DCB65631201F394E003A2DFF /* BitCoinCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCoinCoreData.swift; sourceTree = "<group>"; };
-		DCB65633201FF46C003A2DFF /* ConfViewControllerBN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfViewControllerBN.swift; sourceTree = "<group>"; };
-		DCB65635201FF4B3003A2DFF /* ConfViewControllerMB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfViewControllerMB.swift; sourceTree = "<group>"; };
-		DCCD908B2018CD370083CD36 /* AnalyzeTVControllerBN.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeTVControllerBN.swift; sourceTree = "<group>"; };
+		DCB65633201FF46C003A2DFF /* ConfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfViewController.swift; sourceTree = "<group>"; };
+		DCCD908B2018CD370083CD36 /* AnalyzeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeTableViewController.swift; sourceTree = "<group>"; };
 		DCCD908E2018D2350083CD36 /* BitCoinMentorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitCoinMentorService.swift; sourceTree = "<group>"; };
+		DCCF98CE2022A2AE00001DFB /* MBTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTableViewCell.swift; sourceTree = "<group>"; };
 		DCE391391FFF17C700E0116A /* ConfigurationTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTO.swift; sourceTree = "<group>"; };
 		DCE3913B1FFF2A9400E0116A /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurarViewController.swift; sourceTree = "<group>"; };
@@ -105,11 +107,11 @@
 				DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */,
 				DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */,
 				DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */,
-				DCCD908B2018CD370083CD36 /* AnalyzeTVControllerBN.swift */,
-				DCB6562C201EA40F003A2DFF /* AnalyzeTVControllerMB.swift */,
 				DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */,
-				DCB65633201FF46C003A2DFF /* ConfViewControllerBN.swift */,
-				DCB65635201FF4B3003A2DFF /* ConfViewControllerMB.swift */,
+				DCCD908B2018CD370083CD36 /* AnalyzeTableViewController.swift */,
+				DCB65633201FF46C003A2DFF /* ConfViewController.swift */,
+				DCAC623120211477007701FA /* MBTableViewController.swift */,
+				DCCF98CE2022A2AE00001DFB /* MBTableViewCell.swift */,
 				DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */,
 				DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */,
 				DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */,
@@ -132,6 +134,7 @@
 			children = (
 				DCE3CE761FF05CCE00977907 /* Util.swift */,
 				DCCD908E2018D2350083CD36 /* BitCoinMentorService.swift */,
+				DCAC622F2020E841007701FA /* MercadoBitcoinApi.swift */,
 			);
 			path = business;
 			sourceTree = "<group>";
@@ -295,19 +298,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCB6562D201EA40F003A2DFF /* AnalyzeTVControllerMB.swift in Sources */,
 				DCE3CE751FF0506800977907 /* ConfigurarViewController.swift in Sources */,
-				DCB65636201FF4B3003A2DFF /* ConfViewControllerMB.swift in Sources */,
-				DCB65634201FF46C003A2DFF /* ConfViewControllerBN.swift in Sources */,
+				DCCF98CF2022A2AE00001DFB /* MBTableViewCell.swift in Sources */,
+				DCB65634201FF46C003A2DFF /* ConfViewController.swift in Sources */,
 				DCB6562F201F3670003A2DFF /* AnalyzeExchangeTO.swift in Sources */,
 				DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */,
 				DCE3CE771FF05CCE00977907 /* Util.swift in Sources */,
+				DCAC623220211477007701FA /* MBTableViewController.swift in Sources */,
 				DCCD908F2018D2350083CD36 /* BitCoinMentorService.swift in Sources */,
-				DCCD908C2018CD370083CD36 /* AnalyzeTVControllerBN.swift in Sources */,
+				DCCD908C2018CD370083CD36 /* AnalyzeTableViewController.swift in Sources */,
 				DC36EEA81FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld in Sources */,
 				DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */,
 				DCE3913A1FFF17C700E0116A /* ConfigurationTO.swift in Sources */,
 				DCB65632201F394E003A2DFF /* BitCoinCoreData.swift in Sources */,
+				DCAC62302020E841007701FA /* MercadoBitcoinApi.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
