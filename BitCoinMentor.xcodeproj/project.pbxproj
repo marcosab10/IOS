@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E40B4A6A52C770E6D935DBE /* Pods_BitCoinMentor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1304FD57CEC6A996058CC545 /* Pods_BitCoinMentor.framework */; };
+		DC09930F2027D51600EE6113 /* MBHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */; };
 		DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */; };
 		DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */; };
 		DC36EEA51FEEFC3E006DEC96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1304FD57CEC6A996058CC545 /* Pods_BitCoinMentor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BitCoinMentor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B4A2E8374574AD7F29A448 /* Pods-BitCoinMentor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitCoinMentor.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitCoinMentor/Pods-BitCoinMentor.release.xcconfig"; sourceTree = "<group>"; };
+		DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DC36EE9C1FEEFC3E006DEC96 /* BitCoinMentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitCoinMentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				DCB65633201FF46C003A2DFF /* ConfViewController.swift */,
 				DCAC623120211477007701FA /* MBTableViewController.swift */,
 				DCCF98CE2022A2AE00001DFB /* MBTableViewCell.swift */,
+				DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */,
 				DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */,
 				DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */,
 				DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */,
@@ -304,6 +307,7 @@
 				DCB6562F201F3670003A2DFF /* AnalyzeExchangeTO.swift in Sources */,
 				DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */,
 				DCE3CE771FF05CCE00977907 /* Util.swift in Sources */,
+				DC09930F2027D51600EE6113 /* MBHeaderTableViewCell.swift in Sources */,
 				DCAC623220211477007701FA /* MBTableViewController.swift in Sources */,
 				DCCD908F2018D2350083CD36 /* BitCoinMentorService.swift in Sources */,
 				DCCD908C2018CD370083CD36 /* AnalyzeTableViewController.swift in Sources */,

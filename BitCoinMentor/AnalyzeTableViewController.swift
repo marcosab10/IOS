@@ -17,6 +17,9 @@ class AnalyzeTableViewController: UITableViewController {
     var nameAnalyzeExchange:String?
     var analyzeExchangeTO:AnalyzeExchangeTO?
     
+    let binance = "Binance"
+    let mercadoBitcoin = "MercadoBitcoin"
+    
     @IBOutlet weak var ultimoPrecoLabel: UILabel!
     
 
@@ -36,6 +39,13 @@ class AnalyzeTableViewController: UITableViewController {
         service.loadAnalyzeExchange(nameAnalyzeExchange!)
         service.loadAnalyzes(nameAnalyzeExchange!)
         carregarAnalises()
+        
+        if nameAnalyzeExchange == binance {
+            self.title = "Binance"
+        }
+        else if nameAnalyzeExchange == mercadoBitcoin {
+            self.title = "Mercado Bitcoin"
+        }
 
     }
     
@@ -72,7 +82,12 @@ class AnalyzeTableViewController: UITableViewController {
                         let firstPriceText = firstPrice as! String
                         let lastPriceText = lastPrice as! String
                         
-                        ultimoPrecoLabel.text = "USD: " + lastPriceText
+                        if nameAnalyzeExchange == binance {
+                            ultimoPrecoLabel.text = "USD: " + lastPriceText
+                        }
+                        else if nameAnalyzeExchange == mercadoBitcoin {
+                            ultimoPrecoLabel.text = "R$: " + lastPriceText
+                        }
                         
                         celula.textLabel?.text =  timeMinutesText + " Minutos"
                         celula.detailTextLabel?.text = firstPriceText + "           " + percentageText + " %  "
