@@ -12,6 +12,7 @@ class MBTableViewController: UITableViewController {
     
     var asks:[NSArray] = [] //[[32560.00001,101.00001], [32562.00001,102.00001], [32533.00001,102.20001]]
     var bids:[NSArray] = [] //[[32664.00001,103.00001], [32668.00001,101.50001], [32633.00001,102.00001]]
+    var trades:NSArray = []
     
     var coin: String?
 
@@ -19,6 +20,7 @@ class MBTableViewController: UITableViewController {
         super.viewDidLoad()
 
         self.orderbook(coin: self.coin!)
+        self.trades(coin: self.coin!)
 
     }
 
@@ -31,7 +33,7 @@ class MBTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 30
+        return 100
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -58,7 +60,32 @@ class MBTableViewController: UITableViewController {
             
             cell.vendaQuantidadeLabel.text = String(describing: quantidadeAsk)
             cell.vendaPrecoLabel.text = String(describing: precoAsk)
-         
+            
+            
+            
+            if trades.count > 0 {
+                let posicao = indexPath.row + 1
+                
+                if let trade = trades[trades.count - posicao] as? [String: Any] {
+                    let quantidadeTrade:NSNumber = trade["amount"] as! NSNumber
+                    let precoTrade:NSNumber = trade["price"] as! NSNumber
+                    let tipo:String = trade["type"] as! String
+                    
+                    cell.negociadoPrecoLabel.text = String(describing: precoTrade)
+                    cell.negociadoQuantidadeLabel.text = String(describing: quantidadeTrade)
+                    
+                    if tipo == "sell" {
+                        cell.negociadoQuantidadeLabel.textColor = UIColor.red
+                    }
+                    else if tipo == "buy" {
+                        cell.negociadoQuantidadeLabel.textColor = UIColor.green
+                    }
+                    
+                    
+                }
+            }
+            
+            
         }
 
         return cell
@@ -68,10 +95,12 @@ class MBTableViewController: UITableViewController {
         let intervaloRefresh:Double = 5.0
         
         self.orderbook(coin: self.coin!)
+        self.trades(coin: self.coin!)
         self.tableView.reloadData()
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             self.orderbook(coin: self.coin!)
+            self.trades(coin: self.coin!)
             self.tableView.reloadData()
         }
     }
@@ -85,6 +114,28 @@ class MBTableViewController: UITableViewController {
                             if let objetoJson = try JSONSerialization.jsonObject(with: dadosRetorno, options: []) as? [String: Any]{
                                 self.asks = (objetoJson["asks"] as? [NSArray])!
                                 self.bids = (objetoJson["bids"] as? [NSArray])!
+                            }
+                        }catch {
+                            print("Erro ao formatar o retorno.")
+                        }
+                    }
+                }
+                else{
+                    print("Erro ao fazer a consulta do preço.")
+                }
+            }
+            tarefa.resume()
+        }
+    }
+    
+    func trades(coin: String){
+        if let url = URL(string: "https://www.mercadobitcoin.net/api/" + coin + "/trades/") {
+            let tarefa = URLSession.shared.dataTask(with: url) { (dados, requisicao, erro) in
+                if erro == nil {
+                    if let dadosRetorno = dados {
+                        do{
+                            if let objetoJson = try JSONSerialization.jsonObject(with: dadosRetorno, options: []) as? NSArray {
+                                self.trades = objetoJson
                             }
                         }catch {
                             print("Erro ao formatar o retorno.")

@@ -16,6 +16,8 @@ class MBTableViewCell: UITableViewCell {
     @IBOutlet weak var vendaQuantidadeLabel: UILabel!
     @IBOutlet weak var vendaPrecoLabel: UILabel!
     
+    @IBOutlet weak var negociadoPrecoLabel: UILabel!
+    @IBOutlet weak var negociadoQuantidadeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
