@@ -9,22 +9,48 @@
 import UIKit
 
 class MBTableViewController: UITableViewController {
-    
     var asks:[NSArray] = [] //[[32560.00001,101.00001], [32562.00001,102.00001], [32533.00001,102.20001]]
     var bids:[NSArray] = [] //[[32664.00001,103.00001], [32668.00001,101.50001], [32633.00001,102.00001]]
     var trades:NSArray = []
-    
     var coin: String?
-
+    
+    var modo:String = "Lento"
+    
+    @IBOutlet weak var tituloLabel: UILabel!
+    
+    
+    @IBAction func definirModo(_ sender: Any) {
+        if modo == "Lento" {
+            modo = "Rapido"
+        }
+        else {
+            modo = "Lento"
+        }
+        definirTitulo()
+    }
+    
+    
+    @IBAction func comprar(_ sender: Any) {
+        
+        print("Comprar " + coin! + " " + modo)
+        
+    }
+    
+    @IBAction func Vender(_ sender: Any) {
+        print("Vender " + coin! + " " + modo)
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.orderbook(coin: self.coin!)
         self.trades(coin: self.coin!)
+        
+        definirTitulo()
 
     }
-
-   
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -41,6 +67,12 @@ class MBTableViewController: UITableViewController {
         
         return cell
         
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "footerCell") as! MBFooterTableViewCell
+        
+        return cell
     }
    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -61,8 +93,7 @@ class MBTableViewController: UITableViewController {
             cell.vendaQuantidadeLabel.text = String(describing: quantidadeAsk)
             cell.vendaPrecoLabel.text = String(describing: precoAsk)
             
-            
-            
+
             if trades.count > 0 {
                 let posicao = indexPath.row + 1
                 
@@ -80,14 +111,9 @@ class MBTableViewController: UITableViewController {
                     else if tipo == "buy" {
                         cell.negociadoQuantidadeLabel.textColor = UIColor.green
                     }
-                    
-                    
                 }
             }
-            
-            
         }
-
         return cell
     }
     
@@ -147,6 +173,16 @@ class MBTableViewController: UITableViewController {
                 }
             }
             tarefa.resume()
+        }
+    }
+    
+    fileprivate func definirTitulo() {
+        if coin == "BTC" {
+            tituloLabel.text = "Bitcoin " + modo
+        } else if coin == "LTC" {
+            tituloLabel.text = "LiteCoin "  + modo
+        } else if coin == "BCH" {
+            tituloLabel.text = "BitcoinCash "  + modo
         }
     }
    
