@@ -151,5 +151,40 @@ class BitCoinMentorService {
         }
     }
     
+    func refreshBalances(_ idExchange: String) {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/refreshBalances?idExchange=" + idExchange) {
+            let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
+                if erro == nil {
+                    if let dadosRetorno = dados {
+                        do{
+                            if let arrayAnalyzes = try JSONSerialization.jsonObject(with: dadosRetorno, options: []) as? [Any]{
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                let context = appDelegate.persistentContainer.viewContext
+                                
+                                for data in arrayAnalyzes {
+                                    let jsonDictionary = data as! Dictionary<String, AnyObject>
+                                    
+                                    self.bitCoinCoreData.gerenciarBalances(context, jsonDictionary)
+                                    
+                                }
+                                do {
+                                    try  context.save()
+                                } catch  {
+                                    print("Erro ao atualizar dados")
+                                }
+                            }
+                        }catch {
+                            print("Erro ao formatar o retorno.")
+                        }
+                    }
+                }
+                else{
+                    print("Erro ao executar findAnalyzes.")
+                }
+            }
+            tarefa.resume()
+        }
+    }
+    
     
 }

@@ -22,17 +22,6 @@ class AnalyzeTableViewController: UITableViewController {
     
     @IBOutlet weak var ultimoPrecoLabel: UILabel!
     
-
-    fileprivate func carregarAnalises() {
-        if let analyzeExchangeTOBD = self.bitCoinCoreData.getAnalyzeExchangeTO(self.nameAnalyzeExchange!) {
-            self.analyzeExchangeTO = analyzeExchangeTOBD
-            
-            if self.analyzeExchangeTO != nil {
-                self.analyzes = self.bitCoinCoreData.listarAnalyzes((self.analyzeExchangeTO?.id!)!)
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,7 +35,16 @@ class AnalyzeTableViewController: UITableViewController {
         else if nameAnalyzeExchange == mercadoBitcoin {
             self.title = "Mercado Bitcoin"
         }
-
+    }
+    
+    fileprivate func carregarAnalises() {
+        if let analyzeExchangeTOBD = self.bitCoinCoreData.getAnalyzeExchangeTO(self.nameAnalyzeExchange!) {
+            self.analyzeExchangeTO = analyzeExchangeTOBD
+            
+            if self.analyzeExchangeTO != nil {
+                self.analyzes = self.bitCoinCoreData.listarAnalyzes((self.analyzeExchangeTO?.id!)!)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

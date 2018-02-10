@@ -11,6 +11,180 @@ import CoreData
 
 class BitCoinCoreData {
     
+    func gerenciarBalances(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
+        let id = jsonDictionary["id"] as! NSNumber
+        let idExchange = jsonDictionary["idExchange"] as! NSNumber
+        let createDate = jsonDictionary["createDate"] as! NSNumber
+        let updateDate = jsonDictionary["updateDate"] as! NSNumber
+        let name = jsonDictionary["name"] as! String
+        let available = jsonDictionary["available"] as! String
+        let total = jsonDictionary["total"] as! String
+        let amountOpenOrders = jsonDictionary["amountOpenOrders"] as! String
+       
+        
+        if let balanceRetorno = getBalance(context, name, idExchange) {
+            updateBalance(context, id, idExchange, createDate, updateDate, name, available, total, amountOpenOrders)
+        }
+        else{
+            insertBalance(context, id, idExchange, createDate, updateDate, name, available, total, amountOpenOrders)
+        }
+        
+    }
+    
+    fileprivate func getBalance
+        (_ context: NSManagedObjectContext, _ name: String, _ idExchange: NSNumber) -> NSManagedObject? {
+        var balanceRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Balance")
+        
+        
+        let filtroDescricao = NSPredicate(format: "name == %@", name)
+        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let balances = try context.fetch(requisicao)
+            
+            if balances.count > 0 {
+                for balance in balances as! [NSManagedObject] {
+                    
+                    balanceRetorno = balance
+                }
+            }
+            else {
+                print("Nenhum balance encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        return balanceRetorno
+    }
+    
+    
+    fileprivate func insertBalance(_ context: NSManagedObjectContext, _ id: NSNumber, _ idExchange: NSNumber, _ createDate: NSNumber,
+                                   _ updateDate: NSNumber, _ name: String, _ available: String, _ total: String, _ amountOpenOrders: String) {
+        //Cria entidade
+        let balance = NSEntityDescription.insertNewObject(forEntityName: "Balance", into: context)
+        
+        balance.setValue(id, forKey: "id")
+        balance.setValue(idExchange, forKey: "idExchange")
+        balance.setValue(createDate, forKey: "createDate")
+        balance.setValue(updateDate, forKey: "updateDate")
+        balance.setValue(name, forKey: "name")
+        balance.setValue(available, forKey: "available")
+        balance.setValue(total, forKey: "total")
+        balance.setValue(amountOpenOrders, forKey: "amountOpenOrders")
+    }
+    
+    fileprivate func updateBalance(_ context: NSManagedObjectContext, _ id: NSNumber, _ idExchange: NSNumber, _ createDate: NSNumber,
+                                   _ updateDate: NSNumber, _ name: String, _ available: String, _ total: String, _ amountOpenOrders: String) {
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Balance")
+        
+        let filtroDescricao = NSPredicate(format: "id == %@", id)
+        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let balances = try context.fetch(requisicao)
+            
+            if balances.count > 0 {
+                for balance in balances as! [NSManagedObject] {
+                    
+                    if let id = balance.value(forKey: "id") {
+                        
+                        //atualizar
+                        balance.setValue(id, forKey: "id")
+                        balance.setValue(idExchange, forKey: "idExchange")
+                        balance.setValue(createDate, forKey: "createDate")
+                        balance.setValue(updateDate, forKey: "updateDate")
+                        balance.setValue(name, forKey: "name")
+                        balance.setValue(available, forKey: "available")
+                        balance.setValue(total, forKey: "total")
+                        balance.setValue(amountOpenOrders, forKey: "amountOpenOrders")
+                        
+                    }
+                }
+            }
+            else {
+                print("Nenhum balance encontrada!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
+    
+    func getBalanceTO(_ name: String, _ idExchange: NSNumber) -> BalanceTO? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        var balanceTO: BalanceTO?
+        var balanceRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Balance")
+        
+        let filtroDescricao = NSPredicate(format: "name == %@", name)
+        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let balances = try context.fetch(requisicao)
+            
+            if balances.count > 0 {
+                for balance in balances as! [NSManagedObject] {
+                    
+                    balanceRetorno = balance
+                }
+            }
+            else {
+                print("Nenhum balance encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        if(balanceRetorno != nil){
+            if let id = balanceRetorno.value(forKey: "id"){
+                if let idExchange = balanceRetorno.value(forKey: "idExchange") {
+                    if let name = balanceRetorno.value(forKey: "name") {
+                        if let available = balanceRetorno.value(forKey: "available") {
+                            if let total = balanceRetorno.value(forKey: "total") {
+                                if let amountOpenOrders = balanceRetorno.value(forKey: "amountOpenOrders") {
+                                    
+                                    balanceTO = BalanceTO()
+                                    
+                                    balanceTO?.id = id as? NSNumber
+                                    balanceTO?.name = name as? String
+                                    balanceTO?.idExchange = idExchange as? NSNumber
+                                    balanceTO?.available = available as? String
+                                    balanceTO?.total = total as? String
+                                    balanceTO?.amountOpenOrders = amountOpenOrders as? String
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return balanceTO
+    }
+    
     func gerenciarAnalyzes(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
         let id = jsonDictionary["id"] as! NSNumber
         let idAnalyzeExchange = jsonDictionary["idAnalyzeExchange"] as! NSNumber

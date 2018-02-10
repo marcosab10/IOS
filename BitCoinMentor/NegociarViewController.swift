@@ -9,17 +9,88 @@
 import UIKit
 
 class NegociarViewController: UIViewController {
+    let service: BitCoinMentorService = BitCoinMentorService()
+    let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    
+    @IBOutlet weak var reaisLabel: UILabel!
+    @IBOutlet weak var bitcoinLabel: UILabel!
+    @IBOutlet weak var bitcoinCashLabel: UILabel!
+    @IBOutlet weak var litecoinLabel: UILabel!
+    
 
+    @IBOutlet weak var moedaLabel: UILabel!
+    @IBOutlet weak var quantidadeCoinsText: UITextField!
+    @IBOutlet weak var precoUnitarioText: UITextField!
+    
+    var coin: String = "LTC"
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        moedaLabel.text = "Litecoin"
+        
+        carregarBalances()
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        carregarBalances()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+   
+    @IBAction func definirMoedaBitcoin(_ sender: Any) {
+        coin = "BTC"
+        moedaLabel.text = "Bitcoin"
     }
+    
+    
+    @IBAction func definirMoedaBitcoinCash(_ sender: Any) {
+        coin = "BCH"
+        moedaLabel.text = "BitcoinCash"
+    }
+    
+    
+    @IBAction func definirMoedaLitecoin(_ sender: Any) {
+        coin = "LTC"
+        moedaLabel.text = "Litecoin"
+    }
+    
+    
+    @IBAction func atualizar(_ sender: Any) {
+        carregarBalances()
+    }
+    
+    
+    
+    @IBAction func vender(_ sender: Any) {
+        
+        
+    }
+    
+    @IBAction func comprar(_ sender: Any) {
+        
+        
+    }
+    
+    
+    fileprivate func carregarBalances() {
+        service.refreshBalances("1")
+        
+        if let reaisBalance = self.bitCoinCoreData.getBalanceTO("brl", 1) {
+            reaisLabel.text = reaisBalance.available
+        }
+        if let bitcoinBalance = self.bitCoinCoreData.getBalanceTO("btc", 1) {
+            bitcoinLabel.text = bitcoinBalance.available
+        }
+        if let bitcoinCashBalance = self.bitCoinCoreData.getBalanceTO("bch", 1) {
+            bitcoinCashLabel.text = bitcoinCashBalance.available
+        }
+        if let litecoinBalance = self.bitCoinCoreData.getBalanceTO("ltc", 1) {
+            litecoinLabel.text = litecoinBalance.available
+        }
+    }
+    
     
 
     /*
