@@ -11,6 +11,8 @@
 		DC006C1A202933DB00D02154 /* MBFooterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC006C19202933DB00D02154 /* MBFooterTableViewCell.swift */; };
 		DC01D322202BD9A50090BCCA /* NegociarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D321202BD9A50090BCCA /* NegociarViewController.swift */; };
 		DC01D324202E278B0090BCCA /* BalanceTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D323202E278B0090BCCA /* BalanceTO.swift */; };
+		DC01D326202F75A90090BCCA /* TicketTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D325202F75A90090BCCA /* TicketTO.swift */; };
+		DC01D328202FC1930090BCCA /* OrdemTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D327202FC1930090BCCA /* OrdemTO.swift */; };
 		DC09930F2027D51600EE6113 /* MBHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */; };
 		DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */; };
 		DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */; };
@@ -39,6 +41,8 @@
 		DC006C19202933DB00D02154 /* MBFooterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBFooterTableViewCell.swift; sourceTree = "<group>"; };
 		DC01D321202BD9A50090BCCA /* NegociarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegociarViewController.swift; sourceTree = "<group>"; };
 		DC01D323202E278B0090BCCA /* BalanceTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTO.swift; sourceTree = "<group>"; };
+		DC01D325202F75A90090BCCA /* TicketTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTO.swift; sourceTree = "<group>"; };
+		DC01D327202FC1930090BCCA /* OrdemTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdemTO.swift; sourceTree = "<group>"; };
 		DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DC36EE9C1FEEFC3E006DEC96 /* BitCoinMentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitCoinMentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				DCE391391FFF17C700E0116A /* ConfigurationTO.swift */,
 				DCB6562E201F3670003A2DFF /* AnalyzeExchangeTO.swift */,
 				DC01D323202E278B0090BCCA /* BalanceTO.swift */,
+				DC01D325202F75A90090BCCA /* TicketTO.swift */,
+				DC01D327202FC1930090BCCA /* OrdemTO.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 				DCE3CE751FF0506800977907 /* ConfigurarViewController.swift in Sources */,
 				DCCF98CF2022A2AE00001DFB /* MBTableViewCell.swift in Sources */,
 				DCB65634201FF46C003A2DFF /* ConfViewController.swift in Sources */,
+				DC01D326202F75A90090BCCA /* TicketTO.swift in Sources */,
 				DC01D324202E278B0090BCCA /* BalanceTO.swift in Sources */,
 				DCB6562F201F3670003A2DFF /* AnalyzeExchangeTO.swift in Sources */,
 				DC01D322202BD9A50090BCCA /* NegociarViewController.swift in Sources */,
@@ -323,6 +330,7 @@
 				DCAC623220211477007701FA /* MBTableViewController.swift in Sources */,
 				DCCD908F2018D2350083CD36 /* BitCoinMentorService.swift in Sources */,
 				DCCD908C2018CD370083CD36 /* AnalyzeTableViewController.swift in Sources */,
+				DC01D328202FC1930090BCCA /* OrdemTO.swift in Sources */,
 				DC36EEA81FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld in Sources */,
 				DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */,
 				DCE3913A1FFF17C700E0116A /* ConfigurationTO.swift in Sources */,

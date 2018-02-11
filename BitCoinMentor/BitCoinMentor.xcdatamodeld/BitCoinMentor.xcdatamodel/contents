@@ -30,9 +30,28 @@
         <attribute name="total" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
+    <entity name="Ordem" representedClassName="Ordem" syncable="YES" codeGenerationType="class">
+        <attribute name="coin_pair" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="executed_price_avg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="executed_quantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fee" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="has_fills" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="idExchange" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="limit_price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updated_timestamp" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Analyze" positionX="-63" positionY="-18" width="128" height="180"/>
         <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="150"/>
         <element name="Balance" positionX="-63" positionY="72" width="128" height="165"/>
+        <element name="Ordem" positionX="-54" positionY="99" width="128" height="285"/>
     </elements>
 </model>
