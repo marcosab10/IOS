@@ -279,4 +279,99 @@ class BitCoinMentorService {
     }
     
     
+    func cancelOrdem(ordemTO: OrdemTO){
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/cancelOrdem")
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            let body: String = "{ " +
+                " \"id\": \"\(ordemTO.id!)\"," +
+                " \"idExchange\": \"\(ordemTO.idExchange!)\"," +
+                " \"createDate\": \"\(ordemTO.createDate!)\"," +
+                " \"updateDate\": \"\(ordemTO.updateDate!)\"," +
+                " \"order_id\": \"\(ordemTO.order_id!)\"," +
+                " \"coin_pair\": \"\(ordemTO.coin_pair!)\"," +
+                " \"order_type\": \"\(ordemTO.order_type!)\"," +
+                " \"status\": \"\(ordemTO.status!)\"," +
+                " \"has_fills\": \"\(ordemTO.has_fills!)\"," +
+                " \"quantity\": \"\(ordemTO.quantity!)\"," +
+                " \"limit_price\": \"\(ordemTO.limit_price!)\"," +
+                " \"executed_quantity\": \"\(ordemTO.executed_quantity!)\", " +
+                " \"fee\": \"\(ordemTO.fee!)\", " +
+                " \"created_timestamp\": \"\(ordemTO.created_timestamp!)\", " +
+                " \"updated_timestamp\": \"\(ordemTO.updated_timestamp!)\" " +
+            "}"
+            request.httpBody = body.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
+    
+    func buyPriceAuto(ticketTO: TicketTO){
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/buyPriceAuto")
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            let body: String = "{ " +
+                " \"coin\": \"\(ticketTO.coin!)\"," +
+                " \"idExchange\": \"\(ticketTO.idExchange!)\", " +
+                " \"modo\": \"\(ticketTO.modoRapido!)\" " +
+            "}"
+            request.httpBody = body.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
+    func sellPriceAuto(ticketTO: TicketTO){
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/sellPriceAuto")
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            let body: String = "{ " +
+                " \"coin\": \"\(ticketTO.coin!)\"," +
+                " \"idExchange\": \"\(ticketTO.idExchange!)\", " +
+                " \"modo\": \"\(ticketTO.modoRapido!)\" " +
+            "}"
+            request.httpBody = body.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
+    
 }

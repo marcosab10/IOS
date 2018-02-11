@@ -27,23 +27,29 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var precoUnitarioText: UITextField!
     
     var coin: String = "LTC"
-    
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         moedaLabel.text = "Litecoin"
         
-        carregarBalances()
-        carregarOrdens()
+        carregarBalances(false)
+        carregarOrdens(false)
         
         tableView.delegate = self
         tableView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        carregarBalances()
+        let intervaloRefresh:Double = 5.0
+        
+        carregarBalances(false)
+        carregarOrdens(false)
+        
+        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+            self.carregarBalances(false)
+            self.carregarOrdens(false)
+        }
     }
 
    
@@ -65,11 +71,14 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    @IBAction func atualizar(_ sender: Any) {
-        carregarBalances()
-        carregarOrdens()
+    @IBAction func atualizarOrdens(_ sender: Any) {
+       
+        carregarOrdens(true)
     }
     
+    @IBAction func atualizarBalances(_ sender: Any) {
+         carregarBalances(true)
+    }
     
     
     @IBAction func vender(_ sender: Any) {
@@ -87,8 +96,6 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
             
             self.quantidadeCoinsText.text = ""
             self.precoUnitarioText.text = ""
-            
-            print("Vender!")
         }
        
         
@@ -113,8 +120,6 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
             
             self.quantidadeCoinsText.text = ""
             self.precoUnitarioText.text = ""
-            
-            print("Comprar!")
         }
 
         alerta.addAction(confirmar)
@@ -125,8 +130,10 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     
-    fileprivate func carregarBalances() {
-        service.refreshBalances(idExchange)
+    fileprivate func carregarBalances(_ buscarNoServer:Bool) {
+        if buscarNoServer {
+             service.refreshBalances(idExchange)
+        }
         
         if let reaisBalance = self.bitCoinCoreData.getBalanceTO("brl", 1) {
             reaisLabel.text = reaisBalance.available
@@ -142,13 +149,16 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
-    fileprivate func carregarOrdens() {
-        service.loadOrdens(idExchange, statusOrdens, coin)
+    fileprivate func carregarOrdens(_ buscarNoServer:Bool) {
+        if buscarNoServer {
+             service.loadOrdens(idExchange, statusOrdens, coin)
+        }
         
         if let idExchangeInt = Int(idExchange) {
             let idExchangeNS = NSNumber(value:idExchangeInt)
              ordensTO = bitCoinCoreData.getOrdensTO(idExchangeNS)!
         }
+        self.tableView.reloadData()
     }
     
     //Esconder teclado ao clicar fora
@@ -175,6 +185,24 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         return cell
     
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let indice = indexPath.row
+            let ordemTO = self.ordensTO[indice]
+            service.cancelOrdem(ordemTO: ordemTO)
+            bitCoinCoreData.deleteOrdem(ordemTO.id!, ordemTO.idExchange!)
+            
+            self.ordensTO.remove(at: indice) // remove do array
+            self.tableView.deleteRows(at: [indexPath], with: .automatic) // remover da tabela
+        }
+    }
+    
+    //Metodo executado quando se seleciona uma linha
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*

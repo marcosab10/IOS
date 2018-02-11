@@ -119,6 +119,15 @@ class AnalyzeTableViewController: UITableViewController {
             self.tableView.reloadData()
         }
     }
+    
+    //Metodo executado quando se seleciona uma linha
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        //let indice = indexPath.row
+        //let anotacao = anotacoes[indice]
+        //self.performSegue(withIdentifier: "verAnotacao", sender: anotacao)
+    }
 
     
     /*

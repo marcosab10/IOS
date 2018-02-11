@@ -9,36 +9,73 @@
 import UIKit
 
 class MBTableViewController: UITableViewController {
+    let service: BitCoinMentorService = BitCoinMentorService()
     var asks:[NSArray] = [] //[[32560.00001,101.00001], [32562.00001,102.00001], [32533.00001,102.20001]]
-    var bids:[NSArray] = [] //[[32664.00001,103.00001], [32668.00001,101.50001], [32633.00001,102.00001]]
+    var bids:[NSArray] = []
     var trades:NSArray = []
     var coin: String?
+    let ticket:TicketTO = TicketTO()
+    let idExchange:String = "1"
     
-    var modo:String = "Lento"
+    var modoRapido:String = "false"
+    var modoDesc:String = "Lento"
     
     @IBOutlet weak var tituloLabel: UILabel!
     
     
     @IBAction func definirModo(_ sender: Any) {
-        if modo == "Lento" {
-            modo = "Rapido"
+        if modoDesc == "Lento" {
+            modoDesc = "Rapido"
+            modoRapido = "true"
         }
         else {
-            modo = "Lento"
+            modoDesc = "Lento"
+            modoRapido = "false"
         }
         definirTitulo()
     }
     
     
     @IBAction func comprar(_ sender: Any) {
+        let alerta = UIAlertController(title: "Comprar", message: "Deseja comprar?", preferredStyle: .alert)
+        let cancelar = UIAlertAction(title: "Cancelar", style: .destructive, handler: nil)
         
-        print("Comprar " + coin! + " " + modo)
+        let confirmar = UIAlertAction(title: "Confirmar", style: .default) { (acao) in
+            
+            self.ticket.coin = self.coin
+            self.ticket.idExchange = self.idExchange
+            self.ticket.modoRapido = self.modoRapido
+
+            self.service.buyPriceAuto(ticketTO: self.ticket)
+        }
         
+        alerta.addAction(confirmar)
+        alerta.addAction(cancelar)
+        
+        present(alerta, animated: true, completion: nil)
+
+        print("Comprar " + coin! + " " + modoDesc)
     }
     
     @IBAction func Vender(_ sender: Any) {
-        print("Vender " + coin! + " " + modo)
+        let alerta = UIAlertController(title: "Vender", message: "Deseja vender?", preferredStyle: .alert)
+        let cancelar = UIAlertAction(title: "Cancelar", style: .destructive, handler: nil)
         
+        let confirmar = UIAlertAction(title: "Confirmar", style: .default) { (acao) in
+            
+            self.ticket.coin = self.coin
+            self.ticket.idExchange = self.idExchange
+            self.ticket.modoRapido = self.modoRapido
+            
+            self.service.sellPriceAuto(ticketTO: self.ticket)
+        }
+        
+        alerta.addAction(confirmar)
+        alerta.addAction(cancelar)
+        
+        present(alerta, animated: true, completion: nil)
+        
+        print("Vender " + coin! + " " + modoDesc)
     }
     
     
@@ -178,11 +215,11 @@ class MBTableViewController: UITableViewController {
     
     fileprivate func definirTitulo() {
         if coin == "BTC" {
-            tituloLabel.text = "Bitcoin " + modo
+            tituloLabel.text = "Bitcoin " + modoDesc
         } else if coin == "LTC" {
-            tituloLabel.text = "LiteCoin "  + modo
+            tituloLabel.text = "LiteCoin "  + modoDesc
         } else if coin == "BCH" {
-            tituloLabel.text = "BitcoinCash "  + modo
+            tituloLabel.text = "BitcoinCash "  + modoDesc
         }
     }
    

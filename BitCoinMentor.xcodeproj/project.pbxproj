@@ -115,6 +115,7 @@
 				DCB65630201F392A003A2DFF /* coredata */,
 				DCCD908D2018D1C30083CD36 /* business */,
 				DCE391381FFF17A100E0116A /* model */,
+				DCDF15482030724600F67764 /* tablecells */,
 				DCFF55481FF1ECEC0054079F /* BitCoinMentor.entitlements */,
 				DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */,
 				DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */,
@@ -124,9 +125,6 @@
 				DCCD908B2018CD370083CD36 /* AnalyzeTableViewController.swift */,
 				DCB65633201FF46C003A2DFF /* ConfViewController.swift */,
 				DCAC623120211477007701FA /* MBTableViewController.swift */,
-				DCCF98CE2022A2AE00001DFB /* MBTableViewCell.swift */,
-				DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */,
-				DC006C19202933DB00D02154 /* MBFooterTableViewCell.swift */,
 				DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */,
 				DC36EEA91FEEFC3E006DEC96 /* Assets.xcassets */,
 				DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */,
@@ -152,6 +150,16 @@
 				DCAC622F2020E841007701FA /* MercadoBitcoinApi.swift */,
 			);
 			path = business;
+			sourceTree = "<group>";
+		};
+		DCDF15482030724600F67764 /* tablecells */ = {
+			isa = PBXGroup;
+			children = (
+				DCCF98CE2022A2AE00001DFB /* MBTableViewCell.swift */,
+				DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */,
+				DC006C19202933DB00D02154 /* MBFooterTableViewCell.swift */,
+			);
+			path = tablecells;
 			sourceTree = "<group>";
 		};
 		DCE391381FFF17A100E0116A /* model */ = {

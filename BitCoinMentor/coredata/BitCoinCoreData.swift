@@ -742,5 +742,37 @@ class BitCoinCoreData {
         return ordensTO
     }
     
+    func deleteOrdem(_ id: NSNumber, _ idExchange: NSNumber){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+            
+            //Criar uma requisição
+            let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Ordem")
+            
+            let filtroDescricao = NSPredicate(format: "id == %@", id)
+            let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+            
+            let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
+            
+            // aplicar filtros criados à requisicao
+            requisicao.predicate = combinacaoFiltro
+            
+            do {
+                let ordens = try context.fetch(requisicao)
+                
+                if ordens.count > 0 {
+                    for ordem in ordens as! [NSManagedObject] {
+                        
+                     context.delete(ordem)
+                    }
+                }
+                else {
+                    print("Nenhuma ordem encontrado!")
+                }
+            } catch {
+                print("Erro ao recuperar os dados!")
+            }
+    }
+    
     
 }
