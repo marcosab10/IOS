@@ -175,13 +175,21 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
         // #warning Incomplete implementation, return the number of rows
         return ordensTO.count
     }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! OrdemHeaderTableViewCell
+        
+        return cell
+        
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "celula", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "celula", for: indexPath) as! OrdemTableViewCell
         
         if ordensTO.count > 0 {
-            cell.textLabel?.text = ordensTO[indexPath.row].coin_pair
-            cell.detailTextLabel?.text = ordensTO[indexPath.row].limit_price
+            cell.coinPairLabel.text = ordensTO[indexPath.row].coin_pair
+            cell.limitPriceLabel.text = ordensTO[indexPath.row].limit_price
+            cell.orderTypeLabel.text = ordensTO[indexPath.row].order_type
+            cell.quantityLabel.text = ordensTO[indexPath.row].quantity
         }
         return cell
     
