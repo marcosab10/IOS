@@ -8,8 +8,9 @@
 
 import UIKit
 
-class MBTableViewController: UITableViewController {
+class MBTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let service: BitCoinMentorService = BitCoinMentorService()
+    let util:Util = Util()
     var asks:[NSArray] = [] //[[32560.00001,101.00001], [32562.00001,102.00001], [32533.00001,102.20001]]
     var bids:[NSArray] = []
     var trades:NSArray = []
@@ -19,6 +20,8 @@ class MBTableViewController: UITableViewController {
     
     var modoRapido:String = "false"
     var modoDesc:String = "Lento"
+    
+    @IBOutlet weak var tableview: UITableView!
     
     @IBOutlet weak var tituloLabel: UILabel!
     
@@ -86,33 +89,46 @@ class MBTableViewController: UITableViewController {
         self.trades(coin: self.coin!)
         
         definirTitulo()
-
+        
+        
+        self.tableview.delegate = self
+        self.tableview.dataSource = self
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 100
     }
 
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! MBHeaderTableViewCell
         
         return cell
         
     }
     
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "footerCell") as! MBFooterTableViewCell
         
         return cell
     }
+    
+    //Metodo executado quando se seleciona uma linha
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableview.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 80.0;
+    }
    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celula", for: indexPath) as! MBTableViewCell
 
         if bids.count > 0 {
@@ -138,6 +154,7 @@ class MBTableViewController: UITableViewController {
                     let quantidadeTrade:NSNumber = trade["amount"] as! NSNumber
                     let precoTrade:NSNumber = trade["price"] as! NSNumber
                     let tipo:String = trade["type"] as! String
+                    let data:NSNumber  = trade["date"] as! NSNumber
                     
                     cell.negociadoPrecoLabel.text = String(describing: precoTrade)
                     cell.negociadoQuantidadeLabel.text = String(describing: quantidadeTrade)
@@ -148,8 +165,12 @@ class MBTableViewController: UITableViewController {
                     else if tipo == "buy" {
                         cell.negociadoQuantidadeLabel.textColor = UIColor.green
                     }
+                    
+                    cell.horaLabel.text = util.formatarData(dataMilisegundos: data)
                 }
             }
+            
+            
         }
         return cell
     }
@@ -159,12 +180,12 @@ class MBTableViewController: UITableViewController {
         
         self.orderbook(coin: self.coin!)
         self.trades(coin: self.coin!)
-        self.tableView.reloadData()
+        self.tableview.reloadData()
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             self.orderbook(coin: self.coin!)
             self.trades(coin: self.coin!)
-            self.tableView.reloadData()
+            self.tableview.reloadData()
         }
     }
     

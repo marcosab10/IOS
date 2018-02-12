@@ -20,7 +20,7 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var bitcoinLabel: UILabel!
     @IBOutlet weak var bitcoinCashLabel: UILabel!
     @IBOutlet weak var litecoinLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableview: UITableView!
 
     @IBOutlet weak var moedaLabel: UILabel!
     @IBOutlet weak var quantidadeCoinsText: UITextField!
@@ -36,8 +36,8 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
         carregarBalances(false)
         carregarOrdens(false)
         
-        tableView.delegate = self
-        tableView.dataSource = self
+        tableview.delegate = self
+        tableview.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -158,7 +158,7 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
             let idExchangeNS = NSNumber(value:idExchangeInt)
              ordensTO = bitCoinCoreData.getOrdensTO(idExchangeNS)!
         }
-        self.tableView.reloadData()
+        self.tableview.reloadData()
     }
     
     //Esconder teclado ao clicar fora
@@ -196,13 +196,13 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
             bitCoinCoreData.deleteOrdem(ordemTO.id!, ordemTO.idExchange!)
             
             self.ordensTO.remove(at: indice) // remove do array
-            self.tableView.deleteRows(at: [indexPath], with: .automatic) // remover da tabela
+            self.tableview.deleteRows(at: [indexPath], with: .automatic) // remover da tabela
         }
     }
     
     //Metodo executado quando se seleciona uma linha
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
+        self.tableview.deselectRow(at: indexPath, animated: true)
     }
 
     /*

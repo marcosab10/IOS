@@ -10,6 +10,19 @@ import UIKit
 
 class Util {
     
+    func formatarData(dataMilisegundos: NSNumber) -> String {
+        
+
+        let date = Date(timeIntervalSince1970: dataMilisegundos.doubleValue)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+2") //Set timezone that you want
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "HH:mm:ss" //Specify your format that you want
+        let strDate = dateFormatter.string(from: date)
+    
+        return strDate
+    }
+    
     func bordasImagem(image: UIImageView) {
         image.layer.cornerRadius = image.frame.size.width / 2
         image.clipsToBounds = true
