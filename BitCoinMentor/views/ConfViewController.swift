@@ -17,8 +17,9 @@ class ConfViewController: UIViewController {
     
     @IBOutlet weak var ativarAnaliseSwitch: UISwitch!
     @IBOutlet weak var ativarNotificacoesSwitch: UISwitch!
+    @IBOutlet weak var notificacaoPositivaSwitch: UISwitch!
+    @IBOutlet weak var notificacaoNegativaSwitch: UISwitch!
     @IBOutlet weak var notificacoesAtivasLabel: UILabel!
-    
     @IBOutlet weak var alertaLabel: UILabel!
     
     
@@ -31,6 +32,9 @@ class ConfViewController: UIViewController {
             
             ativarAnaliseSwitch.isOn =  Bool(analyzeExchangeTO.activeAnalyzes!)!
             ativarNotificacoesSwitch.isOn =  Bool(analyzeExchangeTO.activeNotification!)!
+       
+            notificacaoPositivaSwitch.isOn = Bool(analyzeExchangeTO.notifyPositive!)!
+            notificacaoNegativaSwitch.isOn = Bool(analyzeExchangeTO.notifyNegative!)!
         }
         
         if nameAnalyzeExchange == "Binance" {
@@ -60,6 +64,8 @@ class ConfViewController: UIViewController {
             
             analyzeExchangeTO.activeAnalyzes = String(ativarAnaliseSwitch.isOn)
             analyzeExchangeTO.activeNotification  = String(ativarNotificacoesSwitch.isOn)
+            analyzeExchangeTO.notifyPositive = String(notificacaoPositivaSwitch.isOn)
+            analyzeExchangeTO.notifyNegative  = String(notificacaoNegativaSwitch.isOn)
             
             if let tokenValue = UserDefaults.standard.object(forKey: "token") {
                 let token = tokenValue as! String

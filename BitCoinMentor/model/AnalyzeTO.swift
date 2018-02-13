@@ -23,7 +23,6 @@ class AnalyzeTO {
     var firstPrice: String?
     var lastPrice: String?
     var notificationInterval: NSNumber?
-    var notifyPositive: String?
-    var notifyNegative: String?
+   
 
 }

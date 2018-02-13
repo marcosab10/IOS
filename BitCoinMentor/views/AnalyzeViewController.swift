@@ -17,8 +17,6 @@ class AnalyzeViewController: UIViewController {
     @IBOutlet weak var tempoEmMinutosText: UITextField!
     @IBOutlet weak var margemText: UITextField!
     @IBOutlet weak var notificacoesAtivasSwitch: UISwitch!
-    @IBOutlet weak var notificacaoPositivaSwitch: UISwitch!
-    @IBOutlet weak var notificacaoNegativaSwitch: UISwitch!
 
 
     override func viewDidLoad() {
@@ -43,26 +41,8 @@ class AnalyzeViewController: UIViewController {
             tempoEmMinutosText.text = String(describing: timeMinutesTemp)
             margemText.text = analyzeTO?.margin
             
-            if analyzeTO?.activeNotification == "true" {
-                notificacoesAtivasSwitch.isOn = true
-            }
-            else{
-                notificacoesAtivasSwitch.isOn = false
-            }
+            notificacoesAtivasSwitch.isOn = Bool((analyzeTO?.activeNotification!)!)!
             
-            if analyzeTO?.notifyPositive == "true" {
-                notificacaoPositivaSwitch.isOn = true
-            }
-            else{
-                notificacaoPositivaSwitch.isOn = false
-            }
-            
-            if analyzeTO?.notifyNegative == "true" {
-                notificacaoNegativaSwitch.isOn = true
-            }
-            else{
-                notificacaoNegativaSwitch.isOn = false
-            }
         }
     }
     

@@ -135,7 +135,9 @@ class BitCoinMentorService {
                 " \"token\": \"\(analyzeExchangeTO.token!)\", " +
                 " \"typeCoin\": \"\(analyzeExchangeTO.typeCoin!)\", " +
                 " \"activeAnalyzes\": \"\(analyzeExchangeTO.activeAnalyzes!)\", " +
-                " \"activeNotification\": \"\(analyzeExchangeTO.activeNotification!)\" " +
+                " \"activeNotification\": \"\(analyzeExchangeTO.activeNotification!)\", " +
+                " \"notifyPositive\": \"\(analyzeExchangeTO.notifyPositive!)\", " +
+                " \"notifyNegative\": \"\(analyzeExchangeTO.notifyNegative!)\" " +
             "}"
             request.httpBody = body.data(using: .utf8)
             
@@ -392,9 +394,7 @@ class BitCoinMentorService {
                 " \"activeNotification\": \"\(analyzeTO.activeNotification!)\", " +
                 " \"firstPrice\": \"\(analyzeTO.firstPrice!)\", " +
                 " \"lastPrice\": \"\(analyzeTO.lastPrice!)\", " +
-                " \"notificationInterval\": \"\(analyzeTO.notificationInterval!)\", " +
-                " \"notifyPositive\": \"\(analyzeTO.notifyPositive!)\", " +
-                " \"notifyNegative\": \"\(analyzeTO.notifyNegative!)\" " +
+                " \"notificationInterval\": \"\(analyzeTO.notificationInterval!)\" " +
             "}"
             request.httpBody = body.data(using: .utf8)
             

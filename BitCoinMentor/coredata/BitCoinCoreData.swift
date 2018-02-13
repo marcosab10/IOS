@@ -176,6 +176,125 @@ class BitCoinCoreData {
         return ordens
     }
     
+    func getOrdensTO(_ idExchange: NSNumber) -> [OrdemTO]? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        var ordensTO: [OrdemTO] = []
+        var ordemRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Ordem")
+        
+        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let ordens = try context.fetch(requisicao)
+            
+            if ordens.count > 0 {
+                for ordem in ordens as! [NSManagedObject] {
+                    
+                    ordemRetorno = ordem
+                    
+                    if(ordemRetorno != nil){
+                        if let id = ordemRetorno.value(forKey: "id"){
+                            if let idExchange = ordemRetorno.value(forKey: "idExchange") {
+                                if let createDate = ordemRetorno.value(forKey: "createDate") {
+                                    if let updateDate = ordemRetorno.value(forKey: "updateDate") {
+                                        if let order_id = ordemRetorno.value(forKey: "order_id") {
+                                            if let coin_pair = ordemRetorno.value(forKey: "coin_pair") {
+                                                if let order_type = ordemRetorno.value(forKey: "order_type") {
+                                                    if let status = ordemRetorno.value(forKey: "status") {
+                                                        if let has_fills = ordemRetorno.value(forKey: "has_fills") {
+                                                            if let quantity = ordemRetorno.value(forKey: "quantity") {
+                                                                if let limit_price = ordemRetorno.value(forKey: "limit_price") {
+                                                                    if let executed_quantity = ordemRetorno.value(forKey: "executed_quantity") {
+                                                                        if let fee = ordemRetorno.value(forKey: "fee") {
+                                                                            if let created_timestamp = ordemRetorno.value(forKey: "created_timestamp") {
+                                                                                if let updated_timestamp = ordemRetorno.value(forKey: "updated_timestamp") {
+                                                                                    let ordemTO = OrdemTO()
+                                                                                    
+                                                                                    ordemTO.id = id as?  NSNumber
+                                                                                    ordemTO.idExchange = idExchange as? NSNumber
+                                                                                    ordemTO.createDate = createDate as? NSNumber
+                                                                                    ordemTO.updateDate = updateDate as? NSNumber
+                                                                                    ordemTO.order_id = order_id as? String
+                                                                                    ordemTO.coin_pair = coin_pair as? String
+                                                                                    ordemTO.order_type = order_type as? String
+                                                                                    ordemTO.status = status as? String
+                                                                                    ordemTO.has_fills = has_fills as? String
+                                                                                    ordemTO.quantity = quantity as? String
+                                                                                    ordemTO.limit_price = limit_price  as? String
+                                                                                    ordemTO.executed_quantity = executed_quantity as? String
+                                                                                    ordemTO.fee = fee as? String
+                                                                                    ordemTO.created_timestamp = created_timestamp as? String
+                                                                                    ordemTO.updated_timestamp = updated_timestamp as? String
+                                                                                    
+                                                                                    ordensTO.append(ordemTO)
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                print("Nenhuma ordem encontrada!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        return ordensTO
+    }
+    
+    func deleteOrdem(_ id: NSNumber, _ idExchange: NSNumber){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Ordem")
+        
+        let filtroDescricao = NSPredicate(format: "id == %@", id)
+        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let ordens = try context.fetch(requisicao)
+            
+            if ordens.count > 0 {
+                for ordem in ordens as! [NSManagedObject] {
+                    
+                    context.delete(ordem)
+                }
+            }
+            else {
+                print("Nenhuma ordem encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
+    
     func gerenciarBalances(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
         let id = jsonDictionary["id"] as! NSNumber
         let idExchange = jsonDictionary["idExchange"] as! NSNumber
@@ -361,16 +480,14 @@ class BitCoinCoreData {
         let lastPrice = jsonDictionary["lastPrice"] as! String
         let activeNotification = jsonDictionary["activeNotification"] as! String
         let notificationInterval = jsonDictionary["notificationInterval"] as! NSNumber
-        let notifyPositive = jsonDictionary["notifyPositive"] as! String
-        let notifyNegative = jsonDictionary["notifyNegative"] as! String
         let margin = jsonDictionary["margin"] as! String
         
         
         if let analyzeRetorno = getAnalyze(context, timeMinutes, idAnalyzeExchange) {
-            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
+            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, margin)
         }
         else{
-            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
+            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, margin)
         }
     }
     
@@ -413,7 +530,7 @@ class BitCoinCoreData {
     fileprivate func insertAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
                                    _ timeMinutes: NSNumber, _ percentage: String, _ createDate: NSNumber,
                                    _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String, _ activeNotification: String,
-                                   _ notificationInterval: NSNumber, _ notifyPositive: String, _ notifyNegative: String, _ margin: String) {
+                                   _ notificationInterval: NSNumber, _ margin: String) {
         
         //Cria entidade
         let analyze = NSEntityDescription.insertNewObject(forEntityName: "Analyze", into: context)
@@ -428,15 +545,13 @@ class BitCoinCoreData {
         analyze.setValue(lastPrice, forKey: "lastPrice")
         analyze.setValue(activeNotification, forKey: "activeNotification")
         analyze.setValue(notificationInterval, forKey: "notificationInterval")
-        analyze.setValue(notifyPositive, forKey: "notifyPositive")
-        analyze.setValue(notifyNegative, forKey: "notifyNegative")
         analyze.setValue(margin, forKey: "margin")
     }
     
     fileprivate func updateAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
                                    _ timeMinutes: NSNumber, _ percentage: String, _ createDate: NSNumber,
                                    _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String, _ activeNotification: String,
-                                   _ notificationInterval: NSNumber, _ notifyPositive: String, _ notifyNegative: String, _ margin: String) {
+                                   _ notificationInterval: NSNumber, _ margin: String) {
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
@@ -468,8 +583,6 @@ class BitCoinCoreData {
                         analyze.setValue(lastPrice, forKey: "lastPrice")
                         analyze.setValue(activeNotification, forKey: "activeNotification")
                         analyze.setValue(notificationInterval, forKey: "notificationInterval")
-                        analyze.setValue(notifyPositive, forKey: "notifyPositive")
-                        analyze.setValue(notifyNegative, forKey: "notifyNegative")
                         analyze.setValue(margin, forKey: "margin")
                         
                     }
@@ -547,28 +660,21 @@ class BitCoinCoreData {
                                                     if let firstPrice = analyze.value(forKey: "firstPrice"){
                                                         if let lastPrice = analyze.value(forKey: "lastPrice"){
                                                             if let notificationInterval = analyze.value(forKey: "notificationInterval"){
-                                                                if let notifyPositive = analyze.value(forKey: "notifyPositive"){
-                                                                    if let notifyNegative = analyze.value(forKey: "notifyNegative"){
-                                                                        
-                                                                        let analyzeTO = AnalyzeTO()
-                                                                        
-                                                                        analyzeTO.id = id as?  NSNumber
-                                                                        analyzeTO.idAnalyzeExchange = idAnalyzeExchange as? NSNumber
-                                                                        analyzeTO.createDate = createDate as? NSNumber
-                                                                        analyzeTO.updateDate = updateDate as? NSNumber
-                                                                        analyzeTO.timeMinutes = timeMinutes as? NSNumber
-                                                                        analyzeTO.percentage = percentage as? String
-                                                                        analyzeTO.margin = margin as? String
-                                                                        analyzeTO.activeNotification = activeNotification as? String
-                                                                        analyzeTO.firstPrice = firstPrice as? String
-                                                                        analyzeTO.lastPrice = lastPrice as? String
-                                                                        analyzeTO.notificationInterval = notificationInterval as? NSNumber
-                                                                        analyzeTO.notifyPositive = notifyPositive as? String
-                                                                        analyzeTO.notifyNegative = notifyNegative as? String
-                                                                        
-                                                                        analyzesTO.append(analyzeTO)
-                                                                    }
-                                                                }
+                                                                let analyzeTO = AnalyzeTO()
+                                                                
+                                                                analyzeTO.id = id as?  NSNumber
+                                                                analyzeTO.idAnalyzeExchange = idAnalyzeExchange as? NSNumber
+                                                                analyzeTO.createDate = createDate as? NSNumber
+                                                                analyzeTO.updateDate = updateDate as? NSNumber
+                                                                analyzeTO.timeMinutes = timeMinutes as? NSNumber
+                                                                analyzeTO.percentage = percentage as? String
+                                                                analyzeTO.margin = margin as? String
+                                                                analyzeTO.activeNotification = activeNotification as? String
+                                                                analyzeTO.firstPrice = firstPrice as? String
+                                                                analyzeTO.lastPrice = lastPrice as? String
+                                                                analyzeTO.notificationInterval = notificationInterval as? NSNumber
+                                                                
+                                                                analyzesTO.append(analyzeTO)
                                                             }
                                                         }
                                                     }
@@ -630,19 +736,20 @@ class BitCoinCoreData {
         let createDate = jsonDictionary["createDate"] as! NSNumber
         let updateDate = jsonDictionary["updateDate"] as! NSNumber
         let typeCoin = jsonDictionary["typeCoin"] as! String
-        
+        let notifyPositive = jsonDictionary["notifyPositive"] as! String
+        let notifyNegative = jsonDictionary["notifyNegative"] as! String
         
         if let analyzeExchangeRetorno = getAnalyzeExchange(context, id) {
-            updateAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate, typeCoin)
+            updateAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate, typeCoin, notifyPositive, notifyNegative)
         }
         else{
-            insertAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate, typeCoin)
+            insertAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate, typeCoin, notifyPositive, notifyNegative)
         }
     }
     
     fileprivate func insertAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber, _ activeAnalyzes: String,
                                    _ activeNotification: String, _ name: String, _ token: String, _ createDate: NSNumber,
-                                   _ updateDate: NSNumber, _ typeCoin: String) {
+                                   _ updateDate: NSNumber, _ typeCoin: String, _ notifyPositive:String, _ notifyNegative:String) {
         
         //Cria entidade
         let analyzeExchange = NSEntityDescription.insertNewObject(forEntityName: "AnalyzeExchange", into: context)
@@ -655,11 +762,13 @@ class BitCoinCoreData {
         analyzeExchange.setValue(createDate, forKey: "createDate")
         analyzeExchange.setValue(updateDate, forKey: "updateDate")
         analyzeExchange.setValue(typeCoin, forKey: "typeCoin")
+        analyzeExchange.setValue(notifyPositive, forKey: "notifyPositive")
+        analyzeExchange.setValue(notifyNegative, forKey: "notifyNegative")
     }
     
     fileprivate func updateAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber, _ activeAnalyzes: String,
                                            _ activeNotification: String, _ name: String, _ token: String, _ createDate: NSNumber,
-                                           _ updateDate: NSNumber, _ typeCoin: String) {
+                                           _ updateDate: NSNumber, _ typeCoin: String, _ notifyPositive:String, _ notifyNegative:String) {
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AnalyzeExchange")
@@ -686,6 +795,9 @@ class BitCoinCoreData {
                         analyzeExchange.setValue(createDate, forKey: "createDate")
                         analyzeExchange.setValue(updateDate, forKey: "updateDate")
                         analyzeExchange.setValue(typeCoin, forKey: "typeCoin")
+                        analyzeExchange.setValue(notifyPositive, forKey: "notifyPositive")
+                        analyzeExchange.setValue(notifyNegative, forKey: "notifyNegative")
+                        
                     }
                 }
             }
@@ -764,14 +876,21 @@ class BitCoinCoreData {
                         if let activeNotification = analyzeExchangeRetorno.value(forKey: "activeNotification") {
                             if let token = analyzeExchangeRetorno.value(forKey: "token") {
                                 if let typeCoin = analyzeExchangeRetorno.value(forKey: "typeCoin") {
-                                    analyzeExchangeTO = AnalyzeExchangeTO()
-                                    
-                                    analyzeExchangeTO?.id = id as? NSNumber
-                                    analyzeExchangeTO?.name = name as? String
-                                    analyzeExchangeTO?.activeAnalyzes = activeAnalyzes as? String
-                                    analyzeExchangeTO?.activeNotification = activeNotification as? String
-                                    analyzeExchangeTO?.token = token as? String
-                                    analyzeExchangeTO?.typeCoin = typeCoin as? String
+                                    if let notifyPositive = analyzeExchangeRetorno.value(forKey: "notifyPositive") {
+                                        if let notifyNegative = analyzeExchangeRetorno.value(forKey: "notifyNegative") {
+                                            
+                                            analyzeExchangeTO = AnalyzeExchangeTO()
+                                            
+                                            analyzeExchangeTO?.id = id as? NSNumber
+                                            analyzeExchangeTO?.name = name as? String
+                                            analyzeExchangeTO?.activeAnalyzes = activeAnalyzes as? String
+                                            analyzeExchangeTO?.activeNotification = activeNotification as? String
+                                            analyzeExchangeTO?.token = token as? String
+                                            analyzeExchangeTO?.typeCoin = typeCoin as? String
+                                            analyzeExchangeTO?.notifyPositive = notifyPositive as? String
+                                            analyzeExchangeTO?.notifyNegative = notifyNegative as? String
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -783,127 +902,5 @@ class BitCoinCoreData {
         return analyzeExchangeTO
     }
     
-    
-    func getOrdensTO(_ idExchange: NSNumber) -> [OrdemTO]? {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        var ordensTO: [OrdemTO] = []
-        var ordemRetorno: NSManagedObject!
-        
-        //Criar uma requisição
-        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Ordem")
-        
-        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
-        
-        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange])
-        
-        // aplicar filtros criados à requisicao
-        requisicao.predicate = combinacaoFiltro
-        
-        do {
-            let ordens = try context.fetch(requisicao)
-            
-            if ordens.count > 0 {
-                for ordem in ordens as! [NSManagedObject] {
-                    
-                    ordemRetorno = ordem
-                    
-                    if(ordemRetorno != nil){
-                        if let id = ordemRetorno.value(forKey: "id"){
-                            if let idExchange = ordemRetorno.value(forKey: "idExchange") {
-                                if let createDate = ordemRetorno.value(forKey: "createDate") {
-                                    if let updateDate = ordemRetorno.value(forKey: "updateDate") {
-                                        if let order_id = ordemRetorno.value(forKey: "order_id") {
-                                            if let coin_pair = ordemRetorno.value(forKey: "coin_pair") {
-                                                if let order_type = ordemRetorno.value(forKey: "order_type") {
-                                                    if let status = ordemRetorno.value(forKey: "status") {
-                                                        if let has_fills = ordemRetorno.value(forKey: "has_fills") {
-                                                            if let quantity = ordemRetorno.value(forKey: "quantity") {
-                                                                if let limit_price = ordemRetorno.value(forKey: "limit_price") {
-                                                                    if let executed_quantity = ordemRetorno.value(forKey: "executed_quantity") {
-                                                                        if let fee = ordemRetorno.value(forKey: "fee") {
-                                                                            if let created_timestamp = ordemRetorno.value(forKey: "created_timestamp") {
-                                                                                if let updated_timestamp = ordemRetorno.value(forKey: "updated_timestamp") {
-                                                                                    let ordemTO = OrdemTO()
-                                                                                    
-                                                                                    ordemTO.id = id as?  NSNumber
-                                                                                    ordemTO.idExchange = idExchange as? NSNumber
-                                                                                    ordemTO.createDate = createDate as? NSNumber
-                                                                                    ordemTO.updateDate = updateDate as? NSNumber
-                                                                                    ordemTO.order_id = order_id as? String
-                                                                                    ordemTO.coin_pair = coin_pair as? String
-                                                                                    ordemTO.order_type = order_type as? String
-                                                                                    ordemTO.status = status as? String
-                                                                                    ordemTO.has_fills = has_fills as? String
-                                                                                    ordemTO.quantity = quantity as? String
-                                                                                    ordemTO.limit_price = limit_price  as? String
-                                                                                    ordemTO.executed_quantity = executed_quantity as? String
-                                                                                    ordemTO.fee = fee as? String
-                                                                                    ordemTO.created_timestamp = created_timestamp as? String
-                                                                                    ordemTO.updated_timestamp = updated_timestamp as? String
-                                                                                    
-                                                                                    ordensTO.append(ordemTO)
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            else {
-                print("Nenhuma ordem encontrada!")
-            }
-        } catch {
-            print("Erro ao recuperar os dados!")
-        }
-
-        return ordensTO
-    }
-    
-    func deleteOrdem(_ id: NSNumber, _ idExchange: NSNumber){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-            
-            //Criar uma requisição
-            let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Ordem")
-            
-            let filtroDescricao = NSPredicate(format: "id == %@", id)
-            let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
-            
-            let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroExchange, filtroDescricao])
-            
-            // aplicar filtros criados à requisicao
-            requisicao.predicate = combinacaoFiltro
-            
-            do {
-                let ordens = try context.fetch(requisicao)
-                
-                if ordens.count > 0 {
-                    for ordem in ordens as! [NSManagedObject] {
-                        
-                     context.delete(ordem)
-                    }
-                }
-                else {
-                    print("Nenhuma ordem encontrado!")
-                }
-            } catch {
-                print("Erro ao recuperar os dados!")
-            }
-    }
-    
-    
-   
     
 }

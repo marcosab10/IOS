@@ -9,8 +9,6 @@
         <attribute name="lastPrice" optional="YES" attributeType="String" defaultValueString="0.00" syncable="YES"/>
         <attribute name="margin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notificationInterval" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="notifyNegative" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="notifyPositive" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -21,6 +19,8 @@
         <attribute name="createDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notifyNegative" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notifyPositive" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeCoin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -54,8 +54,8 @@
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Analyze" positionX="-63" positionY="-18" width="128" height="240"/>
-        <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="165"/>
+        <element name="Analyze" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="195"/>
         <element name="Balance" positionX="-63" positionY="72" width="128" height="165"/>
         <element name="Ordem" positionX="-54" positionY="99" width="128" height="285"/>
     </elements>
