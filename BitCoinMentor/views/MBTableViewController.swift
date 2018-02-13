@@ -11,6 +11,7 @@ import UIKit
 class MBTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let service: BitCoinMentorService = BitCoinMentorService()
     let util:Util = Util()
+    var timer:Timer?
     var asks:[NSArray] = [] //[[32560.00001,101.00001], [32562.00001,102.00001], [32533.00001,102.20001]]
     var bids:[NSArray] = []
     var trades:NSArray = []
@@ -94,6 +95,24 @@ class MBTableViewController: UIViewController, UITableViewDataSource, UITableVie
         self.tableview.delegate = self
         self.tableview.dataSource = self
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let intervaloRefresh:Double = 5.0
+        
+        self.orderbook(coin: self.coin!)
+        self.trades(coin: self.coin!)
+        self.tableview.reloadData()
+        
+       self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+            self.orderbook(coin: self.coin!)
+            self.trades(coin: self.coin!)
+            self.tableview.reloadData()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
+    }
 
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -175,19 +194,6 @@ class MBTableViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        let intervaloRefresh:Double = 5.0
-        
-        self.orderbook(coin: self.coin!)
-        self.trades(coin: self.coin!)
-        self.tableview.reloadData()
-        
-        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
-            self.orderbook(coin: self.coin!)
-            self.trades(coin: self.coin!)
-            self.tableview.reloadData()
-        }
-    }
     
     func orderbook(coin: String){
         if let url = URL(string: "https://www.mercadobitcoin.net/api/" + coin + "/orderbook/") {

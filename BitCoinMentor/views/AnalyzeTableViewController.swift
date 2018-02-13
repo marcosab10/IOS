@@ -14,6 +14,7 @@ class AnalyzeTableViewController: UITableViewController {
     var analyzesTO: [AnalyzeTO] = []
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    var timer:Timer?
     var nameAnalyzeExchange:String?
     var typeCoin:String?
     var analyzeExchangeTO:AnalyzeExchangeTO?
@@ -36,6 +37,22 @@ class AnalyzeTableViewController: UITableViewController {
         else if nameAnalyzeExchange == mercadoBitcoin {
             self.title = "Mercado Bitcoin"
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let intervaloRefresh:Double = 5.0
+        
+        carregarAnalises()
+        self.tableView.reloadData()
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+            self.carregarAnalises()
+            self.tableView.reloadData()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
     }
     
     fileprivate func carregarAnalises() {
@@ -137,18 +154,6 @@ class AnalyzeTableViewController: UITableViewController {
         }
         
         return celula
-    }
- 
-    override func viewDidAppear(_ animated: Bool) {
-        let intervaloRefresh:Double = 5.0
-        
-        carregarAnalises()
-        self.tableView.reloadData()
-        
-        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
-            self.carregarAnalises()
-            self.tableView.reloadData()
-        }
     }
 
     

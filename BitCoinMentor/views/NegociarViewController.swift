@@ -11,6 +11,7 @@ import UIKit
 class NegociarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    var timer:Timer?
     let ticket:TicketTO = TicketTO()
     var ordensTO: [OrdemTO] = []
     let idExchange:String = "1"
@@ -46,10 +47,14 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
         carregarBalances(false)
         carregarOrdens(false)
         
-        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+        self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             self.carregarBalances(false)
             self.carregarOrdens(false)
         }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
     }
 
    

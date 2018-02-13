@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 class MentorViewController: UIViewController {
-    
+    var timer:Timer?
     let util = Util()
 
     @IBOutlet weak var precoBitCoinLabel: UILabel!
@@ -50,6 +50,34 @@ class MentorViewController: UIViewController {
         util.bordasBotao(botao: liteCoinButton)
         util.bordasImagem(image: mainImage)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let intervaloRefresh:Double = 5.0
+        var intervaloCalculo:Double = 10
+        var contador:Double = 0.0
+        
+        if let intervalo = UserDefaults.standard.object(forKey: "intervalo") {
+            intervaloCalculo = Double(String(describing: intervalo))!
+        }
+        
+        carregarDados()
+        
+        self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+            contador = contador + intervaloRefresh
+            
+            self.carregarDados()
+            
+            if (contador == intervaloCalculo){
+                contador = 0.0
+                self.definirAcoes()
+            }
+        }
+        carregarValoresReferencia()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,29 +129,7 @@ class MentorViewController: UIViewController {
         verificarNoficacoesAtivas()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        let intervaloRefresh:Double = 5.0
-        var intervaloCalculo:Double = 10
-        var contador:Double = 0.0
-        
-        if let intervalo = UserDefaults.standard.object(forKey: "intervalo") {
-            intervaloCalculo = Double(String(describing: intervalo))!
-        }
-        
-        carregarDados()
-        
-        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
-            contador = contador + intervaloRefresh
-            
-             self.carregarDados()
-            
-            if (contador == intervaloCalculo){
-                contador = 0.0
-                self.definirAcoes()
-            }
-        }
-        carregarValoresReferencia()
-    }
+    
     
     
     fileprivate func buscarPreco(urlName: String, precoLabel: UILabel, valorAtual: String){

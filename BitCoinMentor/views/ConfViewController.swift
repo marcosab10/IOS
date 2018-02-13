@@ -12,6 +12,7 @@ import CoreData
 class ConfViewController: UIViewController {
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    var timer:Timer?
     var nameAnalyzeExchange:String?
     var typeCoin:String?
     
@@ -51,13 +52,16 @@ class ConfViewController: UIViewController {
         service.loadAnalyzeExchange(nameAnalyzeExchange!, typeCoin!)
         verificarAnaliseNoficacoesAtivas(nameAnalyzeExchange!, typeCoin!)
         
-        Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
+        self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             
             self.verificarAnaliseNoficacoesAtivas(self.nameAnalyzeExchange!, self.typeCoin!)
             
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        self.timer?.invalidate()
+    }
     
     @IBAction func salvar(_ sender: Any) {
         if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!) {

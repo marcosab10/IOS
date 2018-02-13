@@ -34,6 +34,13 @@ class ConfigurarViewController: UIViewController {
     @IBOutlet weak var notificacoesHabilitadasSwitch: UISwitch!
     
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        carregarValoresReferencia()
+    }
+    
+    
     @IBAction func salvar(_ sender: Any) {
         UserDefaults.standard.set(notifBitcoinVendaSwitch.isOn, forKey: "notifBitcoinVendaSwitch")
         UserDefaults.standard.set(notifBitcoinCompraSwitch.isOn, forKey: "notifBitcoinCompraSwitch")
@@ -255,14 +262,6 @@ class ConfigurarViewController: UIViewController {
         if let notificacoesHabilitadasSwitchValue = UserDefaults.standard.object(forKey: "notificacoesHabilitadasSwitch") {
             notificacoesHabilitadasSwitch.isOn = notificacoesHabilitadasSwitchValue as! Bool
         }
-    }
-    
-   
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        carregarValoresReferencia()
     }
     
     //Esconder teclado ao clicar fora
