@@ -10,8 +10,9 @@ import UIKit
 import CoreData
 
 class AnalyzeViewController: UIViewController {
-    
-    var analyze: NSManagedObject?
+    let service: BitCoinMentorService = BitCoinMentorService()
+    let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    var analyzeTO: AnalyzeTO?
     
     @IBOutlet weak var tempoEmMinutosText: UITextField!
     @IBOutlet weak var margemText: UITextField!
@@ -25,7 +26,6 @@ class AnalyzeViewController: UIViewController {
      
         carregarValores()
         
-
     }
     
     
@@ -36,36 +36,32 @@ class AnalyzeViewController: UIViewController {
     }
     
     fileprivate func carregarValores() {
-        if analyze != nil
+        if analyzeTO != nil
         {
-            tempoEmMinutosText.text = String(describing: analyze?.value(forKey: "timeMinutes") as! Int64)
-            margemText.text = analyze?.value(forKey: "margin") as? String
+            let timeMinutesTemp:NSNumber = (analyzeTO?.timeMinutes)!
             
-            if let activeNotification = analyze?.value(forKey: "activeNotification") as? String {
-                if activeNotification == "true" {
-                    notificacoesAtivasSwitch.isOn = true
-                }
-                else{
-                    notificacoesAtivasSwitch.isOn = false
-                }
+            tempoEmMinutosText.text = String(describing: timeMinutesTemp)
+            margemText.text = analyzeTO?.margin
+            
+            if analyzeTO?.activeNotification == "true" {
+                notificacoesAtivasSwitch.isOn = true
+            }
+            else{
+                notificacoesAtivasSwitch.isOn = false
             }
             
-            if let notifyPositive = analyze?.value(forKey: "notifyPositive") as? String {
-                if notifyPositive == "true" {
-                    notificacaoPositivaSwitch.isOn = true
-                }
-                else{
-                    notificacaoPositivaSwitch.isOn = false
-                }
+            if analyzeTO?.notifyPositive == "true" {
+                notificacaoPositivaSwitch.isOn = true
+            }
+            else{
+                notificacaoPositivaSwitch.isOn = false
             }
             
-            if let notifyNegative = analyze?.value(forKey: "notifyNegative") as? String {
-                if notifyNegative == "true" {
-                    notificacaoNegativaSwitch.isOn = true
-                }
-                else{
-                    notificacaoNegativaSwitch.isOn = false
-                }
+            if analyzeTO?.notifyNegative == "true" {
+                notificacaoNegativaSwitch.isOn = true
+            }
+            else{
+                notificacaoNegativaSwitch.isOn = false
             }
         }
     }

@@ -355,7 +355,6 @@ class BitCoinCoreData {
         let idAnalyzeExchange = jsonDictionary["idAnalyzeExchange"] as! NSNumber
         let timeMinutes = jsonDictionary["timeMinutes"] as! NSNumber
         let percentage = jsonDictionary["percentage"] as! String
-        let typeCoin = jsonDictionary["typeCoin"] as! String
         let createDate = jsonDictionary["createDate"] as! NSNumber
         let updateDate = jsonDictionary["updateDate"] as! NSNumber
         let firstPrice = jsonDictionary["firstPrice"] as! String
@@ -368,10 +367,10 @@ class BitCoinCoreData {
         
         
         if let analyzeRetorno = getAnalyze(context, timeMinutes, idAnalyzeExchange) {
-            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
+            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
         }
         else{
-            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
+            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
         }
     }
     
@@ -412,7 +411,7 @@ class BitCoinCoreData {
     
     
     fileprivate func insertAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
-                                   _ timeMinutes: NSNumber, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber,
+                                   _ timeMinutes: NSNumber, _ percentage: String, _ createDate: NSNumber,
                                    _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String, _ activeNotification: String,
                                    _ notificationInterval: NSNumber, _ notifyPositive: String, _ notifyNegative: String, _ margin: String) {
         
@@ -423,7 +422,6 @@ class BitCoinCoreData {
         analyze.setValue(idAnalyzeExchange, forKey: "idAnalyzeExchange")
         analyze.setValue(timeMinutes, forKey: "timeMinutes")
         analyze.setValue(percentage, forKey: "percentage")
-        analyze.setValue(typeCoin, forKey: "typeCoin")
         analyze.setValue(createDate, forKey: "createDate")
         analyze.setValue(updateDate, forKey: "updateDate")
         analyze.setValue(firstPrice, forKey: "firstPrice")
@@ -436,7 +434,7 @@ class BitCoinCoreData {
     }
     
     fileprivate func updateAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
-                                   _ timeMinutes: NSNumber, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber,
+                                   _ timeMinutes: NSNumber, _ percentage: String, _ createDate: NSNumber,
                                    _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String, _ activeNotification: String,
                                    _ notificationInterval: NSNumber, _ notifyPositive: String, _ notifyNegative: String, _ margin: String) {
         
@@ -464,7 +462,6 @@ class BitCoinCoreData {
                         analyze.setValue(idAnalyzeExchange, forKey: "idAnalyzeExchange")
                         analyze.setValue(timeMinutes, forKey: "timeMinutes")
                         analyze.setValue(percentage, forKey: "percentage")
-                        analyze.setValue(typeCoin, forKey: "typeCoin")
                         analyze.setValue(createDate, forKey: "createDate")
                         analyze.setValue(updateDate, forKey: "updateDate")
                         analyze.setValue(firstPrice, forKey: "firstPrice")
@@ -514,6 +511,116 @@ class BitCoinCoreData {
         return analyzes
     }
     
+    func getAnalyzesTO(_ idAnalyzeExchange: NSNumber) -> [AnalyzeTO]? {
+        var analyzesTO: [AnalyzeTO] = []
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
+        
+        //Ordenar de A-Z a-z ou Z-A
+        let ordenacaoAZ = NSSortDescriptor(key: "timeMinutes", ascending: true)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.sortDescriptors = [ordenacaoAZ]
+        
+        let filtroExchange = NSPredicate(format: "idAnalyzeExchange == %@", idAnalyzeExchange)
+        
+        requisicao.predicate = filtroExchange
+        
+        do {
+            
+            let analyzes = try context.fetch(requisicao)
+            
+            if analyzes.count > 0 {
+                for analyze in analyzes as! [NSManagedObject] {
+                    
+                    if let id = analyze.value(forKey: "id"){
+                        if let idAnalyzeExchange = analyze.value(forKey: "idAnalyzeExchange"){
+                            if let createDate = analyze.value(forKey: "createDate"){
+                                if let updateDate = analyze.value(forKey: "updateDate"){
+                                    if let timeMinutes = analyze.value(forKey: "timeMinutes"){
+                                        if let percentage = analyze.value(forKey: "percentage"){
+                                            if let margin = analyze.value(forKey: "margin"){
+                                                if let activeNotification = analyze.value(forKey: "activeNotification"){
+                                                    if let firstPrice = analyze.value(forKey: "firstPrice"){
+                                                        if let lastPrice = analyze.value(forKey: "lastPrice"){
+                                                            if let notificationInterval = analyze.value(forKey: "notificationInterval"){
+                                                                if let notifyPositive = analyze.value(forKey: "notifyPositive"){
+                                                                    if let notifyNegative = analyze.value(forKey: "notifyNegative"){
+                                                                        
+                                                                        let analyzeTO = AnalyzeTO()
+                                                                        
+                                                                        analyzeTO.id = id as?  NSNumber
+                                                                        analyzeTO.idAnalyzeExchange = idAnalyzeExchange as? NSNumber
+                                                                        analyzeTO.createDate = createDate as? NSNumber
+                                                                        analyzeTO.updateDate = updateDate as? NSNumber
+                                                                        analyzeTO.timeMinutes = timeMinutes as? NSNumber
+                                                                        analyzeTO.percentage = percentage as? String
+                                                                        analyzeTO.margin = margin as? String
+                                                                        analyzeTO.activeNotification = activeNotification as? String
+                                                                        analyzeTO.firstPrice = firstPrice as? String
+                                                                        analyzeTO.lastPrice = lastPrice as? String
+                                                                        analyzeTO.notificationInterval = notificationInterval as? NSNumber
+                                                                        analyzeTO.notifyPositive = notifyPositive as? String
+                                                                        analyzeTO.notifyNegative = notifyNegative as? String
+                                                                        
+                                                                        analyzesTO.append(analyzeTO)
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        return analyzesTO
+    }
+    
+    
+    func deleteAnalyze(_ id: NSNumber){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
+        
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtro])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let analyzes = try context.fetch(requisicao)
+            
+            if analyzes.count > 0 {
+                for analyze in analyzes as! [NSManagedObject] {
+                    
+                    context.delete(analyze)
+                }
+            }
+            else {
+                print("Nenhuma analyze encontrada!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
+    
+    
     func gerenciarAnalyzeExchange(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
         let id = jsonDictionary["id"] as! NSNumber
         let activeAnalyzes = jsonDictionary["activeAnalyzes"] as! String
@@ -522,19 +629,20 @@ class BitCoinCoreData {
         let token = jsonDictionary["token"] as! String
         let createDate = jsonDictionary["createDate"] as! NSNumber
         let updateDate = jsonDictionary["updateDate"] as! NSNumber
+        let typeCoin = jsonDictionary["typeCoin"] as! String
         
         
         if let analyzeExchangeRetorno = getAnalyzeExchange(context, id) {
-            updateAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate)
+            updateAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate, typeCoin)
         }
         else{
-            insertAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate)
+            insertAnalyzeExchange(context, id, activeAnalyzes, activeNotification, name, token, createDate, updateDate, typeCoin)
         }
     }
     
     fileprivate func insertAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber, _ activeAnalyzes: String,
                                    _ activeNotification: String, _ name: String, _ token: String, _ createDate: NSNumber,
-                                   _ updateDate: NSNumber) {
+                                   _ updateDate: NSNumber, _ typeCoin: String) {
         
         //Cria entidade
         let analyzeExchange = NSEntityDescription.insertNewObject(forEntityName: "AnalyzeExchange", into: context)
@@ -546,11 +654,12 @@ class BitCoinCoreData {
         analyzeExchange.setValue(token, forKey: "token")
         analyzeExchange.setValue(createDate, forKey: "createDate")
         analyzeExchange.setValue(updateDate, forKey: "updateDate")
+        analyzeExchange.setValue(typeCoin, forKey: "typeCoin")
     }
     
     fileprivate func updateAnalyzeExchange(_ context: NSManagedObjectContext, _ id: NSNumber, _ activeAnalyzes: String,
                                            _ activeNotification: String, _ name: String, _ token: String, _ createDate: NSNumber,
-                                           _ updateDate: NSNumber) {
+                                           _ updateDate: NSNumber, _ typeCoin: String) {
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AnalyzeExchange")
@@ -576,7 +685,7 @@ class BitCoinCoreData {
                         analyzeExchange.setValue(token, forKey: "token")
                         analyzeExchange.setValue(createDate, forKey: "createDate")
                         analyzeExchange.setValue(updateDate, forKey: "updateDate")
-                        
+                        analyzeExchange.setValue(typeCoin, forKey: "typeCoin")
                     }
                 }
             }
@@ -654,13 +763,16 @@ class BitCoinCoreData {
                     if let activeAnalyzes = analyzeExchangeRetorno.value(forKey: "activeAnalyzes") {
                         if let activeNotification = analyzeExchangeRetorno.value(forKey: "activeNotification") {
                             if let token = analyzeExchangeRetorno.value(forKey: "token") {
-                                analyzeExchangeTO = AnalyzeExchangeTO()
-                                
-                                analyzeExchangeTO?.id = id as? NSNumber
-                                analyzeExchangeTO?.name = name as? String
-                                analyzeExchangeTO?.activeAnalyzes = activeAnalyzes as? String
-                                analyzeExchangeTO?.activeNotification = activeNotification as? String
-                                analyzeExchangeTO?.token = token as? String
+                                if let typeCoin = analyzeExchangeRetorno.value(forKey: "typeCoin") {
+                                    analyzeExchangeTO = AnalyzeExchangeTO()
+                                    
+                                    analyzeExchangeTO?.id = id as? NSNumber
+                                    analyzeExchangeTO?.name = name as? String
+                                    analyzeExchangeTO?.activeAnalyzes = activeAnalyzes as? String
+                                    analyzeExchangeTO?.activeNotification = activeNotification as? String
+                                    analyzeExchangeTO?.token = token as? String
+                                    analyzeExchangeTO?.typeCoin = typeCoin as? String
+                                }
                             }
                         }
                     }
@@ -791,5 +903,7 @@ class BitCoinCoreData {
             }
     }
     
+    
+   
     
 }

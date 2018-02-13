@@ -13,6 +13,7 @@ class ConfViewController: UIViewController {
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
     var nameAnalyzeExchange:String?
+    var typeCoin:String?
     
     @IBOutlet weak var ativarAnaliseSwitch: UISwitch!
     @IBOutlet weak var ativarNotificacoesSwitch: UISwitch!
@@ -24,7 +25,7 @@ class ConfViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        service.loadAnalyzeExchange(nameAnalyzeExchange!)
+        service.loadAnalyzeExchange(nameAnalyzeExchange!, typeCoin!)
         
         if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!) {
             
@@ -43,11 +44,12 @@ class ConfViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         let intervaloRefresh:Double = 5.0
-        verificarAnaliseNoficacoesAtivas(nameAnalyzeExchange!)
+        service.loadAnalyzeExchange(nameAnalyzeExchange!, typeCoin!)
+        verificarAnaliseNoficacoesAtivas(nameAnalyzeExchange!, typeCoin!)
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             
-            self.verificarAnaliseNoficacoesAtivas(self.nameAnalyzeExchange!)
+            self.verificarAnaliseNoficacoesAtivas(self.nameAnalyzeExchange!, self.typeCoin!)
             
         }
     }
@@ -68,9 +70,9 @@ class ConfViewController: UIViewController {
         }
     }
     
-    fileprivate func verificarAnaliseNoficacoesAtivas(_ name: String){
+    fileprivate func verificarAnaliseNoficacoesAtivas(_ name: String, _ typeCoin: String){
         //Testa se a URL existe
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/verifyLiveAnalyzeNotifies?name=" + name) {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/verifyLiveAnalyzeNotifies?name=" + name + "&typeCoin=" + typeCoin) {
             let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
                 if erro == nil {
                     if let dadosRetorno = dados {

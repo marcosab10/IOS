@@ -13,7 +13,6 @@
         <attribute name="notifyPositive" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="percentage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeMinutes" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="typeCoin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="AnalyzeExchange" representedClassName="AnalyzeExchange" syncable="YES" codeGenerationType="class">
@@ -23,6 +22,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="typeCoin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Balance" representedClassName="Balance" syncable="YES" codeGenerationType="class">
@@ -54,8 +54,8 @@
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Analyze" positionX="-63" positionY="-18" width="128" height="255"/>
-        <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="150"/>
+        <element name="Analyze" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="165"/>
         <element name="Balance" positionX="-63" positionY="72" width="128" height="165"/>
         <element name="Ordem" positionX="-54" positionY="99" width="128" height="285"/>
     </elements>

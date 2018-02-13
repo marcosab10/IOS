@@ -12,8 +12,9 @@ class BitCoinMentorService {
     
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
    
-    func loadAnalyzes(_ name: String) {
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzes?name=" + name) {
+    func loadAnalyzes(_ idAnalyzeExchange: NSNumber) {
+        let idAnalyzeExchangeDesc:String = String (describing: idAnalyzeExchange)
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzes?idAnalyzeExchange=" + idAnalyzeExchangeDesc) {
             let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
                 if erro == nil {
                     if let dadosRetorno = dados {
@@ -47,8 +48,8 @@ class BitCoinMentorService {
         }
     }
     
-    func loadAnalyzeExchange(_ name: String) {
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzeExchanges?name=" + name) {
+    func loadAnalyzeExchange(_ name: String, _ typeCoin: String) {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAnalyzeExchanges?name=" + name + "&typeCoin=" + typeCoin) {
             let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
                 if erro == nil {
                     if let dadosRetorno = dados {
@@ -132,6 +133,7 @@ class BitCoinMentorService {
                 " \"id\": \"\(analyzeExchangeTO.id!)\"," +
                 " \"name\": \"\(analyzeExchangeTO.name!)\", " +
                 " \"token\": \"\(analyzeExchangeTO.token!)\", " +
+                " \"typeCoin\": \"\(analyzeExchangeTO.typeCoin!)\", " +
                 " \"activeAnalyzes\": \"\(analyzeExchangeTO.activeAnalyzes!)\", " +
                 " \"activeNotification\": \"\(analyzeExchangeTO.activeNotification!)\" " +
             "}"
@@ -381,10 +383,9 @@ class BitCoinMentorService {
             request.httpMethod = "POST"
             let body: String = "{ " +
                 " \"id\": \"\(analyzeTO.id!)\"," +
-                " \"idExchange\": \"\(analyzeTO.idExchange!)\", " +
+                " \"idAnalyzeExchange\": \"\(analyzeTO.idAnalyzeExchange!)\", " +
                 " \"timeMinutes\": \"\(analyzeTO.timeMinutes!)\", " +
                 " \"percentage\": \"\(analyzeTO.percentage!)\", " +
-                " \"typeCoin\": \"\(analyzeTO.typeCoin!)\", " +
                 " \"createDate\": \"\(analyzeTO.createDate!)\", " +
                 " \"updateDate\": \"\(analyzeTO.updateDate!)\", " +
                 " \"margin\": \"\(analyzeTO.margin!)\", " +
@@ -411,5 +412,26 @@ class BitCoinMentorService {
         }
     }
     
+    
+    
+    func deleteAnalyze(_ idAnalyze: String){
+        //Testa se a URL existe
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/deleteAnalyze?idAnalyze=" + idAnalyze) {
+            let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
+                if erro == nil {
+                    if let dadosRetorno = dados {
+                        
+                        let retorno = String(data: dadosRetorno, encoding: .utf8)
+                        
+                        print(retorno)
+                    }
+                }
+                else{
+                    print("Erro ao verificar se a análise está ativa.")
+                }
+            }
+            tarefa.resume()
+        }
+    }
     
 }

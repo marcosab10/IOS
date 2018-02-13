@@ -13,12 +13,11 @@ import UIKit
 class AnalyzeTO {
     
     var id: NSNumber?
-    var idExchange: NSNumber?
+    var idAnalyzeExchange: NSNumber?
     var createDate: NSNumber?
     var updateDate: NSNumber?
-    var timeMinutes: String?
+    var timeMinutes: NSNumber?
     var percentage: String?
-    var typeCoin: String?
     var margin: String?
     var activeNotification: String?
     var firstPrice: String?

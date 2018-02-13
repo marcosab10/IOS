@@ -15,6 +15,7 @@ class AnalyzeExchangeTO {
     var activeAnalyzes: String?
     var activeNotification:String?
     var token:String?
+    var typeCoin: String?
     
 }
 

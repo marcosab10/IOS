@@ -11,10 +11,11 @@ import CoreData
 
 class AnalyzeTableViewController: UITableViewController {
     var util = Util()
-    var analyzes: [NSManagedObject] = []
+    var analyzesTO: [AnalyzeTO] = []
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
     var nameAnalyzeExchange:String?
+    var typeCoin:String?
     var analyzeExchangeTO:AnalyzeExchangeTO?
     
     let binance = "Binance"
@@ -25,8 +26,8 @@ class AnalyzeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        service.loadAnalyzeExchange(nameAnalyzeExchange!)
-        service.loadAnalyzes(nameAnalyzeExchange!)
+        service.loadAnalyzeExchange(nameAnalyzeExchange!, typeCoin!)
+       
         carregarAnalises()
         
         if nameAnalyzeExchange == binance {
@@ -42,7 +43,9 @@ class AnalyzeTableViewController: UITableViewController {
             self.analyzeExchangeTO = analyzeExchangeTOBD
             
             if self.analyzeExchangeTO != nil {
-                self.analyzes = self.bitCoinCoreData.listarAnalyzes((self.analyzeExchangeTO?.id!)!)
+                self.service.loadAnalyzes((self.analyzeExchangeTO?.id)!)
+                
+                self.analyzesTO = self.bitCoinCoreData.getAnalyzesTO((self.analyzeExchangeTO?.id)!)!
             }
         }
     }
@@ -51,14 +54,27 @@ class AnalyzeTableViewController: UITableViewController {
        if let confViewController = segue.destination as? ConfViewController {
 
             confViewController.nameAnalyzeExchange =  self.nameAnalyzeExchange
+            confViewController.typeCoin = self.typeCoin
         }
         
         if segue.identifier == "editarAnalise" {
             let viewDestino = segue.destination as! AnalyzeViewController
             
-            viewDestino.analyze = sender as? NSManagedObject
+            viewDestino.analyzeTO = sender as? AnalyzeTO
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let indice = indexPath.row
+            let analyzeTO = self.analyzesTO[indice]
+            service.deleteAnalyze(String(describing: analyzeTO.id!))
+            bitCoinCoreData.deleteAnalyze(analyzeTO.id!)
+            
+            self.analyzesTO.remove(at: indice) // remove do array
+            self.tableView.deleteRows(at: [indexPath], with: .automatic) // remover da tabela
+        }
     }
 
     // MARK: - Table view data source
@@ -68,7 +84,7 @@ class AnalyzeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return analyzes.count
+        return analyzesTO.count
     }
     
     //Metodo executado quando se seleciona uma linha
@@ -76,23 +92,25 @@ class AnalyzeTableViewController: UITableViewController {
         self.tableView.deselectRow(at: indexPath, animated: true)
         
         let indice = indexPath.row
-        let analyze = analyzes[indice]
-        self.performSegue(withIdentifier: "editarAnalise", sender: analyze)
+        let analyzeTO = analyzesTO[indice]
+        self.performSegue(withIdentifier: "editarAnalise", sender: analyzeTO)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celula = tableView.dequeueReusableCell(withIdentifier: "celula", for: indexPath)
 
-        let analyze = self.analyzes[indexPath.row]
-        if let timeMinutes = analyze.value(forKey: "timeMinutes") {
-            if let percentage = analyze.value(forKey: "percentage"){
-                if let firstPrice = analyze.value(forKey: "firstPrice"){
-                    if let lastPrice = analyze.value(forKey: "lastPrice"){
+        let analyzeTO = self.analyzesTO[indexPath.row]
+    
+        if let timeMinutes = analyzeTO.timeMinutes {
+            if let percentage = analyzeTO.percentage {
+                if let firstPrice = analyzeTO.firstPrice {
+                    if let lastPrice = analyzeTO.lastPrice {
+                        
                         
                         let timeMinutesText = String(describing: timeMinutes)
-                        let percentageText = percentage as! String
-                        let firstPriceText = firstPrice as! String
-                        let lastPriceText = lastPrice as! String
+                        let percentageText = percentage
+                        let firstPriceText = firstPrice
+                        let lastPriceText = lastPrice
                         
                         if nameAnalyzeExchange == binance {
                             ultimoPrecoLabel.text = "USD: " + lastPriceText
@@ -112,23 +130,22 @@ class AnalyzeTableViewController: UITableViewController {
                         else{
                             celula.detailTextLabel?.textColor = UIColor.green
                         }
+                        
                     }
                 }
             }
         }
+        
         return celula
     }
  
     override func viewDidAppear(_ animated: Bool) {
         let intervaloRefresh:Double = 5.0
-
-        service.loadAnalyzes(nameAnalyzeExchange!)
         
         carregarAnalises()
         self.tableView.reloadData()
         
         Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
-            self.service.loadAnalyzes(self.nameAnalyzeExchange!)
             self.carregarAnalises()
             self.tableView.reloadData()
         }

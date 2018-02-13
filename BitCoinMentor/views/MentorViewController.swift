@@ -67,9 +67,11 @@ class MentorViewController: UIViewController {
         else if let analyzeTableViewController = segue.destination as? AnalyzeTableViewController {
                 if segue.identifier == "Binance" {
                     analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                    analyzeTableViewController.typeCoin = "BTCUSDT"
                 
                 } else if segue.identifier == "MercadoBitcoin" {
                     analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"
+                    analyzeTableViewController.typeCoin = "BTC"
                 }
         }
        
