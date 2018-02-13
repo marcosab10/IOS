@@ -28,9 +28,15 @@ class AnalyzeViewController: UIViewController {
     
     
     @IBAction func salvar(_ sender: Any) {
+        analyzeTO?.activeNotification  = String(notificacoesAtivasSwitch.isOn)
         
+        if let timeMinutes = Int(tempoEmMinutosText.text!) {
+             analyzeTO?.timeMinutes = NSNumber(value:timeMinutes)
+        }
+        analyzeTO?.margin = margemText.text
+       
         
-        
+        service.saveAnalyze(analyzeTO: analyzeTO!)
     }
     
     fileprivate func carregarValores() {
