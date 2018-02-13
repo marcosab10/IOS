@@ -360,13 +360,18 @@ class BitCoinCoreData {
         let updateDate = jsonDictionary["updateDate"] as! NSNumber
         let firstPrice = jsonDictionary["firstPrice"] as! String
         let lastPrice = jsonDictionary["lastPrice"] as! String
+        let activeNotification = jsonDictionary["activeNotification"] as! String
+        let notificationInterval = jsonDictionary["notificationInterval"] as! NSNumber
+        let notifyPositive = jsonDictionary["notifyPositive"] as! String
+        let notifyNegative = jsonDictionary["notifyNegative"] as! String
+        let margin = jsonDictionary["margin"] as! String
         
         
         if let analyzeRetorno = getAnalyze(context, timeMinutes, idAnalyzeExchange) {
-            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice)
+            updateAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
         }
         else{
-            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice)
+            insertAnalyze(context, id, idAnalyzeExchange, timeMinutes, percentage, typeCoin, createDate, updateDate, firstPrice, lastPrice, activeNotification, notificationInterval, notifyPositive, notifyNegative, margin)
         }
     }
     
@@ -408,7 +413,8 @@ class BitCoinCoreData {
     
     fileprivate func insertAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
                                    _ timeMinutes: NSNumber, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber,
-                                   _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String) {
+                                   _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String, _ activeNotification: String,
+                                   _ notificationInterval: NSNumber, _ notifyPositive: String, _ notifyNegative: String, _ margin: String) {
         
         //Cria entidade
         let analyze = NSEntityDescription.insertNewObject(forEntityName: "Analyze", into: context)
@@ -422,11 +428,17 @@ class BitCoinCoreData {
         analyze.setValue(updateDate, forKey: "updateDate")
         analyze.setValue(firstPrice, forKey: "firstPrice")
         analyze.setValue(lastPrice, forKey: "lastPrice")
+        analyze.setValue(activeNotification, forKey: "activeNotification")
+        analyze.setValue(notificationInterval, forKey: "notificationInterval")
+        analyze.setValue(notifyPositive, forKey: "notifyPositive")
+        analyze.setValue(notifyNegative, forKey: "notifyNegative")
+        analyze.setValue(margin, forKey: "margin")
     }
     
     fileprivate func updateAnalyze(_ context: NSManagedObjectContext, _ id: NSNumber, _ idAnalyzeExchange: NSNumber,
                                    _ timeMinutes: NSNumber, _ percentage: String, _ typeCoin: String, _ createDate: NSNumber,
-                                   _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String) {
+                                   _ updateDate: NSNumber, _ firstPrice: String, _ lastPrice: String, _ activeNotification: String,
+                                   _ notificationInterval: NSNumber, _ notifyPositive: String, _ notifyNegative: String, _ margin: String) {
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Analyze")
@@ -457,6 +469,11 @@ class BitCoinCoreData {
                         analyze.setValue(updateDate, forKey: "updateDate")
                         analyze.setValue(firstPrice, forKey: "firstPrice")
                         analyze.setValue(lastPrice, forKey: "lastPrice")
+                        analyze.setValue(activeNotification, forKey: "activeNotification")
+                        analyze.setValue(notificationInterval, forKey: "notificationInterval")
+                        analyze.setValue(notifyPositive, forKey: "notifyPositive")
+                        analyze.setValue(notifyNegative, forKey: "notifyNegative")
+                        analyze.setValue(margin, forKey: "margin")
                         
                     }
                 }

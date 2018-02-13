@@ -2,31 +2,29 @@
 //  AnalyzeTO.swift
 //  BitCoinMentor
 //
-//  Created by Marcos Faria on 24/01/18.
+//  Created by Marcos Faria on 12/02/18.
 //  Copyright © 2018 Marcos Faria. All rights reserved.
 //
+
+import Foundation
 
 import UIKit
 
 class AnalyzeTO {
     
-    var id: String
-    var idAnalyzeExchange: String
-    var timeMinutes: String
-    var percentage: String
-    var typeCoin: String
-    var createDate: String
-    var updateDate: String
+    var id: NSNumber?
+    var idExchange: NSNumber?
+    var createDate: NSNumber?
+    var updateDate: NSNumber?
+    var timeMinutes: String?
+    var percentage: String?
+    var typeCoin: String?
+    var margin: String?
+    var activeNotification: String?
+    var firstPrice: String?
+    var lastPrice: String?
+    var notificationInterval: NSNumber?
+    var notifyPositive: String?
+    var notifyNegative: String?
 
-    // MARK: Inicialização
-    init?(id: String, idAnalyzeExchange: String, timeMinutes: String, percentage: String,
-          typeCoin: String, createDate: String, updateDate: String) {
-        self.id = id
-        self.idAnalyzeExchange = idAnalyzeExchange
-        self.timeMinutes = timeMinutes
-        self.percentage = percentage
-        self.typeCoin = typeCoin
-        self.createDate = createDate
-        self.updateDate = updateDate
-    }
 }

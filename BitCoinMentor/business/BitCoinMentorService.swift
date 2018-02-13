@@ -373,5 +373,43 @@ class BitCoinMentorService {
         }
     }
     
+    func saveAnalyze(analyzeTO: AnalyzeTO){
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/saveAnalyze")
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            let body: String = "{ " +
+                " \"id\": \"\(analyzeTO.id!)\"," +
+                " \"idExchange\": \"\(analyzeTO.idExchange!)\", " +
+                " \"timeMinutes\": \"\(analyzeTO.timeMinutes!)\", " +
+                " \"percentage\": \"\(analyzeTO.percentage!)\", " +
+                " \"typeCoin\": \"\(analyzeTO.typeCoin!)\", " +
+                " \"createDate\": \"\(analyzeTO.createDate!)\", " +
+                " \"updateDate\": \"\(analyzeTO.updateDate!)\", " +
+                " \"margin\": \"\(analyzeTO.margin!)\", " +
+                " \"activeNotification\": \"\(analyzeTO.activeNotification!)\", " +
+                " \"firstPrice\": \"\(analyzeTO.firstPrice!)\", " +
+                " \"lastPrice\": \"\(analyzeTO.lastPrice!)\", " +
+                " \"notificationInterval\": \"\(analyzeTO.notificationInterval!)\", " +
+                " \"notifyPositive\": \"\(analyzeTO.notifyPositive!)\", " +
+                " \"notifyNegative\": \"\(analyzeTO.notifyNegative!)\" " +
+            "}"
+            request.httpBody = body.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
     
 }

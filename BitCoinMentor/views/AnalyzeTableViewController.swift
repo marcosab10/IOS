@@ -51,7 +51,12 @@ class AnalyzeTableViewController: UITableViewController {
        if let confViewController = segue.destination as? ConfViewController {
 
             confViewController.nameAnalyzeExchange =  self.nameAnalyzeExchange
+        }
         
+        if segue.identifier == "editarAnalise" {
+            let viewDestino = segue.destination as! AnalyzeViewController
+            
+            viewDestino.analyze = sender as? NSManagedObject
         }
         
     }
@@ -65,7 +70,16 @@ class AnalyzeTableViewController: UITableViewController {
         
         return analyzes.count
     }
-
+    
+    //Metodo executado quando se seleciona uma linha
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.tableView.deselectRow(at: indexPath, animated: true)
+        
+        let indice = indexPath.row
+        let analyze = analyzes[indice]
+        self.performSegue(withIdentifier: "editarAnalise", sender: analyze)
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celula = tableView.dequeueReusableCell(withIdentifier: "celula", for: indexPath)
 
@@ -118,15 +132,6 @@ class AnalyzeTableViewController: UITableViewController {
             self.carregarAnalises()
             self.tableView.reloadData()
         }
-    }
-    
-    //Metodo executado quando se seleciona uma linha
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.tableView.deselectRow(at: indexPath, animated: true)
-        
-        //let indice = indexPath.row
-        //let anotacao = anotacoes[indice]
-        //self.performSegue(withIdentifier: "verAnotacao", sender: anotacao)
     }
 
     
