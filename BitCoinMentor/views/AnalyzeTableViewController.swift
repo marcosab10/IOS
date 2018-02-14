@@ -29,7 +29,7 @@ class AnalyzeTableViewController: UITableViewController {
 
         service.loadAnalyzeExchange(nameAnalyzeExchange!, typeCoin!)
        
-        carregarAnalises()
+        carregarAnalises(false)
         
         if nameAnalyzeExchange == binance {
             self.title = "Binance"
@@ -40,13 +40,13 @@ class AnalyzeTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let intervaloRefresh:Double = 5.0
+        let intervaloRefresh:Double = 1.0
         
-        carregarAnalises()
+        carregarAnalises(false)
         self.tableView.reloadData()
         
         self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
-            self.carregarAnalises()
+            self.carregarAnalises(true)
             self.tableView.reloadData()
         }
     }
@@ -55,13 +55,15 @@ class AnalyzeTableViewController: UITableViewController {
         self.timer?.invalidate()
     }
     
-    fileprivate func carregarAnalises() {
+    fileprivate func carregarAnalises(_ comIntervalo:Bool) {
         if let analyzeExchangeTOBD = self.bitCoinCoreData.getAnalyzeExchangeTO(self.nameAnalyzeExchange!) {
             self.analyzeExchangeTO = analyzeExchangeTOBD
             
             if self.analyzeExchangeTO != nil {
                 self.service.loadAnalyzes((self.analyzeExchangeTO?.id)!)
-                
+                if comIntervalo {
+                     sleep(1)
+                }
                 self.analyzesTO = self.bitCoinCoreData.getAnalyzesTO((self.analyzeExchangeTO?.id)!)!
             }
         }
