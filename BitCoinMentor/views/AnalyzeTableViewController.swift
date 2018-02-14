@@ -40,7 +40,7 @@ class AnalyzeTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let intervaloRefresh:Double = 1.0
+        let intervaloRefresh:Double = 2.0
         
         carregarAnalises(false)
         self.tableView.reloadData()
