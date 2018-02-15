@@ -839,7 +839,7 @@ class BitCoinCoreData {
         return analyzeExchangeRetorno
     }
     
-    func getAnalyzeExchangeTO(_ name: String) -> AnalyzeExchangeTO? {
+    func getAnalyzeExchangeTO(_ name: String, _ typeCoin: String) -> AnalyzeExchangeTO? {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         var analyzeExchangeTO: AnalyzeExchangeTO?
@@ -847,11 +847,15 @@ class BitCoinCoreData {
         
         //Criar uma requisição
         let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AnalyzeExchange")
+
+        // aplicar filtros criados à requisicao
+        let filtroName = NSPredicate(format: "name == %@", name)
+        let filtroTypeCoin = NSPredicate(format: "typeCoin == %@", typeCoin)
         
-        let filtroExchange = NSPredicate(format: "name == %@", name)
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtroName, filtroTypeCoin])
         
         // aplicar filtros criados à requisicao
-        requisicao.predicate = filtroExchange
+        requisicao.predicate = combinacaoFiltro
         
         do {
             let analyzeExchanges = try context.fetch(requisicao)

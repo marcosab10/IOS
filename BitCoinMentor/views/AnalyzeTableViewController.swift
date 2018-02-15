@@ -56,7 +56,7 @@ class AnalyzeTableViewController: UITableViewController {
     }
     
     fileprivate func carregarAnalises(_ comIntervalo:Bool) {
-        if let analyzeExchangeTOBD = self.bitCoinCoreData.getAnalyzeExchangeTO(self.nameAnalyzeExchange!) {
+        if let analyzeExchangeTOBD = self.bitCoinCoreData.getAnalyzeExchangeTO(self.nameAnalyzeExchange!, self.typeCoin!) {
             self.analyzeExchangeTO = analyzeExchangeTOBD
             
             if self.analyzeExchangeTO != nil {

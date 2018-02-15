@@ -29,7 +29,7 @@ class ConfViewController: UIViewController {
 
         service.loadAnalyzeExchange(nameAnalyzeExchange!, typeCoin!)
         
-        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!) {
+        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!, typeCoin!) {
             
             ativarAnaliseSwitch.isOn =  Bool(analyzeExchangeTO.activeAnalyzes!)!
             ativarNotificacoesSwitch.isOn =  Bool(analyzeExchangeTO.activeNotification!)!
@@ -64,7 +64,7 @@ class ConfViewController: UIViewController {
     }
     
     @IBAction func salvar(_ sender: Any) {
-        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!) {
+        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange!, typeCoin!) {
             
             analyzeExchangeTO.activeAnalyzes = String(ativarAnaliseSwitch.isOn)
             analyzeExchangeTO.activeNotification  = String(ativarNotificacoesSwitch.isOn)

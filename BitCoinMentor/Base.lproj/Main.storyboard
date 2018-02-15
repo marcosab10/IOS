@@ -25,7 +25,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Mentor View Controller-->
+        <!--Mentor-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MentorViewController" customModule="BitCoinMentor" customModuleProvider="target" sceneMemberID="viewController">
@@ -190,40 +190,121 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TFt-Ov-0ae">
+                                <rect key="frame" x="37.5" y="566" width="300" height="86"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xne-Bw-LWB">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="33"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gN9-cm-Ezh">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="lcB-tJ-INR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="BTC">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="BTC" id="VZH-yS-DEU"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg0-tA-C4J">
+                                                <rect key="frame" x="110" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="nLI-Vs-O6U"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="LTC">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="LTC" id="Hih-xv-I8a"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wfe-LB-osr">
+                                                <rect key="frame" x="220" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="Wkr-GW-HKN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="BCC">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="BCC" id="5k9-wB-Rdb"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="U6b-bc-ONI">
+                                        <rect key="frame" x="0.0" y="53" width="300" height="33"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3K8-UC-ozB">
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="c90-Xb-yBK"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="MBTC">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="MBTC" id="fu0-np-T4I"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VLc-UW-Nqn">
+                                                <rect key="frame" x="110" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="0gk-oV-Fcx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="MLTC">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="MLTC" id="4oO-o4-JN9"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqL-CG-Dve">
+                                                <rect key="frame" x="220" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="Wo6-QT-j7n"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="MBCH">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="MBCH" id="bgG-O9-by6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.10763651877641678" green="0.12382743507623672" blue="0.19609245657920837" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="TFt-Ov-0ae" firstAttribute="top" secondItem="s4B-US-NZB" secondAttribute="bottom" constant="7.5" id="0Dw-Rn-x0c"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s4B-US-NZB" secondAttribute="trailing" constant="20" id="F8B-Rp-lU3"/>
+                            <constraint firstItem="TFt-Ov-0ae" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J8p-pN-tBM"/>
                             <constraint firstItem="s4B-US-NZB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="MzV-8i-P60"/>
                             <constraint firstItem="s4B-US-NZB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dwf-e6-qZt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cYR-Of-cm8">
-                        <leftBarButtonItems>
-                            <barButtonItem title="Binance" id="j2v-BJ-vvK">
-                                <connections>
-                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="Binance" id="Elq-Wz-VlH"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Mercado" id="tGe-L7-huZ">
-                                <connections>
-                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="MercadoBitcoin" id="Z7D-YA-t50"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Configurar" id="H6E-oU-a6K">
-                                <connections>
-                                    <segue destination="Kbb-E9-wdh" kind="show" id="CS7-Kg-CuD"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Negociar" id="2qv-hI-8MK">
-                                <connections>
-                                    <segue destination="JlI-qR-Yvi" kind="show" id="E0q-Wt-7nS"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                    <navigationItem key="navigationItem" title="Mentor" id="cYR-Of-cm8">
+                        <barButtonItem key="leftBarButtonItem" title="Negociar" id="2qv-hI-8MK">
+                            <connections>
+                                <segue destination="JlI-qR-Yvi" kind="show" id="E0q-Wt-7nS"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Configurar" id="H6E-oU-a6K">
+                            <connections>
+                                <segue destination="Kbb-E9-wdh" kind="show" id="CS7-Kg-CuD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="acaoBitCoinCashLabel" destination="nFi-uB-31A" id="Jex-hb-JNj"/>
@@ -434,7 +515,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvj-yV-Zze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3489" y="-921"/>
+            <point key="canvasLocation" x="3486" y="-940"/>
         </scene>
         <!--Conf View Controller-->
         <scene sceneID="R5B-BE-5cq">
@@ -877,13 +958,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Intervalo em segundos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHg-Cr-H9L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="208" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-LC-GsB">
-                                                        <rect key="frame" x="323.5" y="0.0" width="11.5" height="26.5"/>
+                                                        <rect key="frame" x="218" y="0.0" width="117" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -1746,6 +1827,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xt8-li-8Ha"/>
-        <segue reference="Elq-Wz-VlH"/>
+        <segue reference="bgG-O9-by6"/>
     </inferredMetricsTieBreakers>
 </document>

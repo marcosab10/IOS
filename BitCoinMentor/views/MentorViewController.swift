@@ -93,14 +93,30 @@ class MentorViewController: UIViewController {
             }
         }
         else if let analyzeTableViewController = segue.destination as? AnalyzeTableViewController {
-                if segue.identifier == "Binance" {
-                    analyzeTableViewController.nameAnalyzeExchange = "Binance"
-                    analyzeTableViewController.typeCoin = "BTCUSDT"
+            if segue.identifier == "BTC" {
+                analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                analyzeTableViewController.typeCoin = "BTCUSDT"
                 
-                } else if segue.identifier == "MercadoBitcoin" {
-                    analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"
-                    analyzeTableViewController.typeCoin = "BTC"
-                }
+            } else if segue.identifier == "LTC" {
+                analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                analyzeTableViewController.typeCoin = "LTCUSDT"
+            }
+            else if segue.identifier == "BCC" {
+                analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                analyzeTableViewController.typeCoin = "BCCUSDT"
+            }
+            else if segue.identifier == "MBTC" {
+                analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"
+                analyzeTableViewController.typeCoin = "BTC"
+            }
+            else if segue.identifier == "MLTC" {
+                analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"
+                analyzeTableViewController.typeCoin = "LTC"
+            }
+            else if segue.identifier == "MBCH" {
+                analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"
+                analyzeTableViewController.typeCoin = "BCH"
+            }
         }
        
     }
