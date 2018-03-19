@@ -34,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="s4B-US-NZB">
-                                <rect key="frame" x="20" y="84" width="335" height="474.5"/>
+                                <rect key="frame" x="20" y="84" width="335" height="435.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="flz-b1-SAL">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="70"/>
@@ -167,13 +167,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="LiteCoin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1W6-fI-BBE">
-                                                        <rect key="frame" x="71" y="0.0" width="77" height="66"/>
+                                                        <rect key="frame" x="71" y="0.0" width="189" height="66"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="23"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="R$ 0,00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2Y-lO-0a3">
-                                                        <rect key="frame" x="153" y="0.0" width="182" height="66"/>
+                                                        <rect key="frame" x="265" y="0.0" width="70" height="66"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -182,16 +182,10 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificações Ativas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWE-BW-bLR">
-                                        <rect key="frame" x="0.0" y="450.5" width="335" height="24"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="20"/>
-                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TFt-Ov-0ae">
-                                <rect key="frame" x="37.5" y="566" width="300" height="86"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TFt-Ov-0ae">
+                                <rect key="frame" x="37.5" y="527" width="300" height="130"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="xne-Bw-LWB">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="33"/>
@@ -281,6 +275,12 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notificações Ativas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BWE-BW-bLR">
+                                        <rect key="frame" x="71" y="106" width="158.5" height="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -310,10 +310,16 @@
                         <outlet property="acaoBitCoinCashLabel" destination="nFi-uB-31A" id="Jex-hb-JNj"/>
                         <outlet property="acaoBitCoinLabel" destination="j0C-IZ-o4n" id="Uy9-Q7-4y0"/>
                         <outlet property="acaoLiteCoinLabel" destination="0I3-j3-abJ" id="qJa-Sz-TLK"/>
+                        <outlet property="binanceBCHButton" destination="Wfe-LB-osr" id="E1Q-nu-tEE"/>
+                        <outlet property="binanceBTCButton" destination="gN9-cm-Ezh" id="jv5-Ys-CZC"/>
+                        <outlet property="binanceLTCButton" destination="dg0-tA-C4J" id="HtL-no-XtI"/>
                         <outlet property="bitCoinButton" destination="EGo-Ci-D3B" id="1l3-LA-Lae"/>
                         <outlet property="bitCoinCashButton" destination="4Cc-FG-S5e" id="blG-4t-flx"/>
                         <outlet property="liteCoinButton" destination="8Fh-BH-LBl" id="1e4-M4-M2D"/>
                         <outlet property="mainImage" destination="i3s-Sp-ZeD" id="OCA-Rx-Enb"/>
+                        <outlet property="mercadoBCHButton" destination="JqL-CG-Dve" id="R43-ad-ISm"/>
+                        <outlet property="mercadoBTCButton" destination="3K8-UC-ozB" id="Zg8-Jp-L8W"/>
+                        <outlet property="mercadoLTCButton" destination="VLc-UW-Nqn" id="a9n-qr-wcN"/>
                         <outlet property="notificacoesAtivasLabel" destination="BWE-BW-bLR" id="8h1-Sk-8gN"/>
                         <outlet property="precoBitCashLabel" destination="610-N2-pHz" id="hka-lp-UV4"/>
                         <outlet property="precoBitCoinLabel" destination="jds-Zt-qx4" id="xpq-lr-1tw"/>
@@ -958,13 +964,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Intervalo em segundos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHg-Cr-H9L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="208" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-LC-GsB">
-                                                        <rect key="frame" x="218" y="0.0" width="117" height="26.5"/>
+                                                        <rect key="frame" x="323.5" y="0.0" width="11.5" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -1804,8 +1810,11 @@
                         <viewLayoutGuide key="safeArea" id="7iy-n6-aLz"/>
                     </view>
                     <connections>
+                        <outlet property="bitCoinButton" destination="Hbu-dN-EXw" id="7JP-0j-yQ4"/>
+                        <outlet property="bitCoinCashButton" destination="ufE-UK-K8u" id="VXf-jE-qhz"/>
                         <outlet property="bitcoinCashLabel" destination="CqN-Po-a51" id="CaD-ao-ejV"/>
                         <outlet property="bitcoinLabel" destination="3Sg-P9-J38" id="ecj-Qs-2YK"/>
+                        <outlet property="liteCoinButton" destination="rlM-Zv-NtZ" id="QKH-gA-QFM"/>
                         <outlet property="litecoinLabel" destination="8Zi-vs-hbl" id="JzL-n0-yIS"/>
                         <outlet property="moedaLabel" destination="cbl-V2-Hik" id="nOc-xu-LWL"/>
                         <outlet property="precoUnitarioText" destination="I3K-i7-3av" id="yQb-ba-tKL"/>
@@ -1827,6 +1836,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xt8-li-8Ha"/>
-        <segue reference="bgG-O9-by6"/>
+        <segue reference="5k9-wB-Rdb"/>
     </inferredMetricsTieBreakers>
 </document>

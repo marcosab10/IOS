@@ -11,6 +11,7 @@ import UIKit
 class NegociarViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
+    let util = Util()
     var timer:Timer?
     let ticket:TicketTO = TicketTO()
     var ordensTO: [OrdemTO] = []
@@ -27,6 +28,10 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var quantidadeCoinsText: UITextField!
     @IBOutlet weak var precoUnitarioText: UITextField!
     
+    @IBOutlet weak var bitCoinButton: UIButton!
+    @IBOutlet weak var bitCoinCashButton: UIButton!
+    @IBOutlet weak var liteCoinButton: UIButton!
+    
     var coin: String = "LTC"
 
     
@@ -39,6 +44,10 @@ class NegociarViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableview.delegate = self
         tableview.dataSource = self
+        
+        util.bordasBotao(botao: bitCoinButton)
+        util.bordasBotao(botao: bitCoinCashButton)
+        util.bordasBotao(botao: liteCoinButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {

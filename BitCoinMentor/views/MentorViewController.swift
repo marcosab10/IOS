@@ -10,6 +10,8 @@ import UIKit
 import Foundation
 
 class MentorViewController: UIViewController {
+    let service: BitCoinMentorService = BitCoinMentorService()
+    let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()
     var timer:Timer?
     let util = Util()
 
@@ -29,6 +31,13 @@ class MentorViewController: UIViewController {
  
     @IBOutlet weak var mainImage: UIImageView!
     
+
+    @IBOutlet weak var binanceBTCButton: UIButton!
+    @IBOutlet weak var binanceLTCButton: UIButton!
+    @IBOutlet weak var binanceBCHButton: UIButton!
+    @IBOutlet weak var mercadoBTCButton: UIButton!
+    @IBOutlet weak var mercadoLTCButton: UIButton!
+    @IBOutlet weak var mercadoBCHButton: UIButton!
     
     var valorAtualBitCoin: Double = 0.0
     var valorAtualBitCash: Double = 0.0
@@ -61,7 +70,14 @@ class MentorViewController: UIViewController {
             intervaloCalculo = Double(String(describing: intervalo))!
         }
         
-        carregarDados()
+        self.carregarDados()
+        
+        self.verificarAnalises("Binance", "BTCUSDT", self.binanceBTCButton)
+        self.verificarAnalises("Binance", "LTCUSDT", self.binanceLTCButton)
+        self.verificarAnalises("Binance", "BCCUSDT", self.binanceBCHButton)
+        self.verificarAnalises("MercadoBitcoin", "BTC", self.mercadoBTCButton)
+        self.verificarAnalises("MercadoBitcoin", "LTC", self.mercadoLTCButton)
+        self.verificarAnalises("MercadoBitcoin", "BCH", self.mercadoBCHButton)
         
         self.timer = Timer.scheduledTimer(withTimeInterval: intervaloRefresh, repeats: true) { (time) in
             contador = contador + intervaloRefresh
@@ -118,7 +134,21 @@ class MentorViewController: UIViewController {
                 analyzeTableViewController.typeCoin = "BCH"
             }
         }
-       
+    }
+    
+    func verificarAnalises(_ nameAnalyzeExchange: String, _ typeCoin: String, _ BCCButton: UIButton) {
+        service.loadAnalyzeExchange(nameAnalyzeExchange, typeCoin)
+        if let analyzeExchangeTO = bitCoinCoreData.getAnalyzeExchangeTO(nameAnalyzeExchange, typeCoin) {
+            
+            let ativo =  Bool(analyzeExchangeTO.activeAnalyzes!)!
+            
+            if ativo {
+                BCCButton.setTitleColor(UIColor.green, for: .normal)
+            }
+            else {
+                BCCButton.setTitleColor(UIColor.red, for: .normal)
+            }
+        }
     }
     
     func carregarValoresReferencia() {
