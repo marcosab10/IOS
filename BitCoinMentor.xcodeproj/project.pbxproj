@@ -14,6 +14,7 @@
 		DC01D326202F75A90090BCCA /* TicketTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D325202F75A90090BCCA /* TicketTO.swift */; };
 		DC01D328202FC1930090BCCA /* OrdemTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D327202FC1930090BCCA /* OrdemTO.swift */; };
 		DC09930F2027D51600EE6113 /* MBHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */; };
+		DC1CCFA32098B66500CB5AD1 /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1CCFA22098B66500CB5AD1 /* CompareViewController.swift */; };
 		DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */; };
 		DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */; };
 		DC36EEA51FEEFC3E006DEC96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */; };
@@ -22,9 +23,11 @@
 		DC36EEAD1FEEFC3E006DEC96 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEAB1FEEFC3E006DEC96 /* LaunchScreen.storyboard */; };
 		DC37F046203221D60056ABFA /* AnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37F045203221D60056ABFA /* AnalyzeViewController.swift */; };
 		DC37F048203228EA0056ABFA /* AnalyzeTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC37F047203228EA0056ABFA /* AnalyzeTO.swift */; };
+		DC52DCED208400FE00307E98 /* InicioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC52DCEC208400FE00307E98 /* InicioViewController.swift */; };
 		DC5C73DC1FF1DD8D00F6AD91 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */; };
 		DC6B68A620311C02001CBFFC /* OrdemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B68A520311C02001CBFFC /* OrdemTableViewCell.swift */; };
 		DC6B68A8203120BD001CBFFC /* OrdemHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC6B68A7203120BD001CBFFC /* OrdemHeaderTableViewCell.swift */; };
+		DC79E1082098CBE8008BE638 /* CompareTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC79E1072098CBE8008BE638 /* CompareTableViewCell.swift */; };
 		DCAC62302020E841007701FA /* MercadoBitcoinApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC622F2020E841007701FA /* MercadoBitcoinApi.swift */; };
 		DCAC623220211477007701FA /* MBTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCAC623120211477007701FA /* MBTableViewController.swift */; };
 		DCB6562F201F3670003A2DFF /* AnalyzeExchangeTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB6562E201F3670003A2DFF /* AnalyzeExchangeTO.swift */; };
@@ -48,6 +51,7 @@
 		DC01D325202F75A90090BCCA /* TicketTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketTO.swift; sourceTree = "<group>"; };
 		DC01D327202FC1930090BCCA /* OrdemTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdemTO.swift; sourceTree = "<group>"; };
 		DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DC1CCFA22098B66500CB5AD1 /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
 		DC36EE9C1FEEFC3E006DEC96 /* BitCoinMentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitCoinMentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorViewController.swift; sourceTree = "<group>"; };
@@ -58,9 +62,11 @@
 		DC36EEAE1FEEFC3E006DEC96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC37F045203221D60056ABFA /* AnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewController.swift; sourceTree = "<group>"; };
 		DC37F047203228EA0056ABFA /* AnalyzeTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeTO.swift; sourceTree = "<group>"; };
+		DC52DCEC208400FE00307E98 /* InicioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicioViewController.swift; sourceTree = "<group>"; };
 		DC5C73DB1FF1DD8D00F6AD91 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DC6B68A520311C02001CBFFC /* OrdemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdemTableViewCell.swift; sourceTree = "<group>"; };
 		DC6B68A7203120BD001CBFFC /* OrdemHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdemHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		DC79E1072098CBE8008BE638 /* CompareTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareTableViewCell.swift; sourceTree = "<group>"; };
 		DCAC622F2020E841007701FA /* MercadoBitcoinApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercadoBitcoinApi.swift; sourceTree = "<group>"; };
 		DCAC623120211477007701FA /* MBTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBTableViewController.swift; sourceTree = "<group>"; };
 		DCB6562E201F3670003A2DFF /* AnalyzeExchangeTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeExchangeTO.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 		DC343B0520311A420005301C /* views */ = {
 			isa = PBXGroup;
 			children = (
+				DC52DCEC208400FE00307E98 /* InicioViewController.swift */,
 				DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */,
 				DCE3CE741FF0506800977907 /* ConfigurarViewController.swift */,
 				DC01D321202BD9A50090BCCA /* NegociarViewController.swift */,
@@ -109,6 +116,7 @@
 				DC37F045203221D60056ABFA /* AnalyzeViewController.swift */,
 				DCB65633201FF46C003A2DFF /* ConfViewController.swift */,
 				DCAC623120211477007701FA /* MBTableViewController.swift */,
+				DC1CCFA22098B66500CB5AD1 /* CompareViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 				DC006C19202933DB00D02154 /* MBFooterTableViewCell.swift */,
 				DC6B68A520311C02001CBFFC /* OrdemTableViewCell.swift */,
 				DC6B68A7203120BD001CBFFC /* OrdemHeaderTableViewCell.swift */,
+				DC79E1072098CBE8008BE638 /* CompareTableViewCell.swift */,
 			);
 			path = tablecells;
 			sourceTree = "<group>";
@@ -358,10 +367,13 @@
 				DCAC623220211477007701FA /* MBTableViewController.swift in Sources */,
 				DCCD908F2018D2350083CD36 /* BitCoinMentorService.swift in Sources */,
 				DC6B68A620311C02001CBFFC /* OrdemTableViewCell.swift in Sources */,
+				DC79E1082098CBE8008BE638 /* CompareTableViewCell.swift in Sources */,
+				DC1CCFA32098B66500CB5AD1 /* CompareViewController.swift in Sources */,
 				DC6B68A8203120BD001CBFFC /* OrdemHeaderTableViewCell.swift in Sources */,
 				DC37F046203221D60056ABFA /* AnalyzeViewController.swift in Sources */,
 				DCCD908C2018CD370083CD36 /* AnalyzeTableViewController.swift in Sources */,
 				DC37F048203228EA0056ABFA /* AnalyzeTO.swift in Sources */,
+				DC52DCED208400FE00307E98 /* InicioViewController.swift in Sources */,
 				DC01D328202FC1930090BCCA /* OrdemTO.swift in Sources */,
 				DC36EEA81FEEFC3E006DEC96 /* BitCoinMentor.xcdatamodeld in Sources */,
 				DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */,

@@ -125,21 +125,18 @@ class AnalyzeTableViewController: UITableViewController {
                 if let firstPrice = analyzeTO.firstPrice {
                     if let lastPrice = analyzeTO.lastPrice {
                         
-                        
                         let timeMinutesText = String(describing: timeMinutes)
                         let percentageText = percentage
-                        let firstPriceText = firstPrice
-                        let lastPriceText = lastPrice
                         
                         if nameAnalyzeExchange == binance {
-                            ultimoPrecoLabel.text = "USD: " + lastPriceText
+                            ultimoPrecoLabel.text = "USD: " + lastPrice
                         }
                         else if nameAnalyzeExchange == mercadoBitcoin {
-                            ultimoPrecoLabel.text = "R$: " + lastPriceText
+                            ultimoPrecoLabel.text = "R$: " + lastPrice
                         }
                         
                         celula.textLabel?.text =  timeMinutesText + " Minutos"
-                        celula.detailTextLabel?.text = firstPriceText + "           " + percentageText + " %  "
+                        celula.detailTextLabel?.text = firstPrice + "           " + percentageText + " %  "
                         
                         let percentageNumber = Double(percentageText)
                         

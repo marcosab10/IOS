@@ -28,8 +28,6 @@ class MentorViewController: UIViewController {
     @IBOutlet weak var bitCoinButton: UIButton!
     @IBOutlet weak var bitCoinCashButton: UIButton!
     @IBOutlet weak var liteCoinButton: UIButton!
- 
-    @IBOutlet weak var mainImage: UIImageView!
     
 
     @IBOutlet weak var binanceBTCButton: UIButton!
@@ -57,8 +55,6 @@ class MentorViewController: UIViewController {
         util.bordasBotao(botao: bitCoinButton)
         util.bordasBotao(botao: bitCoinCashButton)
         util.bordasBotao(botao: liteCoinButton)
-        util.bordasImagem(image: mainImage)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -134,6 +130,18 @@ class MentorViewController: UIViewController {
                 analyzeTableViewController.typeCoin = "BCH"
             }
         }
+        else if let compareViewController = segue.destination as? CompareViewController {
+            if segue.identifier == "BTCX" {
+                compareViewController.typeCoin = "BTC"
+                
+            } else if segue.identifier == "LTCX" {
+                compareViewController.typeCoin = "LTC"
+            }
+            else if segue.identifier == "BCHX" {
+                compareViewController.typeCoin = "BCH"
+            }
+        }
+        
     }
     
     func verificarAnalises(_ nameAnalyzeExchange: String, _ typeCoin: String, _ BCCButton: UIButton) {
