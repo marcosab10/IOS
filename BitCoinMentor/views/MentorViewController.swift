@@ -37,6 +37,8 @@ class MentorViewController: UIViewController {
     @IBOutlet weak var mercadoLTCButton: UIButton!
     @IBOutlet weak var mercadoBCHButton: UIButton!
     @IBOutlet weak var binanceETHButton: UIButton!
+    @IBOutlet weak var binanceETCButton: UIButton!
+    @IBOutlet weak var binanceBNBButton: UIButton!
     
     var valorAtualBitCoin: Double = 0.0
     var valorAtualBitCash: Double = 0.0
@@ -73,6 +75,8 @@ class MentorViewController: UIViewController {
         self.verificarAnalises("Binance", "LTCUSDT", self.binanceLTCButton)
         self.verificarAnalises("Binance", "BCCUSDT", self.binanceBCHButton)
         self.verificarAnalises("Binance", "ETHUSDT", self.binanceETHButton)
+        self.verificarAnalises("Binance", "BNBUSDT", self.binanceBNBButton)
+        self.verificarAnalises("Binance", "ETCUSDT", self.binanceETCButton)
         self.verificarAnalises("MercadoBitcoin", "BTC", self.mercadoBTCButton)
         self.verificarAnalises("MercadoBitcoin", "LTC", self.mercadoLTCButton)
         self.verificarAnalises("MercadoBitcoin", "BCH", self.mercadoBCHButton)
@@ -122,6 +126,14 @@ class MentorViewController: UIViewController {
             else if segue.identifier == "ETH" {
                 analyzeTableViewController.nameAnalyzeExchange = "Binance"
                 analyzeTableViewController.typeCoin = "ETHUSDT"
+            }
+            else if segue.identifier == "ETC" {
+                analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                analyzeTableViewController.typeCoin = "ETCUSDT"
+            }
+            else if segue.identifier == "BNB" {
+                analyzeTableViewController.nameAnalyzeExchange = "Binance"
+                analyzeTableViewController.typeCoin = "BNBUSDT"
             }
             else if segue.identifier == "MBTC" {
                 analyzeTableViewController.nameAnalyzeExchange = "MercadoBitcoin"

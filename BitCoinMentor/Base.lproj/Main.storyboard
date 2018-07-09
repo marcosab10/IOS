@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BpY-3h-yj8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BpY-3h-yj8">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -156,10 +156,36 @@
                                 <rect key="frame" x="37.5" y="413.5" width="300" height="236"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="dDQ-5Z-XGm">
-                                        <rect key="frame" x="110" y="0.0" width="80" height="33"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="33"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHv-xs-pE2">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BHz-gp-P4s">
                                                 <rect key="frame" x="0.0" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="8Pa-5p-6dD"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="ETC">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="ETC" id="he9-gt-NF4"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xN7-pD-eiv">
+                                                <rect key="frame" x="110" y="0.0" width="80" height="33"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="80" id="8Ij-L7-X0J"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <state key="normal" title="BNB">
+                                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="yPJ-wp-UgY" kind="show" identifier="BNB" id="nG0-OL-Pg6"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vHv-xs-pE2">
+                                                <rect key="frame" x="220" y="0.0" width="80" height="33"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="Sj5-QA-ydE"/>
                                                 </constraints>
@@ -341,7 +367,9 @@
                         <outlet property="acaoBitCoinLabel" destination="j0C-IZ-o4n" id="Uy9-Q7-4y0"/>
                         <outlet property="acaoLiteCoinLabel" destination="0I3-j3-abJ" id="qJa-Sz-TLK"/>
                         <outlet property="binanceBCHButton" destination="Wfe-LB-osr" id="E1Q-nu-tEE"/>
+                        <outlet property="binanceBNBButton" destination="xN7-pD-eiv" id="DJs-cS-K0N"/>
                         <outlet property="binanceBTCButton" destination="gN9-cm-Ezh" id="jv5-Ys-CZC"/>
+                        <outlet property="binanceETCButton" destination="BHz-gp-P4s" id="FE0-4Y-A7p"/>
                         <outlet property="binanceETHButton" destination="vHv-xs-pE2" id="XDN-CE-Yy2"/>
                         <outlet property="binanceLTCButton" destination="dg0-tA-C4J" id="HtL-no-XtI"/>
                         <outlet property="bitCoinButton" destination="EGo-Ci-D3B" id="1l3-LA-Lae"/>
@@ -994,13 +1022,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Intervalo em segundos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHg-Cr-H9L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="208" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-LC-GsB">
-                                                        <rect key="frame" x="323.5" y="0.0" width="11.5" height="26.5"/>
+                                                        <rect key="frame" x="218" y="0.0" width="117" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -2051,6 +2079,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Hem-dL-RFj"/>
         <segue reference="xt8-li-8Ha"/>
-        <segue reference="Hih-xv-I8a"/>
+        <segue reference="fu0-np-T4I"/>
     </inferredMetricsTieBreakers>
 </document>
