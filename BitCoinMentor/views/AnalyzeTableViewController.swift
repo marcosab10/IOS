@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 
 class AnalyzeTableViewController: UITableViewController {
-    var util = Util()
     var analyzesTO: [AnalyzeTO] = []
     let service: BitCoinMentorService = BitCoinMentorService()
     let bitCoinCoreData: BitCoinCoreData = BitCoinCoreData()

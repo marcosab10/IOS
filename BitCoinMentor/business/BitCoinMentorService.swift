@@ -41,7 +41,7 @@ class BitCoinMentorService {
                     }
                 }
                 else{
-                    print("Erro ao executar findAnalyzes.")
+                    print("Erro ao executar loadAnalyzes.")
                 }
             }
             tarefa.resume()
@@ -428,6 +428,42 @@ class BitCoinMentorService {
                 }
                 else{
                     print("Erro ao verificar se a análise está ativa.")
+                }
+            }
+            tarefa.resume()
+        }
+    }
+    
+    func loadAlarms(_ idExchange: NSNumber) {
+        let idExchangeDesc:String = String (describing: idExchange)
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAlarms?idExchange=" + idExchangeDesc) {
+            let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
+                if erro == nil {
+                    if let dadosRetorno = dados {
+                        do{
+                            if let arrayAlarms = try JSONSerialization.jsonObject(with: dadosRetorno, options: []) as? [Any]{
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                let context = appDelegate.persistentContainer.viewContext
+                                
+                                for data in arrayAlarms {
+                                    let jsonDictionary = data as! Dictionary<String, AnyObject>
+                                    
+                                    self.bitCoinCoreData.gerenciarAlarm(context, jsonDictionary)
+                                    
+                                }
+                                do {
+                                    try  context.save()
+                                } catch  {
+                                    print("Erro ao atualizar dados")
+                                }
+                            }
+                        }catch {
+                            print("Erro ao formatar o retorno.")
+                        }
+                    }
+                }
+                else{
+                    print("Erro ao executar loadAlarms.")
                 }
             }
             tarefa.resume()

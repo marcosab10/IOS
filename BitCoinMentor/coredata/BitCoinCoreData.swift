@@ -907,4 +907,274 @@ class BitCoinCoreData {
     }
     
     
+    //Alarms  
+    
+    func gerenciarAlarm(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
+
+        let id = jsonDictionary["id"] as! NSNumber
+        let idExchange = jsonDictionary["idExchange"] as! NSNumber
+        let coin = jsonDictionary["coin"] as! String
+        let price = jsonDictionary["price"] as! String
+        let orientation = jsonDictionary["orientation"] as! String
+        let activeNotification = jsonDictionary["activeNotification"] as! String
+        let notificationInterval = jsonDictionary["notificationInterval"] as! NSNumber
+        let notificationNumber = jsonDictionary["notificationNumber"] as! NSNumber
+        let createDate = jsonDictionary["createDate"] as! NSNumber
+        let updateDate = jsonDictionary["updateDate"] as! NSNumber
+        let token = jsonDictionary["token"] as! String
+        let repeatAlarm = jsonDictionary["repeatAlarm"] as! String
+        
+        
+        if let alarmRetorno = getAlarm(context, id) {
+            updateAlarm(context, id, idExchange, coin, price, orientation, activeNotification, notificationInterval, notificationNumber, createDate, updateDate, token, repeatAlarm)
+        }
+        else{
+            insertAlarm(context, id, idExchange, coin, price, orientation, activeNotification, notificationInterval, notificationNumber, createDate, updateDate, token, repeatAlarm)
+        }
+    }
+    
+    fileprivate func insertAlarm(_ context: NSManagedObjectContext, _ id: NSNumber, _ idExchange: NSNumber, _ coin: String, _ price: String, _ orientation: String, _ activeNotification: String, _ notificationInterval: NSNumber, _ notificationNumber: NSNumber, _ createDate: NSNumber, _ updateDate: NSNumber, _ token: String, _ repeatAlarm: String) {
+        
+        //Cria entidade
+        let alarm = NSEntityDescription.insertNewObject(forEntityName: "Alarm", into: context)
+        
+        alarm.setValue(id, forKey: "id")
+        alarm.setValue(idExchange, forKey: "idExchange")
+        alarm.setValue(coin, forKey: "coin")
+        alarm.setValue(price, forKey: "price")
+        alarm.setValue(orientation, forKey: "orientation")
+        alarm.setValue(activeNotification, forKey: "activeNotification")
+        alarm.setValue(notificationInterval, forKey: "notificationInterval")
+        alarm.setValue(notificationNumber, forKey: "notificationNumber")
+        alarm.setValue(createDate, forKey: "createDate")
+        alarm.setValue(updateDate, forKey: "updateDate")
+        alarm.setValue(token, forKey: "token")
+        alarm.setValue(repeatAlarm, forKey: "repeatAlarm")
+    }
+    
+    fileprivate func updateAlarm(_ context: NSManagedObjectContext, _ id: NSNumber, _ idExchange: NSNumber, _ coin: String, _ price: String, _ orientation: String, _ activeNotification: String, _ notificationInterval: NSNumber, _ notificationNumber: NSNumber, _ createDate: NSNumber, _ updateDate: NSNumber, _ token: String, _ repeatAlarm: String) {
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
+        
+        let filtroExchange = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtroExchange
+        
+        do {
+            let analyzes = try context.fetch(requisicao)
+            
+            if analyzes.count > 0 {
+                for alarm in analyzes as! [NSManagedObject] {
+                    
+                    if let id = alarm.value(forKey: "id") {
+                        
+                        //atualizar
+                        alarm.setValue(id, forKey: "id")
+                        alarm.setValue(idExchange, forKey: "idExchange")
+                        alarm.setValue(coin, forKey: "coin")
+                        alarm.setValue(price, forKey: "price")
+                        alarm.setValue(orientation, forKey: "orientation")
+                        alarm.setValue(activeNotification, forKey: "activeNotification")
+                        alarm.setValue(notificationInterval, forKey: "notificationInterval")
+                        alarm.setValue(notificationNumber, forKey: "notificationNumber")
+                        alarm.setValue(createDate, forKey: "createDate")
+                        alarm.setValue(updateDate, forKey: "updateDate")
+                        alarm.setValue(token, forKey: "token")
+                        alarm.setValue(repeatAlarm, forKey: "repeatAlarm")
+                        
+                    }
+                }
+            }
+            else {
+                print("Nenhum alarme encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
+    
+    fileprivate func getAlarm(_ context: NSManagedObjectContext, _ id: NSNumber) -> NSManagedObject? {
+        var alarmRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
+        
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtro
+        
+        do {
+            let alarms = try context.fetch(requisicao)
+            
+            if alarms.count > 0 {
+                for alarm in alarms as! [NSManagedObject] {
+                    
+                    alarmRetorno = alarm
+                }
+            }
+            else {
+                print("Nenhum alarme encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        return alarmRetorno
+    }
+    
+    func getAlarmTO(_ id: NSNumber) -> AlarmTO? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        var alarm: AlarmTO?
+        var alarmRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
+        
+        // aplicar filtros criados à requisicao
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtro])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let alarms = try context.fetch(requisicao)
+            
+            if alarms.count > 0 {
+                for alarm in alarms as! [NSManagedObject] {
+                    
+                    alarmRetorno = alarm
+                }
+            }
+            else {
+                print("Nenhum alarme encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        if(alarmRetorno != nil){
+            if let id = alarmRetorno.value(forKey: "id"){
+                if let idExchange = alarmRetorno.value(forKey: "idExchange") {
+                    if let coin = alarmRetorno.value(forKey: "coin") {
+                        if let price = alarmRetorno.value(forKey: "price") {
+                            if let orientation = alarmRetorno.value(forKey: "orientation") {
+                                if let activeNotification = alarmRetorno.value(forKey: "activeNotification") {
+                                    if let notificationInterval = alarmRetorno.value(forKey: "notificationInterval") {
+                                        if let notificationNumber = alarmRetorno.value(forKey: "notificationNumber") {
+                                            if let createDate = alarmRetorno.value(forKey: "createDate") {
+                                                if let updateDate = alarmRetorno.value(forKey: "updateDate") {
+                                                    if let token = alarmRetorno.value(forKey: "token") {
+                                                        if let repeatAlarm = alarmRetorno.value(forKey: "repeatAlarm") {
+                                            
+                                                            alarm = AlarmTO()
+                                                            
+                                                            alarm?.id = id as? NSNumber
+                                                            alarm?.idExchange = idExchange as? NSNumber
+                                                            alarm?.coin = coin as? String
+                                                            alarm?.price = price as? String
+                                                            alarm?.orientation = orientation as? String
+                                                            alarm?.activeNotification = activeNotification as? String
+                                                            alarm?.notificationInterval = notificationInterval as? NSNumber
+                                                            alarm?.notificationNumber = notificationNumber as? NSNumber
+                                                            alarm?.createDate = createDate as? NSNumber
+                                                            alarm?.updateDate = updateDate as? NSNumber
+                                                            alarm?.token = token as? String
+                                                            alarm?.repeatAlarm = repeatAlarm as? String
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return alarm
+    }
+    
+    
+    func getAlarmsTO(_ idExchange: NSNumber) -> [AlarmTO]? {
+        var alarmsTO: [AlarmTO] = []
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
+        
+        //Ordenar de A-Z a-z ou Z-A
+        let ordenacaoAZ = NSSortDescriptor(key: "coin", ascending: true)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.sortDescriptors = [ordenacaoAZ]
+        
+        let filtroExchange = NSPredicate(format: "idExchange == %@", idExchange)
+        
+        requisicao.predicate = filtroExchange
+        
+        do {
+            
+            let alarms = try context.fetch(requisicao)
+            
+            if alarms.count > 0 {
+                for alarmRetorno in alarms as! [NSManagedObject] {
+                    if let id = alarmRetorno.value(forKey: "id"){
+                        if let idExchange = alarmRetorno.value(forKey: "idExchange") {
+                            if let coin = alarmRetorno.value(forKey: "coin") {
+                                if let price = alarmRetorno.value(forKey: "price") {
+                                    if let orientation = alarmRetorno.value(forKey: "orientation") {
+                                        if let activeNotification = alarmRetorno.value(forKey: "activeNotification") {
+                                            if let notificationInterval = alarmRetorno.value(forKey: "notificationInterval") {
+                                                if let notificationNumber = alarmRetorno.value(forKey: "notificationNumber") {
+                                                    if let createDate = alarmRetorno.value(forKey: "createDate") {
+                                                        if let updateDate = alarmRetorno.value(forKey: "updateDate") {
+                                                            if let token = alarmRetorno.value(forKey: "token") {
+                                                                if let repeatAlarm = alarmRetorno.value(forKey: "repeatAlarm") {
+                                                               let alarmTO = AlarmTO()
+                                                                
+                                                                alarmTO.id = id as? NSNumber
+                                                                alarmTO.idExchange = idExchange as? NSNumber
+                                                                alarmTO.coin = coin as? String
+                                                                alarmTO.price = price as? String
+                                                                alarmTO.orientation = orientation as? String
+                                                                alarmTO.activeNotification = activeNotification as? String
+                                                                alarmTO.notificationInterval = notificationInterval as? NSNumber
+                                                                alarmTO.notificationNumber = notificationNumber as? NSNumber
+                                                                alarmTO.createDate = createDate as? NSNumber
+                                                                alarmTO.updateDate = updateDate as? NSNumber
+                                                                alarmTO.token = token as? String
+                                                                alarmTO.repeatAlarm = repeatAlarm as? String
+                                                                
+                                                                alarmsTO.append(alarmTO)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        return alarmsTO
+    }
+    
+    
 }
