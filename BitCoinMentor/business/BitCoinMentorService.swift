@@ -292,8 +292,6 @@ class BitCoinMentorService {
             let body: String = "{ " +
                 " \"id\": \"\(ordemTO.id!)\"," +
                 " \"idExchange\": \"\(ordemTO.idExchange!)\"," +
-                " \"createDate\": \"\(ordemTO.createDate!)\"," +
-                " \"updateDate\": \"\(ordemTO.updateDate!)\"," +
                 " \"order_id\": \"\(ordemTO.order_id!)\"," +
                 " \"coin_pair\": \"\(ordemTO.coin_pair!)\"," +
                 " \"order_type\": \"\(ordemTO.order_type!)\"," +
@@ -383,13 +381,17 @@ class BitCoinMentorService {
             var request = URLRequest(url: usableUrl)
             request.allHTTPHeaderFields = ["Content-Type":"application/json"]
             request.httpMethod = "POST"
+            
+            var id = ""
+            if(analyzeTO.id != nil){
+                id = " \"id\": \"\(analyzeTO.id!)\","
+            }
+            
             let body: String = "{ " +
-                " \"id\": \"\(analyzeTO.id!)\"," +
+                id +
                 " \"idAnalyzeExchange\": \"\(analyzeTO.idAnalyzeExchange!)\", " +
                 " \"timeMinutes\": \"\(analyzeTO.timeMinutes!)\", " +
                 " \"percentage\": \"\(analyzeTO.percentage!)\", " +
-                " \"createDate\": \"\(analyzeTO.createDate!)\", " +
-                " \"updateDate\": \"\(analyzeTO.updateDate!)\", " +
                 " \"margin\": \"\(analyzeTO.margin!)\", " +
                 " \"activeNotification\": \"\(analyzeTO.activeNotification!)\", " +
                 " \"firstPrice\": \"\(analyzeTO.firstPrice!)\", " +
@@ -412,26 +414,26 @@ class BitCoinMentorService {
         }
     }
     
-    
-    
     func deleteAnalyze(_ idAnalyze: String){
-        //Testa se a URL existe
-        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/deleteAnalyze?idAnalyze=" + idAnalyze) {
-            let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
-                if erro == nil {
-                    if let dadosRetorno = dados {
-                        
-                        let retorno = String(data: dadosRetorno, encoding: .utf8)
-                        
-                        print(retorno)
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/deleteAnalyze?idAnalyze=" + idAnalyze)
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "DELETE"
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
                     }
                 }
-                else{
-                    print("Erro ao verificar se a análise está ativa.")
-                }
-            }
-            tarefa.resume()
+            })
+            task.resume()
         }
+        
     }
     
     func loadAlarms(_ idExchange: NSNumber) {
@@ -468,6 +470,70 @@ class BitCoinMentorService {
             }
             tarefa.resume()
         }
+    }
+    
+    func saveAlarm(alarmTO: AlarmTO){
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/saveAlarm")
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            
+            var id = ""
+            if(alarmTO.id != nil){
+                id = " \"id\": \"\(alarmTO.id!)\","
+            }
+            
+            let body: String = "{ " +
+                id +
+                " \"idExchange\": \"\(alarmTO.idExchange!)\", " +
+                " \"coin\": \"\(alarmTO.coin!)\", " +
+                " \"price\": \"\(alarmTO.price!)\", " +
+                " \"orientation\": \"\(alarmTO.orientation!)\", " +
+                " \"activeNotification\": \"\(alarmTO.activeNotification!)\", " +
+                " \"notificationInterval\": \"\(alarmTO.notificationInterval!)\", " +
+                " \"notificationNumber\": \"\(alarmTO.notificationNumber!)\", " +
+                " \"token\": \"\(alarmTO.token!)\", " +
+                " \"repeatAlarm\": \"\(alarmTO.repeatAlarm!)\" " +
+            "}"
+            
+            request.httpBody = body.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
+    func deleteAlarm(_ idAlarm: String){
+        
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/deleteAlarm?idAlarm=" + idAlarm)
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "DELETE"
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+        
     }
     
 }

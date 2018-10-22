@@ -719,10 +719,10 @@
             </objects>
             <point key="canvasLocation" x="2706" y="-940"/>
         </scene>
-        <!--View Controller-->
+        <!--Alarm Edit View Controller-->
         <scene sceneID="gOM-aE-JTC">
             <objects>
-                <viewController id="VbH-mo-TWe" sceneMemberID="viewController">
+                <viewController id="VbH-mo-TWe" customClass="AlarmEditViewController" customModule="BitCoinMentor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LGl-Ct-hO9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -892,6 +892,9 @@
                                                 <integer key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="salvar:" destination="VbH-mo-TWe" eventType="touchUpInside" id="H3p-Vi-Jxs"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -903,6 +906,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mAt-vL-lMJ"/>
                     </view>
+                    <connections>
+                        <outlet property="intervaloText" destination="opF-jT-4vN" id="60V-Af-zeP"/>
+                        <outlet property="moedaText" destination="BOE-hX-WQD" id="PBi-JQ-Ymp"/>
+                        <outlet property="notificacaoAtivaSwitch" destination="HDi-S6-XFS" id="YPp-YU-D8S"/>
+                        <outlet property="numeroNotificacoesText" destination="lsz-8r-puY" id="A9q-L1-KdW"/>
+                        <outlet property="orientacaoPositiva" destination="g5O-hi-IAj" id="KLZ-4g-M0B"/>
+                        <outlet property="precoText" destination="tjf-Aj-Ehx" id="PXt-tQ-WYC"/>
+                        <outlet property="repetirSwitch" destination="Fkz-Bv-zrp" id="m0r-Sy-3OC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1gX-Ja-65t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -953,7 +965,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="Rwi-rP-C3L">
                                 <connections>
-                                    <segue destination="VbH-mo-TWe" kind="show" id="J4H-sE-bO6"/>
+                                    <segue destination="VbH-mo-TWe" kind="show" identifier="editarAlarme" id="J4H-sE-bO6"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="compose" id="K66-jE-a6B"/>
@@ -1276,13 +1288,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="26.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Intervalo em segundos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHg-Cr-H9L">
-                                                        <rect key="frame" x="0.0" y="0.0" width="208" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YsF-LC-GsB">
-                                                        <rect key="frame" x="218" y="0.0" width="117" height="26.5"/>
+                                                        <rect key="frame" x="323.5" y="0.0" width="11.5" height="26.5"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="22"/>
                                                         <color key="textColor" red="0.92429405450000002" green="0.83640092610000005" blue="0.43902754779999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>

@@ -1176,5 +1176,35 @@ class BitCoinCoreData {
         return alarmsTO
     }
     
+    func deleteAlarm(_ id: NSNumber){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "Alarm")
+        
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        let combinacaoFiltro = NSCompoundPredicate(andPredicateWithSubpredicates: [filtro])
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = combinacaoFiltro
+        
+        do {
+            let alarms = try context.fetch(requisicao)
+            
+            if alarms.count > 0 {
+                for alarm in alarms as! [NSManagedObject] {
+                    
+                    context.delete(alarm)
+                }
+            }
+            else {
+                print("Nenhum alarme encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
     
 }
