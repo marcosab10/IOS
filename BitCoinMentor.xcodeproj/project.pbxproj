@@ -15,6 +15,8 @@
 		DC01D328202FC1930090BCCA /* OrdemTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01D327202FC1930090BCCA /* OrdemTO.swift */; };
 		DC09930F2027D51600EE6113 /* MBHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */; };
 		DC1CCFA32098B66500CB5AD1 /* CompareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1CCFA22098B66500CB5AD1 /* CompareViewController.swift */; };
+		DC1CF60121D808CE004152F6 /* AlarmControlTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1CF60021D808CE004152F6 /* AlarmControlTO.swift */; };
+		DC1CF60321D82182004152F6 /* AlarmControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1CF60221D82182004152F6 /* AlarmControlVC.swift */; };
 		DC36EEA01FEEFC3E006DEC96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */; };
 		DC36EEA21FEEFC3E006DEC96 /* MentorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */; };
 		DC36EEA51FEEFC3E006DEC96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC36EEA31FEEFC3E006DEC96 /* Main.storyboard */; };
@@ -55,6 +57,8 @@
 		DC01D327202FC1930090BCCA /* OrdemTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdemTO.swift; sourceTree = "<group>"; };
 		DC09930E2027D51600EE6113 /* MBHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MBHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		DC1CCFA22098B66500CB5AD1 /* CompareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareViewController.swift; sourceTree = "<group>"; };
+		DC1CF60021D808CE004152F6 /* AlarmControlTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmControlTO.swift; sourceTree = "<group>"; };
+		DC1CF60221D82182004152F6 /* AlarmControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmControlVC.swift; sourceTree = "<group>"; };
 		DC36EE9C1FEEFC3E006DEC96 /* BitCoinMentor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitCoinMentor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC36EE9F1FEEFC3E006DEC96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC36EEA11FEEFC3E006DEC96 /* MentorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MentorViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 				DC1CCFA22098B66500CB5AD1 /* CompareViewController.swift */,
 				DC5A134E2134D96E00C81544 /* AlarmViewController.swift */,
 				DC4166D5217CFDD00058A5F1 /* AlarmEditViewController.swift */,
+				DC1CF60221D82182004152F6 /* AlarmControlVC.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				DC01D327202FC1930090BCCA /* OrdemTO.swift */,
 				DC37F047203228EA0056ABFA /* AnalyzeTO.swift */,
 				DC5A13502134DB9B00C81544 /* AlarmTO.swift */,
+				DC1CF60021D808CE004152F6 /* AlarmControlTO.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -380,9 +386,11 @@
 				DC5A13512134DB9B00C81544 /* AlarmTO.swift in Sources */,
 				DC1CCFA32098B66500CB5AD1 /* CompareViewController.swift in Sources */,
 				DC5A134F2134D96E00C81544 /* AlarmViewController.swift in Sources */,
+				DC1CF60121D808CE004152F6 /* AlarmControlTO.swift in Sources */,
 				DC6B68A8203120BD001CBFFC /* OrdemHeaderTableViewCell.swift in Sources */,
 				DC37F046203221D60056ABFA /* AnalyzeViewController.swift in Sources */,
 				DCCD908C2018CD370083CD36 /* AnalyzeTableViewController.swift in Sources */,
+				DC1CF60321D82182004152F6 /* AlarmControlVC.swift in Sources */,
 				DC37F048203228EA0056ABFA /* AnalyzeTO.swift in Sources */,
 				DC4166D6217CFDD00058A5F1 /* AlarmEditViewController.swift in Sources */,
 				DC52DCED208400FE00307E98 /* InicioViewController.swift in Sources */,

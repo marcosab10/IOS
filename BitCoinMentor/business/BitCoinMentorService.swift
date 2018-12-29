@@ -536,4 +536,66 @@ class BitCoinMentorService {
         
     }
     
+    func loadAlarmControl() {
+        if let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/findAlarmControls") {
+            let tarefa = URLSession.shared.dataTask(with: url) { (dados, response, erro) in
+                if erro == nil {
+                    if let dadosRetorno = dados {
+                        do{
+                            if let arrayAnalyzes = try JSONSerialization.jsonObject(with: dadosRetorno, options: []) as? [Any]{
+                                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                                let context = appDelegate.persistentContainer.viewContext
+                                
+                                for data in arrayAnalyzes {
+                                    let jsonDictionary = data as! Dictionary<String, AnyObject>
+                                    
+                                    self.bitCoinCoreData.gerenciarAlarmControl(context, jsonDictionary)
+                                    
+                                }
+                                do {
+                                    try  context.save()
+                                } catch  {
+                                    print("Erro ao atualizar dados")
+                                }
+                            }
+                        }catch {
+                            print("Erro ao formatar o retorno.")
+                        }
+                    }
+                }
+                else{
+                    print("Erro ao executar findAlarmControls.")
+                }
+            }
+            tarefa.resume()
+        }
+    }
+    
+    
+    func startStopMotorAlarms(alarmControlTO: AlarmControlTO){
+        let url = URL(string: "http://server20.integrator.com.br:4744/BitCoinMentor-web/BitCoinMentor/startStopMotorAlarms")
+        if let usableUrl = url {
+            var request = URLRequest(url: usableUrl)
+            request.allHTTPHeaderFields = ["Content-Type":"application/json"]
+            request.httpMethod = "POST"
+            let body: String = "{ " +
+                " \"id\": \"\(alarmControlTO.id!)\"," +
+                " \"notifyAlarm\": \"\(alarmControlTO.notifyAlarm!)\" " +
+            "}"
+            request.httpBody = body.data(using: .utf8)
+            
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                if error != nil  {
+                    print(error!)
+                }
+                if let data = data {
+                    if let stringData = String(data: data, encoding: String.Encoding.utf8) {
+                        print(stringData) //JSONSerialization
+                    }
+                }
+            })
+            task.resume()
+        }
+    }
+    
 }

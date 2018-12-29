@@ -1207,4 +1207,143 @@ class BitCoinCoreData {
         }
     }
     
+    
+    // AlarmControl
+    
+    func gerenciarAlarmControl(_ context: NSManagedObjectContext, _ jsonDictionary: [String : AnyObject]) {
+        let id = jsonDictionary["id"] as! NSNumber
+        let notifyAlarm = jsonDictionary["notifyAlarm"] as! String
+        let createDate = jsonDictionary["createDate"] as! NSNumber
+        let updateDate = jsonDictionary["updateDate"] as! NSNumber
+        
+        if let analyzeExchangeRetorno = getAnalyzeExchange(context, id) {
+            updateAlarmControl(context, id, notifyAlarm, createDate, updateDate)
+        }
+        else{
+            insertAlarmControl(context, id, notifyAlarm, createDate, updateDate)
+        }
+    }
+    
+    fileprivate func insertAlarmControl(_ context: NSManagedObjectContext, _ id: NSNumber, _ notifyAlarm: String,
+                                        _ createDate: NSNumber, _ updateDate: NSNumber) {
+        
+        //Cria entidade
+        let alarmControl = NSEntityDescription.insertNewObject(forEntityName: "AlarmControl", into: context)
+        
+        alarmControl.setValue(id, forKey: "id")
+        alarmControl.setValue(notifyAlarm, forKey: "notifyAlarm")
+        alarmControl.setValue(createDate, forKey: "createDate")
+        alarmControl.setValue(updateDate, forKey: "updateDate")
+    }
+    
+    fileprivate func updateAlarmControl(_ context: NSManagedObjectContext, _ id: NSNumber, _ notifyAlarm: String,
+                                        _ createDate: NSNumber, _ updateDate: NSNumber) {
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AlarmControl")
+        
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtro
+        
+        do {
+            let alarmControls = try context.fetch(requisicao)
+            
+            if alarmControls.count > 0 {
+                for alarmControl in alarmControls as! [NSManagedObject] {
+                    
+                    if let id = alarmControl.value(forKey: "id") {
+                        
+                        //atualizar
+                        alarmControl.setValue(id, forKey: "id")
+                        alarmControl.setValue(notifyAlarm, forKey: "notifyAlarm")
+                        alarmControl.setValue(createDate, forKey: "createDate")
+                        alarmControl.setValue(updateDate, forKey: "updateDate")
+                    }
+                }
+            }
+            else {
+                print("Nenhum alarmControl encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+    }
+    
+    fileprivate func getAlarmControl(_ context: NSManagedObjectContext, _ id: NSNumber) -> NSManagedObject? {
+        var alarmControlRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AlarmControl")
+        
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtro
+        
+        do {
+            let alarmControls = try context.fetch(requisicao)
+            
+            if alarmControls.count > 0 {
+                for alarmControl in alarmControls as! [NSManagedObject] {
+                    
+                    alarmControlRetorno = alarmControl
+                }
+            }
+            else {
+                print("Nenhum alarmControl encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        return alarmControlRetorno
+    }
+    
+    func getAlarmControlTO(_ id: NSNumber) -> AlarmControlTO? {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        var alarmControlTO: AlarmControlTO?
+        var alarmControlRetorno: NSManagedObject!
+        
+        //Criar uma requisição
+        let requisicao = NSFetchRequest<NSFetchRequestResult>(entityName: "AlarmControl")
+        
+        let filtro = NSPredicate(format: "id == %@", id)
+        
+        // aplicar filtros criados à requisicao
+        requisicao.predicate = filtro
+        
+        do {
+            let alarmControls = try context.fetch(requisicao)
+            
+            if alarmControls.count > 0 {
+                for alarmControl in alarmControls as! [NSManagedObject] {
+                    
+                    alarmControlRetorno = alarmControl
+                }
+            }
+            else {
+                print("Nenhum alarmControl encontrado!")
+            }
+        } catch {
+            print("Erro ao recuperar os dados!")
+        }
+        
+        if(alarmControlRetorno != nil){
+            if let id = alarmControlRetorno.value(forKey: "id"){
+                if let notifyAlarm = alarmControlRetorno.value(forKey: "notifyAlarm") {
+                    
+                    alarmControlTO = AlarmControlTO()
+                    
+                    alarmControlTO?.id = id as? NSNumber
+                    alarmControlTO?.notifyAlarm = notifyAlarm as? String
+                }
+            }
+        }
+        
+        return alarmControlTO
+    }
+    
 }

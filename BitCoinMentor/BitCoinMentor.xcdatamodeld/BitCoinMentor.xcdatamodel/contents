@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G3025" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Alarm" representedClassName="Alarm" syncable="YES" codeGenerationType="class">
         <attribute name="activeNotification" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coin" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,6 +12,12 @@
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repeatAlarm" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="AlarmControl" representedClassName="AlarmControl" syncable="YES" codeGenerationType="class">
+        <attribute name="createDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="notifyAlarm" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="Analyze" representedClassName="Analyze" syncable="YES" codeGenerationType="class">
@@ -68,10 +74,11 @@
         <attribute name="updateDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Alarm" positionX="-54" positionY="135" width="128" height="225"/>
         <element name="Analyze" positionX="-63" positionY="-18" width="128" height="210"/>
         <element name="AnalyzeExchange" positionX="-63" positionY="54" width="128" height="195"/>
         <element name="Balance" positionX="-63" positionY="72" width="128" height="165"/>
         <element name="Ordem" positionX="-54" positionY="99" width="128" height="285"/>
-        <element name="Alarm" positionX="-54" positionY="135" width="128" height="225"/>
+        <element name="AlarmControl" positionX="-54" positionY="135" width="128" height="105"/>
     </elements>
 </model>
